@@ -463,19 +463,34 @@
 
                     <div class="min-w-[100%] md:min-w-[calc(50%-1rem)] lg:min-w-[calc(33.333%-1.34rem)] snap-start glow-card group rounded-2xl overflow-hidden animate-on-scroll">
                         <div class="h-48 overflow-hidden relative">
-                            <div class="absolute inset-0 bg-green-500/20 group-hover:bg-transparent transition-colors z-10"></div>
-                            <img src="https://via.placeholder.com/600x400/10B981/000000?text=Stock+Predictor" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                            <div class="absolute inset-0 bg-blue-500/20 group-hover:bg-transparent transition-colors z-10"></div>
+                            <img src="https://via.placeholder.com/600x400/0d6efd/FFFFFF?text=PulmoScan+AI" 
+                                 alt="PulmoScan AI Dashboard" 
+                                 class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
                         </div>
+                    
                         <div class="p-6">
-                            <h3 class="text-xl font-bold text-white mb-2 group-hover:text-green-400 transition-colors">Stock Market Predictor</h3>
-                            <p class="text-slate-400 text-sm mb-4">LSTM neural network model to predict stock price movement based on historical financial data.</p>
+                            <h3 class="text-xl font-bold text-white mb-2 group-hover:text-blue-400 transition-colors">
+                                PulmoScan AI
+                            </h3>
+                            
+                            <p class="text-slate-400 text-sm mb-4">
+                                A high-sensitivity pneumonia screening tool using DenseNet121. Features explainable AI (Grad-CAM) and achieves 99.7% recall.
+                            </p>
+                    
                             <div class="flex flex-wrap gap-2 mb-4">
-                                <span class="text-xs font-bold text-indigo-accent border border-indigo-accent/30 px-2 py-1 rounded">Keras</span>
-                                <span class="text-xs font-bold text-cyan-accent border border-cyan-accent/30 px-2 py-1 rounded">Pandas</span>
+                                <span class="text-xs font-bold text-indigo-accent border border-indigo-accent/30 px-2 py-1 rounded">PyTorch</span>
+                                <span class="text-xs font-bold text-cyan-accent border border-cyan-accent/30 px-2 py-1 rounded">Streamlit</span>
+                                <span class="text-xs font-bold text-blue-400 border border-blue-400/30 px-2 py-1 rounded">OpenCV</span>
                             </div>
+                    
                             <div class="flex gap-4">
-                                <a href="#" class="text-white hover:text-green-400 text-sm font-bold flex items-center"><i class="fas fa-globe mr-2"></i> Demo</a>
-                                <a href="#" class="text-white hover:text-green-400 text-sm font-bold flex items-center"><i class="fab fa-github mr-2"></i> Code</a>
+                                <a href="https://pulmoscan.streamlit.app" target="_blank" class="text-white hover:text-blue-400 text-sm font-bold flex items-center transition-colors">
+                                    <i class="fas fa-globe mr-2"></i> Demo
+                                </a>
+                                <a href="https://github.com/Om-codex/Pneumonia-Screening-CXR-DL" target="_blank" class="text-white hover:text-blue-400 text-sm font-bold flex items-center transition-colors">
+                                    <i class="fab fa-github mr-2"></i> Code
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -725,3 +740,4 @@
 </body>
 
 </html>
+
