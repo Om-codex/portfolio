@@ -1,127 +1,158 @@
-<html lang="en" class="scroll-smooth"><head>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Om Mishra | ML Engineer &amp; ML & LLM Engineer</title>
+    <meta name="description" content="Portfolio of Om Mishra, a Machine Learning Engineer and Full-Stack Developer building intelligent products end-to-end.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Om Mishra | ML Engineer &amp; ML & LLM Engineer</title>
-<meta name="description" content="Portfolio of Bereket Tadesse, a Machine Learning Engineer and Full-Stack Developer building intelligent products end-to-end.">
-<!-- Fonts -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://code.iconify.design/3/3.1.0/iconify.min.js"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        background: '#0a0a0a', // Extremely dark grey, not pure black
+                        surface: '#171717',
+                        border: '#262626',
+                        primary: '#ededed',
+                        secondary: '#a1a1aa',
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.5s ease-out forwards',
+                        'slide-up': 'slideUp 0.7s ease-out forwards',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        },
+                        slideUp: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
 
-<!-- Tailwind CSS -->
-<script src="https://cdn.tailwindcss.com"></script>
-<!-- Iconify -->
-<script src="https://code.iconify.design/3/3.1.0/iconify.min.js"></script>
-<!-- Tailwind Config for Custom Colors/Fonts -->
-<script>
-tailwind.config = {
-darkMode: 'class',
-theme: {
-extend: {
-fontFamily: {
-sans: ['Inter', 'sans-serif'],
-mono: ['JetBrains Mono', 'monospace'],
-},
-colors: {
-background: '#0a0a0a', // Extremely dark grey, not pure black
-surface: '#171717',
-border: '#262626',
-primary: '#ededed',
-secondary: '#a1a1aa',
-},
-animation: {
-'fade-in': 'fadeIn 0.5s ease-out forwards',
-'slide-up': 'slideUp 0.7s ease-out forwards',
-},
-keyframes: {
-fadeIn: {
-'0%': { opacity: '0' },
-'100%': { opacity: '1' },
-},
-slideUp: {
-'0%': { opacity: '0', transform: 'translateY(20px)' },
-'100%': { opacity: '1', transform: 'translateY(0)' },
-}
-}
-}
-}
-}
-</script>
+    <style>
+        /* Custom Utilities */
+        .glass-nav {
+            background: rgba(10, 10, 10, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .gradient-text {
+            background: linear-gradient(to bottom right, #ffffff, #a1a1aa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .card-hover {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .card-hover:hover {
+            transform: translateY(-4px);
+            border-color: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 0 40px -10px rgba(255, 255, 255, 0.05);
+        }
+        /* Subtle grid background */
+        .bg-grid {
+            background-size: 40px 40px;
+            background-image: linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+            linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+        }
+        /* Glossy Obsidian Glow Effect Container */
+        .glow-bg {
+            /* Dimmer, cooler, and fades into dark rather than pure transparent */
+            background: radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.03) 0%, rgba(0, 0, 0, 0.4) 40%, transparent 70%);
+        }
 
-<style>
-/* Custom Utilities */
-.glass-nav {
-background: rgba(10, 10, 10, 0.7);
-backdrop-filter: blur(12px);
--webkit-backdrop-filter: blur(12px);
-border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-}
-.gradient-text {
-background: linear-gradient(to bottom right, #ffffff, #a1a1aa);
--webkit-background-clip: text;
--webkit-text-fill-color: transparent;
-}
-.card-hover {
-transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-.card-hover:hover {
-transform: translateY(-4px);
-border-color: rgba(255, 255, 255, 0.15);
-box-shadow: 0 0 40px -10px rgba(255, 255, 255, 0.05);
-}
-/* Subtle grid background */
-.bg-grid {
-background-size: 40px 40px;
-background-image: linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-}
-/* Glow effect container */
-.glow-bg {
-background: radial-gradient(circle at 50% 0%, rgba(255,255,255,0.08) 0%, transparent 50%);
-}
+        .glow-card:hover::after { transform: translateY(100%); }
 
-.glow-card:hover::after { transform: translateY(100%); }
-/* Glowing Border Animation for Cards */
-.glow-card {
-    position: relative;
-    background: #0f172a;
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    transition: all 0.1s ease-out; /* Faster transition for 3D tilt */
-    overflow: hidden;
-    transform-style: preserve-3d;
-    perspective: 1000px;
-}
-/* 3D Tilt Shine Effect */
-.glow-card::after {
-    content: "";
-    position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background: linear-gradient(125deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.05) 40%, rgba(255,255,255,0) 100%);
-    transform: translateY(-100%);
-    transition: transform 0.6s;
-    pointer-events: none;
-}
-/* Custom Mouse Glow Effect */
-#cursor-glow {
-    position: fixed;
-    width: 500px;
-    height: 500px;
-    background: radial-gradient(circle, rgba(99, 102, 241, 0.08) 0%, rgba(3, 7, 18, 0) 70%);
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 1;
-    transform: translate(-50%, -50%);
-    transition: width 0.3s, height 0.3s;
-}
-</style></head>
+        /* Glowing Border Animation for Glossy Black Cards */
+        .glow-card {
+            position: relative;
+            /* Replaced the slate-blue with a sleek, dark obsidian gradient */
+            background: linear-gradient(145deg, #171717 0%, #050505 100%);
+            /* Adding an inset shadow creates a glassy "rim light" at the top edge */
+            box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.1s ease-out; /* Faster transition for 3D tilt */
+            overflow: hidden;
+            transform-style: preserve-3d;
+            perspective: 1000px;
+        }
+        /* 3D Tilt Shine Effect (Aesthetic Black Shade) */
+        .glow-card::after {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            /* Sweeping dark obsidian shadow instead of a white highlight */
+            background: linear-gradient(125deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.3) 40%, rgba(0, 0, 0, 0) 100%);
+            transform: translateY(-100%);
+            transition: transform 0.6s;
+            pointer-events: none;
+        }
+        /* Custom Mouse Glow  */
+        #cursor-glow {
+            position: fixed;
+            width: 250px; /* Reduced from 500px */
+            height: 250px; /* Reduced from 500px */
+            /* Intense small flashlight effect */
+            background: radial-gradient(
+                circle, 
+                rgba(99, 102, 241, 0.25) 15%, 
+                rgba(99, 102, 241, 0.25) 15%, 
+                rgba(99, 102, 241, 0.08) 45%, 
+                transparent 80%
+            );
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 1;
+            transform: translate(-50%, -50%);
+            transition: width 0.3s, height 0.3s;
+        }
+
+        /* --- ADDED: Glossy Surface Effect --- */
+        .glossy-surface {
+            position: relative;
+            overflow: hidden; 
+        }
+
+        .glossy-surface::before {
+            content: '';
+            position: absolute;
+            inset: 0; 
+            background: 
+                linear-gradient(105deg, transparent 20%, rgba(255, 255, 255, 0.03) 25%, rgba(255, 255, 255, 0.01) 30%, transparent 50%),
+                radial-gradient(ellipse at top right, rgba(255, 255, 255, 0.05) 0%, transparent 50%);
+            pointer-events: none; 
+            z-index: 0;
+        }
+
+        .glossy-surface > * {
+            position: relative;
+            z-index: 1;
+        }
+    </style>
+</head>
 <body class="bg-background text-secondary font-sans antialiased selection:bg-white/20 selection:text-white overflow-x-hidden">
 
-    <!-- Navigation -->
     <nav class="fixed top-0 w-full z-50 glass-nav">
         <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-            <a href="#" class="text-primary font-semibold tracking-tight text-lg flex items-center gap-2 group">
+            <a href="https://www.github.com/Om-codex" class="text-primary font-semibold tracking-tight text-lg flex items-center gap-2 group">
                 <span class="bg-white text-black text-xs font-bold px-1.5 py-0.5 rounded-md group-hover:scale-110 transition-transform">OM</span>
                 <span>Om Mishra</span>
             </a>
@@ -135,13 +166,11 @@ background: radial-gradient(circle at 50% 0%, rgba(255,255,255,0.08) 0%, transpa
                 <a href="#contact" class="px-4 py-2 bg-white text-black rounded-full hover:bg-neutral-200 transition-colors">Contact Me</a>
             </div>
 
-            <!-- Mobile Menu Button -->
             <button class="md:hidden text-white" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')">
                 <span class="iconify" data-icon="lucide:menu" data-width="24"></span>
             </button>
         </div>
         
-        <!-- Mobile Menu -->
         <div id="mobile-menu" class="hidden absolute top-16 left-0 w-full bg-surface border-b border-border p-6 flex flex-col gap-4 md:hidden">
             <a href="#about" class="block hover:text-white">About</a>
             <a href="#skills" class="block hover:text-white">Skills</a>
@@ -151,9 +180,7 @@ background: radial-gradient(circle at 50% 0%, rgba(255,255,255,0.08) 0%, transpa
         </div>
     </nav>
 
-    <!-- Hero Section -->
     <section class="relative min-h-screen flex flex-col justify-center items-center text-center pt-20 px-6 bg-grid">
-        <!-- Spotlight Effect -->
         <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[500px] glow-bg opacity-60 pointer-events-none"></div>
 
         <div class="animate-slide-up space-y-8 max-w-4xl relative z-10">
@@ -197,14 +224,14 @@ background: radial-gradient(circle at 50% 0%, rgba(255,255,255,0.08) 0%, transpa
             </div>
         </div>
         
-        <!-- Scroll indicator -->
         <div class="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce opacity-50">
             <span class="iconify text-white" data-icon="lucide:chevron-down" data-width="24"></span>
         </div>
     </section>
 
-    <!-- About Section-->
-     <section id="about" class="py-24 bg-obsidian relative">
+    <div class="glossy-surface">
+
+        <section id="about" class="py-24 bg-obsidian relative">
             <div class="container mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
                 <div class="animate-on-scroll">
                     <h2 class="text-3xl md:text-5xl font-bold text-white mb-8">About Me</h2>
@@ -262,494 +289,471 @@ background: radial-gradient(circle at 50% 0%, rgba(255,255,255,0.08) 0%, transpa
             </div>
         </section>
 
-
-    <!-- Skills Section (Bento Grid) -->
-    <section id="skills" class="py-24 px-6 relative border-t border-white/5">
-        <div class="max-w-6xl mx-auto space-y-12">
-            <div class="space-y-2">
-                <h2 class="text-3xl md:text-4xl font-semibold text-white tracking-tight">Technical Arsenal</h2>
-                <p class="text-secondary">The tools I use to turn problems into products.</p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- AI/ML Card -->
-                <div class="group p-8 rounded-2xl bg-surface/50 border border-border card-hover relative overflow-hidden">
-                    <div class="absolute top-0 right-0 p-6 opacity-10 group-hover:opacity-20 transition-opacity">
-                        <span class="iconify" data-icon="lucide:brain-circuit" data-width="80"></span>
-                    </div>
-                    <div class="flex items-center gap-3 mb-6">
-                        <span class="p-2 rounded-lg bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">
-                            <span class="iconify" data-icon="lucide:brain" data-width="20"></span>
-                        </span>
-                        <h3 class="text-xl font-medium text-white">AI &amp; ML</h3>
-                    </div>
-                    <ul class="space-y-3">
-                        <li class="flex items-center gap-2 text-sm">
-                            <span class="w-1.5 h-1.5 rounded-full bg-indigo-500"></span> Scikit-learn, XGBoost
-                        </li>
-                        <li class="flex items-center gap-2 text-sm">
-                            <span class="w-1.5 h-1.5 rounded-full bg-indigo-500"></span> PyTorch
-                        </li>
-                        <li class="flex items-center gap-2 text-sm">
-                            <span class="w-1.5 h-1.5 rounded-full bg-indigo-500"></span> NLP &amp; LLM's
-                        </li>
-                    </ul>
-                </div>
-
-                <!-- GenAI Card -->
-                <div class="group p-8 rounded-2xl bg-surface/50 border border-border card-hover relative overflow-hidden">
-                    <div class="absolute top-0 right-0 p-6 opacity-10 group-hover:opacity-20 transition-opacity">
-                        <span class="iconify" data-icon="lucide:sparkles" data-width="80"></span>
-                    </div>
-                    <div class="flex items-center gap-3 mb-6">
-                        <span class="p-2 rounded-lg bg-purple-500/10 text-purple-400 border border-purple-500/20">
-                            <span class="iconify" data-icon="lucide:bot" data-width="20"></span>
-                        </span>
-                        <h3 class="text-xl font-medium text-white">GenAI &amp; LLMs</h3>
-                    </div>
-                    <ul class="space-y-3">
-                        <li class="flex items-center gap-2 text-sm">
-                            <span class="w-1.5 h-1.5 rounded-full bg-purple-500"></span> OpenAI API, Gemini
-                        </li>
-                        <li class="flex items-center gap-2 text-sm">
-                            <span class="w-1.5 h-1.5 rounded-full bg-purple-500"></span> LangChain
-                        </li>
-                        <li class="flex items-center gap-2 text-sm">
-                            <span class="w-1.5 h-1.5 rounded-full bg-purple-500"></span> RAG Architectures
-                        </li>
-                    </ul>
-                </div>
-
-                <!-- Data & DB Card -->
-                <div class="group p-8 rounded-2xl bg-surface/50 border border-border card-hover relative overflow-hidden lg:col-span-2">
-                    <div class="flex flex-col md:flex-row gap-8">
-                         <div class="flex-1 border-l border-white/5 pl-0 md:pl-8">
-                            <div class="flex items-center gap-3 mb-6">
-                                <span class="p-2 rounded-lg bg-orange-500/10 text-orange-400 border border-orange-500/20">
-                                    <span class="iconify" data-icon="lucide:cloud" data-width="20"></span>
-                                </span>
-                                <h3 class="text-xl font-medium text-white">Deployment</h3>
-                            </div>
-                            <div class="grid grid-cols-2 gap-3 text-sm">
-                                <div class="flex items-center gap-2"><span class="iconify" data-icon="lucide:container"></span> Docker</div>
-                                <div class="flex items-center gap-2"><span class="iconify" data-icon="lucide:server"></span> AWS</div>
-                                <div class="flex items-center gap-2"><span class="iconify" data-icon="lucide:globe"></span> Streamlit</div>
-                                <div class="flex items-center gap-2"><span class="iconify" data-icon="lucide:git-branch"></span> CI/CD</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Experience Section -->
-    <section id="experience" class="py-24 px-6 bg-surface/30">
-        <div class="max-w-4xl mx-auto space-y-12">
-            <h2 class="text-3xl font-semibold text-white tracking-tight">Experience</h2>
-            
-            <div class="relative border-l border-white/10 ml-3 space-y-12">
-                <!-- Job 1 -->
-                <div class="relative pl-10 group">
-                    <div class="absolute -left-[5px] top-2 h-2.5 w-2.5 rounded-full bg-white ring-4 ring-background group-hover:bg-indigo-400 transition-colors"></div>
-                    <div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between mb-2">
-                        <h3 class="text-xl font-medium text-white">@ NASA Space Apps</h3>
-                        <span class="text-sm font-mono text-secondary">Oct 2025 – Present</span>
-                    </div>
-                    <p class="text-slate-400 leading-relaxed mb-4">
-                            Awarded the "Galactic Problem Solver" certificate for the project <strong>"A World Away"</strong>. We leveraged AI algorithms to accelerate <span class="text-white">exoplanet discovery</span>.
-                        </p>
-                        <p class="text-slate-500 text-sm leading-relaxed">
-                            Honed skills in rapid problem-solving, collaborative coding with Git, and presenting complex data science concepts under extreme time pressure.
-                        </p>
-                </div>
-
-                <!-- Job 2 -->
-                <div class="relative pl-10 group">
-                    <div class="absolute -left-[5px] top-2 h-2.5 w-2.5 rounded-full bg-neutral-600 ring-4 ring-background group-hover:bg-indigo-400 transition-colors"></div>
-                    <div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between mb-2">
-                        <h3 class="text-xl font-medium text-white">@ Self-Initiated</h3>
-                        <span class="text-sm font-mono text-secondary">2025 - Present</span>
-                    </div>
-                    <p class="text-slate-400 leading-relaxed mb-4">
-                            Designed and executed end-to-end machine learning pipelines for complex real-world scenarios. Built robust <span class="text-white">ML, DL</span> and <span class="text-white">Attention Transformer models</span>.
-                        </p>
-                        <p class="text-slate-500 text-sm leading-relaxed">
-                            Specialized in Exploratory Data Analysis (EDA), advanced feature engineering, and model optimization to solve predictive challenges.
-                        </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Projects Section -->
-    <section id="projects" class="py-24 px-6 relative">
-        <div class="max-w-6xl mx-auto space-y-12">
-            <div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
+        <section id="skills" class="py-24 px-6 relative border-t border-white/5">
+            <div class="max-w-6xl mx-auto space-y-12">
                 <div class="space-y-2">
-                    <h2 class="text-3xl md:text-4xl font-semibold text-white tracking-tight">Featured Projects</h2>
-                    <p class="text-secondary">Selected works blending AI with intuitive interfaces.</p>
+                    <h2 class="text-3xl md:text-4xl font-semibold text-white tracking-tight">Technical Arsenal</h2>
+                    <p class="text-secondary">The tools I use to turn problems into products.</p>
                 </div>
-                <!-- Simple Filter UI -->
-                <div class="flex flex-wrap gap-2">
-                    <button class="px-3 py-1.5 text-xs font-medium rounded-full bg-white text-black">All</button>
-                    <button class="px-3 py-1.5 text-xs font-medium rounded-full border border-border hover:bg-white/5 transition-colors">AI/ML</button>
-                    <button class="px-3 py-1.5 text-xs font-medium rounded-full border border-border hover:bg-white/5 transition-colors">LLM's</button>
-                    <button class="px-3 py-1.5 text-xs font-medium rounded-full border border-border hover:bg-white/5 transition-colors">Gen-AI</button>
-                </div>
-            </div>
-            
-            <!-- Project 1-->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <article class="group relative rounded-xl bg-surface border border-border overflow-hidden hover:border-neutral-600 transition-colors">
-                    <div class="h-48 overflow-hidden relative">
-                            <div class="absolute inset-0 bg-cyan-accent/20 group-hover:bg-transparent transition-colors z-10"></div>
-                            <img src="transformer-app.png" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" alt="Transformer Translation App">
-                    </div>
-                    <div class="p-6 space-y-4">
-                        <div class="flex justify-between items-start">
-                            <div>
-                                <h3 class="text-lg font-semibold text-white mb-1 group-hover:text-red-300 transition-colors">Transformer Translation</h3>
-                                <p class="text-xs text-secondary">Neural Machine Translation App</p>
-                            </div><a href="https://neuralbridge.streamlit.app/" class="p-2 rounded-full hover:bg-white/10 text-white"><span class="iconify" data-icon="lucide:arrow-up-right"></span></a>
-                        </div>
-                        <p class="text-sm text-secondary line-clamp-2">
-                            Encoder-Decoder architecture built from scratch for EN-to-FR translation. Achieved 34.82 BLEU score on 2.3M pairs with cross-attention heatmaps.
-                        </p>
-                        <div class="flex gap-2 pt-2">
-                            <span class="px-2 py-1 text-[10px] uppercase tracking-wider rounded border border-white/10 text-neutral-400">PyTorch</span>
-                            <span class="px-2 py-1 text-[10px] uppercase tracking-wider rounded border border-white/10 text-neutral-400">NLP</span>
-                            <span class="px-2 py-1 text-[10px] uppercase tracking-wider rounded border border-white/10 text-neutral-400">Streamlit</span>
-                        </div>
-                        <div class="flex gap-4">
-                                <a href="https://neuralbridge.streamlit.app/" target="_blank" class="text-white hover:text-cyan-accent text-sm font-bold flex items-center"><i class="fas fa-globe mr-2"></i> App</a>
-                                <a href="https://github.com/Om-codex/attention-is-all-you-need-from-scratch/" target="_blank" class="text-white hover:text-cyan-accent text-sm font-bold flex items-center"><i class="fab fa-github mr-2"></i> GitHub</a>
-                        </div>
-                    </div>
-                </article>
 
-                <!-- Project 2-->
-                 <article class="group relative rounded-xl bg-surface border border-border overflow-hidden hover:border-neutral-600 transition-colors">
-                    <div class="h-48 overflow-hidden relative">
-                            <div class="absolute inset-0 bg-cyan-accent/20 group-hover:bg-transparent transition-colors z-10"></div>
-                            <img src="pulmoscan3.png" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" alt="PulmoScan AI App">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="glow-card p-8 md:p-10 rounded-3xl animate-on-scroll">
+                        <div class="absolute top-0 right-0 p-6 opacity-10 group-hover:opacity-20 transition-opacity">
+                            <span class="iconify" data-icon="lucide:brain-circuit" data-width="80"></span>
+                        </div>
+                        <div class="flex items-center gap-3 mb-6">
+                            <span class="p-2 rounded-lg bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">
+                                <span class="iconify" data-icon="lucide:brain" data-width="20"></span>
+                            </span>
+                            <h3 class="text-xl font-medium text-white">AI &amp; ML</h3>
+                        </div>
+                        <ul class="space-y-3">
+                            <li class="flex items-center gap-2 text-sm">
+                                <span class="w-1.5 h-1.5 rounded-full bg-indigo-500"></span> Scikit-learn, XGBoost
+                            </li>
+                            <li class="flex items-center gap-2 text-sm">
+                                <span class="w-1.5 h-1.5 rounded-full bg-indigo-500"></span> PyTorch
+                            </li>
+                            <li class="flex items-center gap-2 text-sm">
+                                <span class="w-1.5 h-1.5 rounded-full bg-indigo-500"></span> NLP &amp; LLM's
+                            </li>
+                        </ul>
                     </div>
-                    <div class="p-6 space-y-4">
-                        <div class="flex justify-between items-start">
-                            <div>
-                                <h3 class="text-lg font-semibold text-white mb-1 group-hover:text-red-300 transition-colors">PulmoScan AI</h3>
-                                <p class="text-xs text-secondary">High-Sensitivity Pneumonia Screening</p>
+
+                    <div class="glow-card p-8 md:p-10 rounded-3xl animate-on-scroll">
+                        <div class="absolute top-0 right-0 p-6 opacity-10 group-hover:opacity-20 transition-opacity">
+                            <span class="iconify" data-icon="lucide:sparkles" data-width="80"></span>
+                        </div>
+                        <div class="flex items-center gap-3 mb-6">
+                            <span class="p-2 rounded-lg bg-purple-500/10 text-purple-400 border border-purple-500/20">
+                                <span class="iconify" data-icon="lucide:bot" data-width="20"></span>
+                            </span>
+                            <h3 class="text-xl font-medium text-white">GenAI &amp; LLMs</h3>
+                        </div>
+                        <ul class="space-y-3">
+                            <li class="flex items-center gap-2 text-sm">
+                                <span class="w-1.5 h-1.5 rounded-full bg-purple-500"></span> OpenAI API, Gemini
+                            </li>
+                            <li class="flex items-center gap-2 text-sm">
+                                <span class="w-1.5 h-1.5 rounded-full bg-purple-500"></span> LangChain
+                            </li>
+                            <li class="flex items-center gap-2 text-sm">
+                                <span class="w-1.5 h-1.5 rounded-full bg-purple-500"></span> RAG Architectures
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="glow-card p-8 md:p-10 rounded-3xl animate-on-scroll">
+                        <div class="flex flex-col md:flex-row gap-8">
+                             <div class="flex-1 border-l border-white/5 pl-0 md:pl-8">
+                                <div class="flex items-center gap-3 mb-6">
+                                    <span class="p-2 rounded-lg bg-orange-500/10 text-orange-400 border border-orange-500/20">
+                                        <span class="iconify" data-icon="lucide:cloud" data-width="20"></span>
+                                    </span>
+                                    <h3 class="text-xl font-medium text-white">Deployment</h3>
+                                </div>
+                                <div class="grid grid-cols-2 gap-3 text-sm">
+                                    <div class="flex items-center gap-2"><span class="iconify" data-icon="lucide:container"></span> Docker</div>
+                                    <div class="flex items-center gap-2"><span class="iconify" data-icon="lucide:server"></span> AWS</div>
+                                    <div class="flex items-center gap-2"><span class="iconify" data-icon="lucide:globe"></span> Streamlit</div>
+                                    <div class="flex items-center gap-2"><span class="iconify" data-icon="lucide:git-branch"></span> CI/CD</div>
+                                </div>
                             </div>
-                            <a href="https://pulmoscan.streamlit.app" class="p-2 rounded-full hover:bg-white/10 text-white">
-                                <span class="iconify" data-icon="lucide:arrow-up-right"></span>
-                            </a>
-                        </div>
-                        <p class="text-sm text-secondary line-clamp-2">
-                            Diagnostic system fine-tuning DenseNet121 to detect pneumonia from X-rays, achieving 99.7% Recall. Features Grad-CAM explainability and a low-latency Streamlit UI.
-                        </p>
-                        <div class="flex gap-2 pt-2">
-                            <span class="px-2 py-1 text-[10px] uppercase tracking-wider rounded border border-white/10 text-neutral-400">PyTorch</span>
-                            <span class="px-2 py-1 text-[10px] uppercase tracking-wider rounded border border-white/10 text-neutral-400">Streamlit</span>
-                            <span class="px-2 py-1 text-[10px] uppercase tracking-wider rounded border border-white/10 text-neutral-400">OpenCV</span>
-                        </div>
-                        <div class="flex gap-4">
-                                <a href="https://pulmoscan.streamlit.app" target="_blank" class="text-white hover:text-cyan-accent text-sm font-bold flex items-center"><i class="fas fa-globe mr-2"></i> App</a>
-                                <a href="https://github.com/Om-codex/Pneumonia-Screening-CXR-DL" target="_blank" class="text-white hover:text-cyan-accent text-sm font-bold flex items-center"><i class="fab fa-github mr-2"></i> GitHub</a>
                         </div>
                     </div>
-                </article>
-                <!-- Project 3 -->
-                <!-- Project: Ramartha -->
-                <article class="group relative rounded-xl bg-surface border border-border overflow-hidden hover:border-neutral-600 transition-colors">
-                    <div class="h-48 overflow-hidden relative">
-                            <div class="absolute inset-0 bg-blue-500/20 group-hover:bg-transparent transition-colors z-10"></div>
-                            <img src="Shriramartha.png" 
-                                 alt="Shriramartha Streamlit Interface" 
-                                 class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-                    </div>
-                    <div class="p-6 space-y-4">
-                        <div class="flex justify-between items-start">
-                            <div>
-                                <h3 class="text-lg font-semibold text-white mb-1 group-hover:text-red-300 transition-colors">Ramartha Analysis</h3>
-                                <p class="text-xs text-secondary">NLP Application</p>
-                            </div><a href="https://huggingface.co/spaces/OmCodex/shriramartha-streamlit-app" class="p-2 rounded-full hover:bg-white/10 text-white"><span class="iconify" data-icon="lucide:arrow-up-right"></span></a>
-                        </div>
-                        <p class="text-sm text-secondary line-clamp-2">
-                            End-to-end NLP system for semantic analysis of low-resource classical texts using Word2Vec and FastText. Features Unicode-native processing and real-time concept exploration.
-                        </p>
-                        <div class="flex gap-2 pt-2">
-                            <span class="px-2 py-1 text-[10px] uppercase tracking-wider rounded border border-white/10 text-neutral-400">NLP</span>
-                            <span class="px-2 py-1 text-[10px] uppercase tracking-wider rounded border border-white/10 text-neutral-400">Word2Vec</span>
-                            <span class="px-2 py-1 text-[10px] uppercase tracking-wider rounded border border-white/10 text-neutral-400">Hugging Face</span>
-                        </div>
-                        <div class="flex gap-4">
-                                <!-- Replace '#' with your actual Streamlit App URL -->
-                                <a href="https://huggingface.co/spaces/OmCodex/shriramartha-streamlit-app" target="_blank" class="text-white hover:text-cyan-accent text-sm font-bold flex items-center"><i class="fas fa-globe mr-2"></i> App</a>
-                                <!-- Replace '#' with your actual GitHub URL -->
-                                <a href="https://github.com/Om-codex/semantic-narrative-analysis-shriramcharitmanas" target="_blank" class="text-white hover:text-cyan-accent text-sm font-bold flex items-center"><i class="fab fa-github mr-2"></i> GitHub</a>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- Project 4 -->
-                <article class="group relative rounded-xl bg-surface border border-border overflow-hidden hover:border-neutral-600 transition-colors">
-                    <div class="h-48 overflow-hidden relative">
-                            <div class="absolute inset-0 bg-cyan-accent/20 group-hover:bg-transparent transition-colors z-10"></div>
-                            <img src="urban-app.png" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-                    </div>
-                    <div class="p-6 space-y-4">
-                        <div class="flex justify-between items-start">
-                            <div>
-                                <h3 class="text-lg font-semibold text-white mb-1 group-hover:text-red-300 transition-colors">Urban Bike Demand</h3>
-                                <p class="text-xs text-secondary">Streamlit App</p>
-                            </div><a href="https://urban-ride-cast.streamlit.app" class="p-2 rounded-full hover:bg-white/10 text-white"><span class="iconify" data-icon="lucide:arrow-up-right"></span></a>
-                        </div>
-                        <p class="text-sm text-secondary line-clamp-2">
-                            Logistics optimization system achieving 93.5% R² with LightGBM. Uses cyclic encoding and weather analysis to proactively prevent station stockouts.
-                        </p>
-                        <div class="flex gap-2 pt-2">
-                            <span class="px-2 py-1 text-[10px] uppercase tracking-wider rounded border border-white/10 text-neutral-400">Python</span>
-                            <span class="px-2 py-1 text-[10px] uppercase tracking-wider rounded border border-white/10 text-neutral-400">Sklearn</span>
-                            <span class="px-2 py-1 text-[10px] uppercase tracking-wider rounded border border-white/10 text-neutral-400">Streamlit</span>
-                        </div>
-                        <div class="flex gap-4">
-                                <a href="https://urban-ride-cast.streamlit.app" target="_blank" class="text-white hover:text-cyan-accent text-sm font-bold flex items-center"><i class="fas fa-globe mr-2"></i> Demo</a>
-                                <a href="https://github.com/Om-codex/Urban_Mobility_Optimization_Streamlit_App" target="_blank" class="text-white hover:text-cyan-accent text-sm font-bold flex items-center"><i class="fab fa-github mr-2"></i> Code</a>
-                        </div>
-                    </div>
-                </article>
-                <!-- Project 5 -->
-                <article class="group relative rounded-xl bg-surface border border-border overflow-hidden hover:border-neutral-600 transition-colors">
-                    <div class="h-48 overflow-hidden relative">
-                            <div class="absolute inset-0 bg-indigo-accent/20 group-hover:bg-transparent transition-colors z-10"></div>
-                            <img src="telco-app.png" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-                    </div>
-                    <div class="p-6 space-y-4">
-                        <div class="flex justify-between items-start">
-                            <div>
-                                <h3 class="text-lg font-semibold text-white mb-1 group-hover:text-indigo-300 transition-colors">Telco Customer Churn</h3>
-                                <p class="text-xs text-secondary">Streamlit App</p>
-                                </div><a href="https://telco-customer-churn-prediction-om-codex.onrender.com/" class="p-2 rounded-full hover:bg-white/10 text-white"><span class="iconify" data-icon="lucide:arrow-up-right"></span></a>
-                            </div></div>
-                        <p class="text-sm text-secondary line-clamp-2">
-                            End-to-end ML pipeline optimizing retention via Logistic Regression (81% Recall). Features a live Streamlit dashboard for real-time customer risk assessment.
-                        </p>
-                        <div class="flex gap-2 pt-2">
-                            <span class="px-2 py-1 text-[10px] uppercase tracking-wider rounded border border-white/10 text-neutral-400">Python</span>
-                            <span class="px-2 py-1 text-[10px] uppercase tracking-wider rounded border border-white/10 text-neutral-400">Sklearn</span>
-                            <span class="px-2 py-1 text-[10px] uppercase tracking-wider rounded border border-white/10 text-neutral-400">Streamlit</span>
-                        </div>
-                        <div class="flex gap-4">
-                                <a href="https://telco-customer-churn-prediction-om-codex.onrender.com/" target="_blank" class="text-white hover:text-indigo-accent text-sm font-bold flex items-center"><i class="fas fa-globe mr-2"></i> Demo</a>
-                                <a href="https://github.com/Om-codex/Telco-Customer-Churn-Prediction" target="_blank" class="text-white hover:text-indigo-accent text-sm font-bold flex items-center"><i class="fab fa-github mr-2"></i> Code</a>
-                        </div>
-                    </div>
-                </article>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section id="blog" class="py-24 bg-obsidian relative">
-  <div class="container mx-auto px-6">
-
-    <!-- Header -->
-    <div class="flex flex-col md:flex-row justify-between items-end mb-12 animate-on-scroll">
-      <div class="text-center md:text-left">
-        <h2 class="text-3xl md:text-5xl font-bold text-white mb-4">
-          Latest Insights
-        </h2>
-        <p class="text-slate-400">
-          Read my thoughts on AI, Data, and Tech.
-        </p>
-      </div>
-
-      <div class="hidden md:flex gap-4 mt-6 md:mt-0">
-        <button
-          id="blogPrevBtn"
-          class="w-12 h-12 rounded-full border border-indigo-accent/30 flex items-center justify-center text-indigo-accent hover:bg-indigo-accent hover:text-white transition-all duration-300 active:scale-95">
-          <i class="fas fa-chevron-left"></i>
-        </button>
-        <button
-          id="blogNextBtn"
-          class="w-12 h-12 rounded-full bg-indigo-accent text-white flex items-center justify-center hover:bg-white hover:text-obsidian transition-all duration-300 shadow-lg shadow-indigo-500/20 active:scale-95">
-          <i class="fas fa-chevron-right"></i>
-        </button>
-      </div>
-    </div>
-
-    <!-- Blog Slider -->
-    <div
-      id="blogSliderContainer"
-      class="flex gap-8 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-12 no-scrollbar">
-
-      <!-- Card 1 -->
-      <article
-        class="min-w-full md:min-w-[calc(50%-1rem)] lg:min-w-[calc(33.333%-1.34rem)]
-               snap-start glow-card rounded-2xl overflow-hidden
-               flex flex-col h-[520px] animate-on-scroll">
-
-        <div class="h-48 overflow-hidden shrink-0">
-          <img
-            src="LSTM_Architecture.png"
-            class="w-full h-full object-cover transition-transform duration-500 opacity-80 hover:scale-110 hover:opacity-100">
-        </div>
-
-        <div class="p-8 flex flex-col flex-1">
-          <span class="text-xs text-indigo-accent font-bold uppercase tracking-wider mb-2">
-            Deep Learning
-          </span>
-          <h3 class="text-xl font-bold text-white mb-3 hover:text-indigo-accent transition-colors">
-            LSTM Explained: From RNN Failure to Stable Sequence Learning
-          </h3>
-          <p class="text-slate-400 text-sm mb-4">
-            A deep dive into why vanilla RNNs fail and how LSTM uses gated memory to learn long-term dependencies.
-          </p>
-          <a
-            href="https://medium.com/@omm512462/lstm-architecture-explained-cedfdd9428b6"
-            class="text-white text-sm font-bold flex items-center mt-auto hover:text-indigo-accent">
-            Read Article <i class="fas fa-arrow-right ml-2"></i>
-          </a>
-        </div>
-      </article>
-
-      <!-- Card 2 -->
-      <article
-        class="min-w-full md:min-w-[calc(50%-1rem)] lg:min-w-[calc(33.333%-1.34rem)]
-               snap-start glow-card rounded-2xl overflow-hidden
-               flex flex-col h-[520px] animate-on-scroll">
-
-        <div class="h-48 overflow-hidden shrink-0">
-          <img
-            src="Machine_Learning.png"
-            class="w-full h-full object-cover transition-transform duration-500 opacity-80 hover:scale-110 hover:opacity-100">
-        </div>
-
-        <div class="p-8 flex flex-col flex-1">
-          <span class="text-xs text-cyan-accent font-bold uppercase tracking-wider mb-2">
-            Guide
-          </span>
-          <h3 class="text-xl font-bold text-white mb-3 hover:text-cyan-accent transition-colors">
-            Machine Learning Made Simple
-          </h3>
-          <p class="text-slate-400 text-sm mb-4">
-            A beginner-friendly roadmap to understanding machine learning fundamentals.
-          </p>
-          <a
-            href="https://medium.com/@omm512462/machine-learning-made-simple-fc8f0e1586dc"
-            class="text-white text-sm font-bold flex items-center mt-auto hover:text-cyan-accent">
-            Read Article <i class="fas fa-arrow-right ml-2"></i>
-          </a>
-        </div>
-      </article>
-
-      <!-- Card 3 -->
-      <article
-        class="min-w-full md:min-w-[calc(50%-1rem)] lg:min-w-[calc(33.333%-1.34rem)]
-               snap-start glow-card rounded-2xl overflow-hidden
-               flex flex-col h-[520px] animate-on-scroll">
-
-        <div class="h-48 overflow-hidden shrink-0">
-          <img
-            src="PulmoScan_Blog.png"
-            class="w-full h-full object-cover transition-transform duration-500 opacity-80 hover:scale-110 hover:opacity-100">
-        </div>
-
-        <div class="p-8 flex flex-col flex-1">
-          <span class="text-xs text-purple-400 font-bold uppercase tracking-wider mb-2">
-            Computer Vision & CNNs
-          </span>
-          <h3 class="text-xl font-bold text-white mb-3 hover:text-purple-400 transition-colors">
-            Building High-Sensitivity Pneumonia Screening
-          </h3>
-          <p class="text-slate-400 text-sm mb-4">
-            Deploying a fine-tuned DL model with Grad-CAM visualization and Streamlit.
-          </p>
-          <a
-            href="https://medium.com/@omm512462/why-97-is-not-enough-building-high-sensitivity-pneumonia-screening-with-densenet-grad-cam-21fa6a19180a"
-            class="text-white text-sm font-bold flex items-center mt-auto hover:text-purple-400">
-            Read Article <i class="fas fa-arrow-right ml-2"></i>
-          </a>
-        </div>
-      </article>
-
-      <!-- Card 4 -->
-      <article
-        class="min-w-full md:min-w-[calc(50%-1rem)] lg:min-w-[calc(33.333%-1.34rem)]
-               snap-start glow-card rounded-2xl overflow-hidden
-               flex flex-col h-[520px] animate-on-scroll">
-
-        <div class="h-48 overflow-hidden shrink-0">
-          <img
-            src="Blogging.png"
-            class="w-full h-full object-cover transition-transform duration-500 opacity-80 hover:scale-110 hover:opacity-100">
-        </div>
-
-        <div class="p-8 flex flex-col flex-1">
-          <span class="text-xs text-indigo-accent font-bold uppercase tracking-wider mb-2">
-            Self Learning
-          </span>
-          <h3 class="text-xl font-bold text-white mb-3 hover:text-indigo-accent transition-colors">
-            The Data Analysis Journey
-          </h3>
-          <p class="text-slate-400 text-sm mb-4">
-            How I went from zero Python knowledge to real-world data analysis projects.
-          </p>
-          <a
-            href="https://medium.com/@omm512462/how-i-started-from-my-zero-python-knowledge-to-data-analysis-projects-37e016eb50cc"
-            class="text-white text-sm font-bold flex items-center mt-auto hover:text-indigo-accent">
-            Read Article <i class="fas fa-arrow-right ml-2"></i>
-          </a>
-        </div>
-      </article>
-
-    </div>
-  </div>
-</section>
-
-
-    <!-- About / Contact Section -->
-    <section id="contact" class="py-24 px-6 border-t border-white/5 bg-gradient-to-b from-background to-surface/20">
-        <div class="max-w-3xl mx-auto text-center space-y-8">
-            <h2 class="text-3xl font-semibold text-white tracking-tight">Ready to build something intelligent?</h2>
-            <p class="text-secondary text-lg leading-relaxed">
-                I'm currently looking for new opportunities to apply my skills in Machine Learning and AI. Whether you have a question or just want to say hi, I'll try my best to get back to you!
-            </p>
-            
-            <div class="flex justify-center gap-6 pt-6">
-                <a href="mailto:omm512462@gmail.com" class="group flex items-center gap-3 px-6 py-3 bg-white text-black rounded-lg font-medium hover:scale-105 transition-transform">
-                    <span class="iconify" data-icon="lucide:mail"></span>
-                    <span>Send Email</span>
-                </a>
+        <section id="experience" class="py-24 px-6 bg-surface/30">
+            <div class="max-w-4xl mx-auto space-y-12">
+                <h2 class="text-3xl font-semibold text-white tracking-tight">Experience</h2>
                 
-                <a href="tel:7021552396" class="group flex items-center gap-3 px-6 py-3 border border-border rounded-lg font-medium hover:bg-white/5 transition-colors">
-                    <span class="iconify" data-icon="lucide:calendar"></span>
-                    <span>Book a Call</span>
-                </a>
+                <div class="relative border-l border-white/10 ml-3 space-y-12">
+                    <div class="relative pl-10 group">
+                        <div class="absolute -left-[5px] top-2 h-2.5 w-2.5 rounded-full bg-white ring-4 ring-background group-hover:bg-indigo-400 transition-colors"></div>
+                        <div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between mb-2">
+                            <h3 class="text-xl font-medium text-white">@ NASA Space Apps</h3>
+                            <span class="text-sm font-mono text-secondary">Oct 2025 – Present</span>
+                        </div>
+                        <p class="text-slate-400 leading-relaxed mb-4">
+                                Awarded the "Galactic Problem Solver" certificate for the project <strong>"A World Away"</strong>. We leveraged AI algorithms to accelerate <span class="text-white">exoplanet discovery</span>.
+                            </p>
+                            <p class="text-slate-500 text-sm leading-relaxed">
+                                Honed skills in rapid problem-solving, collaborative coding with Git, and presenting complex data science concepts under extreme time pressure.
+                            </p>
+                    </div>
+
+                    <div class="relative pl-10 group">
+                        <div class="absolute -left-[5px] top-2 h-2.5 w-2.5 rounded-full bg-neutral-600 ring-4 ring-background group-hover:bg-indigo-400 transition-colors"></div>
+                        <div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between mb-2">
+                            <h3 class="text-xl font-medium text-white">@ Self-Initiated</h3>
+                            <span class="text-sm font-mono text-secondary">2025 - Present</span>
+                        </div>
+                        <p class="text-slate-400 leading-relaxed mb-4">
+                                Designed and executed end-to-end machine learning pipelines for complex real-world scenarios. Built robust <span class="text-white">ML, DL</span> and <span class="text-white">Attention Transformer models</span>.
+                            </p>
+                            <p class="text-slate-500 text-sm leading-relaxed">
+                                Specialized in Exploratory Data Analysis (EDA), advanced feature engineering, and model optimization to solve predictive challenges.
+                            </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="py-24 px-6 relative">
+            <div class="max-w-6xl mx-auto space-y-12">
+                <div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
+                    <div class="space-y-2">
+                        <h2 class="text-3xl md:text-4xl font-semibold text-white tracking-tight">Featured Projects</h2>
+                        <p class="text-secondary">Selected works blending AI with intuitive interfaces.</p>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <button class="px-3 py-1.5 text-xs font-medium rounded-full bg-white text-black">All</button>
+                        <button class="px-3 py-1.5 text-xs font-medium rounded-full border border-border hover:bg-white/5 transition-colors">AI/ML</button>
+                        <button class="px-3 py-1.5 text-xs font-medium rounded-full border border-border hover:bg-white/5 transition-colors">LLM's</button>
+                        <button class="px-3 py-1.5 text-xs font-medium rounded-full border border-border hover:bg-white/5 transition-colors">Gen-AI</button>
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <article class="glow-card p-8 md:p-10 rounded-3xl animate-on-scroll">
+                        <div class="h-48 overflow-hidden relative">
+                                <div class="absolute inset-0 bg-cyan-accent/20 group-hover:bg-transparent transition-colors z-10"></div>
+                                <img src="transformer-app.png" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" alt="Transformer Translation App">
+                        </div>
+                        <div class="p-6 space-y-4">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h3 class="text-lg font-semibold text-white mb-1 group-hover:text-red-300 transition-colors">Transformer Translation</h3>
+                                    <p class="text-xs text-secondary">Neural Machine Translation App</p>
+                                </div><a href="https://neuralbridge.streamlit.app/" class="p-2 rounded-full hover:bg-white/10 text-white"><span class="iconify" data-icon="lucide:arrow-up-right"></span></a>
+                            </div>
+                            <p class="text-sm text-secondary line-clamp-2">
+                                Encoder-Decoder architecture built from scratch for EN-to-FR translation. Achieved 34.82 BLEU score on 2.3M pairs with cross-attention heatmaps.
+                            </p>
+                            <div class="flex gap-2 pt-2">
+                                <span class="px-2 py-1 text-[10px] uppercase tracking-wider rounded border border-white/10 text-neutral-400">PyTorch</span>
+                                <span class="px-2 py-1 text-[10px] uppercase tracking-wider rounded border border-white/10 text-neutral-400">NLP</span>
+                                <span class="px-2 py-1 text-[10px] uppercase tracking-wider rounded border border-white/10 text-neutral-400">Streamlit</span>
+                            </div>
+                            <div class="flex gap-4">
+                                    <a href="https://neuralbridge.streamlit.app/" target="_blank" class="text-white hover:text-cyan-accent text-sm font-bold flex items-center"><i class="fas fa-globe mr-2"></i> App</a>
+                                    <a href="https://github.com/Om-codex/attention-is-all-you-need-from-scratch/" target="_blank" class="text-white hover:text-cyan-accent text-sm font-bold flex items-center"><i class="fab fa-github mr-2"></i> GitHub</a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="glow-card p-8 md:p-10 rounded-3xl animate-on-scroll">
+                        <div class="h-48 overflow-hidden relative">
+                                <div class="absolute inset-0 bg-cyan-accent/20 group-hover:bg-transparent transition-colors z-10"></div>
+                                <img src="pulmoscan3.png" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" alt="PulmoScan AI App">
+                        </div>
+                        <div class="p-6 space-y-4">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h3 class="text-lg font-semibold text-white mb-1 group-hover:text-red-300 transition-colors">PulmoScan AI</h3>
+                                    <p class="text-xs text-secondary">High-Sensitivity Pneumonia Screening</p>
+                                </div>
+                                <a href="https://pulmoscan.streamlit.app" class="p-2 rounded-full hover:bg-white/10 text-white">
+                                    <span class="iconify" data-icon="lucide:arrow-up-right"></span>
+                                </a>
+                            </div>
+                            <p class="text-sm text-secondary line-clamp-2">
+                                Diagnostic system fine-tuning DenseNet121 to detect pneumonia from X-rays, achieving 99.7% Recall. Features Grad-CAM explainability and a low-latency Streamlit UI.
+                            </p>
+                            <div class="flex gap-2 pt-2">
+                                <span class="px-2 py-1 text-[10px] uppercase tracking-wider rounded border border-white/10 text-neutral-400">PyTorch</span>
+                                <span class="px-2 py-1 text-[10px] uppercase tracking-wider rounded border border-white/10 text-neutral-400">Streamlit</span>
+                                <span class="px-2 py-1 text-[10px] uppercase tracking-wider rounded border border-white/10 text-neutral-400">OpenCV</span>
+                            </div>
+                            <div class="flex gap-4">
+                                    <a href="https://pulmoscan.streamlit.app" target="_blank" class="text-white hover:text-cyan-accent text-sm font-bold flex items-center"><i class="fas fa-globe mr-2"></i> App</a>
+                                    <a href="https://github.com/Om-codex/Pneumonia-Screening-CXR-DL" target="_blank" class="text-white hover:text-cyan-accent text-sm font-bold flex items-center"><i class="fab fa-github mr-2"></i> GitHub</a>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="glow-card p-8 md:p-10 rounded-3xl animate-on-scroll">
+                        <div class="h-48 overflow-hidden relative">
+                                <div class="absolute inset-0 bg-blue-500/20 group-hover:bg-transparent transition-colors z-10"></div>
+                                <img src="Shriramartha.png" 
+                                     alt="Shriramartha Streamlit Interface" 
+                                     class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        </div>
+                        <div class="p-6 space-y-4">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h3 class="text-lg font-semibold text-white mb-1 group-hover:text-red-300 transition-colors">Ramartha Analysis</h3>
+                                    <p class="text-xs text-secondary">NLP Application</p>
+                                </div><a href="https://huggingface.co/spaces/OmCodex/shriramartha-streamlit-app" class="p-2 rounded-full hover:bg-white/10 text-white"><span class="iconify" data-icon="lucide:arrow-up-right"></span></a>
+                            </div>
+                            <p class="text-sm text-secondary line-clamp-2">
+                                End-to-end NLP system for semantic analysis of low-resource classical texts using Word2Vec and FastText. Features Unicode-native processing and real-time concept exploration.
+                            </p>
+                            <div class="flex gap-2 pt-2">
+                                <span class="px-2 py-1 text-[10px] uppercase tracking-wider rounded border border-white/10 text-neutral-400">NLP</span>
+                                <span class="px-2 py-1 text-[10px] uppercase tracking-wider rounded border border-white/10 text-neutral-400">Word2Vec</span>
+                                <span class="px-2 py-1 text-[10px] uppercase tracking-wider rounded border border-white/10 text-neutral-400">Hugging Face</span>
+                            </div>
+                            <div class="flex gap-4">
+                                    <a href="https://huggingface.co/spaces/OmCodex/shriramartha-streamlit-app" target="_blank" class="text-white hover:text-cyan-accent text-sm font-bold flex items-center"><i class="fas fa-globe mr-2"></i> App</a>
+                                    <a href="https://github.com/Om-codex/semantic-narrative-analysis-shriramcharitmanas" target="_blank" class="text-white hover:text-cyan-accent text-sm font-bold flex items-center"><i class="fab fa-github mr-2"></i> GitHub</a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="glow-card p-8 md:p-10 rounded-3xl animate-on-scroll">
+                        <div class="h-48 overflow-hidden relative">
+                                <div class="absolute inset-0 bg-cyan-accent/20 group-hover:bg-transparent transition-colors z-10"></div>
+                                <img src="urban-app.png" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        </div>
+                        <div class="p-6 space-y-4">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h3 class="text-lg font-semibold text-white mb-1 group-hover:text-red-300 transition-colors">Urban Bike Demand</h3>
+                                    <p class="text-xs text-secondary">Streamlit App</p>
+                                </div><a href="https://urban-ride-cast.streamlit.app" class="p-2 rounded-full hover:bg-white/10 text-white"><span class="iconify" data-icon="lucide:arrow-up-right"></span></a>
+                            </div>
+                            <p class="text-sm text-secondary line-clamp-2">
+                                Logistics optimization system achieving 93.5% R² with LightGBM. Uses cyclic encoding and weather analysis to proactively prevent station stockouts.
+                            </p>
+                            <div class="flex gap-2 pt-2">
+                                <span class="px-2 py-1 text-[10px] uppercase tracking-wider rounded border border-white/10 text-neutral-400">Python</span>
+                                <span class="px-2 py-1 text-[10px] uppercase tracking-wider rounded border border-white/10 text-neutral-400">Sklearn</span>
+                                <span class="px-2 py-1 text-[10px] uppercase tracking-wider rounded border border-white/10 text-neutral-400">Streamlit</span>
+                            </div>
+                            <div class="flex gap-4">
+                                    <a href="https://urban-ride-cast.streamlit.app" target="_blank" class="text-white hover:text-cyan-accent text-sm font-bold flex items-center"><i class="fas fa-globe mr-2"></i> Demo</a>
+                                    <a href="https://github.com/Om-codex/Urban_Mobility_Optimization_Streamlit_App" target="_blank" class="text-white hover:text-cyan-accent text-sm font-bold flex items-center"><i class="fab fa-github mr-2"></i> Code</a>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="glow-card p-8 md:p-10 rounded-3xl animate-on-scroll">
+                        <div class="h-48 overflow-hidden relative">
+                                <div class="absolute inset-0 bg-indigo-accent/20 group-hover:bg-transparent transition-colors z-10"></div>
+                                <img src="telco-app.png" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        </div>
+                        <div class="p-6 space-y-4">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h3 class="text-lg font-semibold text-white mb-1 group-hover:text-indigo-300 transition-colors">Telco Customer Churn</h3>
+                                    <p class="text-xs text-secondary">Streamlit App</p>
+                                    </div><a href="https://telco-customer-churn-prediction-om-codex.onrender.com/" class="p-2 rounded-full hover:bg-white/10 text-white"><span class="iconify" data-icon="lucide:arrow-up-right"></span></a>
+                                </div></div>
+                            <p class="text-sm text-secondary line-clamp-2">
+                                End-to-end ML pipeline optimizing retention via Logistic Regression (81% Recall). Features a live Streamlit dashboard for real-time customer risk assessment.
+                            </p>
+                            <div class="flex gap-2 pt-2">
+                                <span class="px-2 py-1 text-[10px] uppercase tracking-wider rounded border border-white/10 text-neutral-400">Python</span>
+                                <span class="px-2 py-1 text-[10px] uppercase tracking-wider rounded border border-white/10 text-neutral-400">Sklearn</span>
+                                <span class="px-2 py-1 text-[10px] uppercase tracking-wider rounded border border-white/10 text-neutral-400">Streamlit</span>
+                            </div>
+                            <div class="flex gap-4">
+                                    <a href="https://telco-customer-churn-prediction-om-codex.onrender.com/" target="_blank" class="text-white hover:text-indigo-accent text-sm font-bold flex items-center"><i class="fas fa-globe mr-2"></i> Demo</a>
+                                    <a href="https://github.com/Om-codex/Telco-Customer-Churn-Prediction" target="_blank" class="text-white hover:text-indigo-accent text-sm font-bold flex items-center"><i class="fab fa-github mr-2"></i> Code</a>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="blog" class="py-24 bg-obsidian relative">
+      <div class="container mx-auto px-6">
+
+        <div class="flex flex-col md:flex-row justify-between items-end mb-12 animate-on-scroll">
+          <div class="text-center md:text-left">
+            <h2 class="text-3xl md:text-5xl font-bold text-white mb-4">
+              Latest Insights
+            </h2>
+            <p class="text-slate-400">
+              Read my thoughts on AI, Data, and Tech.
+            </p>
+          </div>
+
+          <div class="hidden md:flex gap-4 mt-6 md:mt-0">
+            <button
+              id="blogPrevBtn"
+              class="w-12 h-12 rounded-full border border-indigo-accent/30 flex items-center justify-center text-indigo-accent hover:bg-indigo-accent hover:text-white transition-all duration-300 active:scale-95">
+              <i class="fas fa-chevron-left"></i>
+            </button>
+            <button
+              id="blogNextBtn"
+              class="w-12 h-12 rounded-full bg-indigo-accent text-white flex items-center justify-center hover:bg-white hover:text-obsidian transition-all duration-300 shadow-lg shadow-indigo-500/20 active:scale-95">
+              <i class="fas fa-chevron-right"></i>
+            </button>
+          </div>
+        </div>
+
+        <div
+          id="blogSliderContainer"
+          class="flex gap-8 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-12 no-scrollbar">
+
+          <article
+            class="min-w-full md:min-w-[calc(50%-1rem)] lg:min-w-[calc(33.333%-1.34rem)]
+                   snap-start glow-card rounded-2xl overflow-hidden
+                   flex flex-col h-[520px] animate-on-scroll">
+
+            <div class="h-48 overflow-hidden shrink-0">
+              <img
+                src="LSTM_Architecture.png"
+                class="w-full h-full object-cover transition-transform duration-500 opacity-80 hover:scale-110 hover:opacity-100">
             </div>
 
-            <div class="flex justify-center items-center gap-8 pt-12 opacity-60">
-                <a href="https://www.github.com/Om-codex" class="hover:text-white hover:opacity-100 transition-all flex flex-col items-center gap-2">
-                    <span class="iconify" data-icon="lucide:github" data-width="24"></span>
-                    <span class="text-xs">GitHub</span>
-                </a>
-                <a href="https://www.linkedin.com/in/om-mishra-a55263329" class="hover:text-white hover:opacity-100 transition-all flex flex-col items-center gap-2">
-                    <span class="iconify" data-icon="lucide:linkedin" data-width="24"></span>
-                    <span class="text-xs">LinkedIn</span>
-                </a>
-                <a href="https://x.com/OmCodex_tweets" class="hover:text-white hover:opacity-100 transition-all flex flex-col items-center gap-2">
-                    <span class="iconify" data-icon="lucide:twitter" data-width="24"></span>
-                    <span class="text-xs">Twitter</span>
-                </a>
+            <div class="p-8 flex flex-col flex-1">
+              <span class="text-xs text-indigo-accent font-bold uppercase tracking-wider mb-2">
+                Deep Learning
+              </span>
+              <h3 class="text-xl font-bold text-white mb-3 hover:text-indigo-accent transition-colors">
+                LSTM Explained: From RNN Failure to Stable Sequence Learning
+              </h3>
+              <p class="text-slate-400 text-sm mb-4">
+                A deep dive into why vanilla RNNs fail and how LSTM uses gated memory to learn long-term dependencies.
+              </p>
+              <a
+                href="https://medium.com/@omm512462/lstm-architecture-explained-cedfdd9428b6"
+                class="text-white text-sm font-bold flex items-center mt-auto hover:text-indigo-accent">
+                Read Article <i class="fas fa-arrow-right ml-2"></i>
+              </a>
             </div>
+          </article>
+
+          <article
+            class="min-w-full md:min-w-[calc(50%-1rem)] lg:min-w-[calc(33.333%-1.34rem)]
+                   snap-start glow-card rounded-2xl overflow-hidden
+                   flex flex-col h-[520px] animate-on-scroll">
+
+            <div class="h-48 overflow-hidden shrink-0">
+              <img
+                src="Machine_Learning.png"
+                class="w-full h-full object-cover transition-transform duration-500 opacity-80 hover:scale-110 hover:opacity-100">
+            </div>
+
+            <div class="p-8 flex flex-col flex-1">
+              <span class="text-xs text-cyan-accent font-bold uppercase tracking-wider mb-2">
+                Guide
+              </span>
+              <h3 class="text-xl font-bold text-white mb-3 hover:text-cyan-accent transition-colors">
+                Machine Learning Made Simple
+              </h3>
+              <p class="text-slate-400 text-sm mb-4">
+                A beginner-friendly roadmap to understanding machine learning fundamentals.
+              </p>
+              <a
+                href="https://medium.com/@omm512462/machine-learning-made-simple-fc8f0e1586dc"
+                class="text-white text-sm font-bold flex items-center mt-auto hover:text-cyan-accent">
+                Read Article <i class="fas fa-arrow-right ml-2"></i>
+              </a>
+            </div>
+          </article>
+
+          <article
+            class="min-w-full md:min-w-[calc(50%-1rem)] lg:min-w-[calc(33.333%-1.34rem)]
+                   snap-start glow-card rounded-2xl overflow-hidden
+                   flex flex-col h-[520px] animate-on-scroll">
+
+            <div class="h-48 overflow-hidden shrink-0">
+              <img
+                src="PulmoScan_Blog.png"
+                class="w-full h-full object-cover transition-transform duration-500 opacity-80 hover:scale-110 hover:opacity-100">
+            </div>
+
+            <div class="p-8 flex flex-col flex-1">
+              <span class="text-xs text-purple-400 font-bold uppercase tracking-wider mb-2">
+                Computer Vision & CNNs
+              </span>
+              <h3 class="text-xl font-bold text-white mb-3 hover:text-purple-400 transition-colors">
+                Building High-Sensitivity Pneumonia Screening
+              </h3>
+              <p class="text-slate-400 text-sm mb-4">
+                Deploying a fine-tuned DL model with Grad-CAM visualization and Streamlit.
+              </p>
+              <a
+                href="https://medium.com/@omm512462/why-97-is-not-enough-building-high-sensitivity-pneumonia-screening-with-densenet-grad-cam-21fa6a19180a"
+                class="text-white text-sm font-bold flex items-center mt-auto hover:text-purple-400">
+                Read Article <i class="fas fa-arrow-right ml-2"></i>
+              </a>
+            </div>
+          </article>
+
+          <article
+            class="min-w-full md:min-w-[calc(50%-1rem)] lg:min-w-[calc(33.333%-1.34rem)]
+                   snap-start glow-card rounded-2xl overflow-hidden
+                   flex flex-col h-[520px] animate-on-scroll">
+
+            <div class="h-48 overflow-hidden shrink-0">
+              <img
+                src="Blogging.png"
+                class="w-full h-full object-cover transition-transform duration-500 opacity-80 hover:scale-110 hover:opacity-100">
+            </div>
+
+            <div class="p-8 flex flex-col flex-1">
+              <span class="text-xs text-indigo-accent font-bold uppercase tracking-wider mb-2">
+                Self Learning
+              </span>
+              <h3 class="text-xl font-bold text-white mb-3 hover:text-indigo-accent transition-colors">
+                The Data Analysis Journey
+              </h3>
+              <p class="text-slate-400 text-sm mb-4">
+                How I went from zero Python knowledge to real-world data analysis projects.
+              </p>
+              <a
+                href="https://medium.com/@omm512462/how-i-started-from-my-zero-python-knowledge-to-data-analysis-projects-37e016eb50cc"
+                class="text-white text-sm font-bold flex items-center mt-auto hover:text-indigo-accent">
+                Read Article <i class="fas fa-arrow-right ml-2"></i>
+              </a>
+            </div>
+          </article>
+
         </div>
+      </div>
     </section>
 
-    <footer class="py-12 bg-obsidian border-t border-glass-border">
-        <div class="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6 text-sm text-slate-500">
-            <p>&copy; 2025 Om Mishra.</p>
-            <p>Built with <span class="text-indigo-accent">Intelligence</span> & Tailwind CSS</p>
-        </div>
-    </footer>
+        <section id="contact" class="py-24 px-6 border-t border-white/5 bg-gradient-to-b from-background to-surface/20">
+            <div class="max-w-3xl mx-auto text-center space-y-8">
+                <h2 class="text-3xl font-semibold text-white tracking-tight">Ready to build something intelligent?</h2>
+                <p class="text-secondary text-lg leading-relaxed">
+                    I'm currently looking for new opportunities to apply my skills in Machine Learning and AI. Whether you have a question or just want to say hi, I'll try my best to get back to you!
+                </p>
+                
+                <div class="flex justify-center gap-6 pt-6">
+                    <a href="mailto:omm512462@gmail.com" class="group flex items-center gap-3 px-6 py-3 bg-white text-black rounded-lg font-medium hover:scale-105 transition-transform">
+                        <span class="iconify" data-icon="lucide:mail"></span>
+                        <span>Send Email</span>
+                    </a>
+                    
+                    <a href="tel:7021552396" class="group flex items-center gap-3 px-6 py-3 border border-border rounded-lg font-medium hover:bg-white/5 transition-colors">
+                        <span class="iconify" data-icon="lucide:calendar"></span>
+                        <span>Book a Call</span>
+                    </a>
+                </div>
+
+                <div class="flex justify-center items-center gap-8 pt-12 opacity-60">
+                    <a href="https://www.github.com/Om-codex" class="hover:text-white hover:opacity-100 transition-all flex flex-col items-center gap-2">
+                        <span class="iconify" data-icon="lucide:github" data-width="24"></span>
+                        <span class="text-xs">GitHub</span>
+                    </a>
+                    <a href="https://www.linkedin.com/in/om-mishra-a55263329" class="hover:text-white hover:opacity-100 transition-all flex flex-col items-center gap-2">
+                        <span class="iconify" data-icon="lucide:linkedin" data-width="24"></span>
+                        <span class="text-xs">LinkedIn</span>
+                    </a>
+                    <a href="https://x.com/OmCodex_tweets" class="hover:text-white hover:opacity-100 transition-all flex flex-col items-center gap-2">
+                        <span class="iconify" data-icon="lucide:twitter" data-width="24"></span>
+                        <span class="text-xs">Twitter</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <footer class="py-12 bg-obsidian border-t border-glass-border">
+            <div class="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6 text-sm text-slate-500">
+                <p>&copy; 2025 Om Mishra.</p>
+                <p>Built with <span class="text-indigo-accent">Intelligence</span> & Tailwind CSS</p>
+            </div>
+        </footer>
+
+    </div> 
+    <div id="cursor-glow"></div>
 
     <script>
         // Simple Intersection Observer to trigger fade-ins
@@ -845,6 +849,5 @@ background: radial-gradient(circle at 50% 0%, rgba(255,255,255,0.08) 0%, transpa
             document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
         });
     </script>
-
-
-</body></html>
+</body>
+</html>
