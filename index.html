@@ -1,4 +1,4 @@
-<link rel="icon" type="image/png" href="/favicon.png"><html lang="en" class="scroll-smooth">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -22,7 +22,7 @@
                         mono: ['JetBrains Mono', 'monospace'],
                     },
                     colors: {
-                        background: '#0a0a0a', // Extremely dark grey, not pure black
+                        background: '#0a0a0a', 
                         surface: '#171717',
                         border: '#262626',
                         primary: '#ededed',
@@ -48,6 +48,18 @@
     </script>
 
     <style>
+        /* Terminal Cursor Blink Animation */
+        /* Smooth Fading Cursor Animation */
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+        .cursor-blink {
+            /* Changed from step-end to ease-in-out and slowed it down slightly to 1s */
+            animation: blink 1s ease-in-out infinite; 
+            color: #a1a1aa; 
+            margin-left: 2px; 
+        }
         /* Custom Utilities */
         .glass-nav {
             background: rgba(10, 10, 10, 0.7);
@@ -76,7 +88,6 @@
         }
         /* Glossy Obsidian Glow Effect Container */
         .glow-bg {
-            /* Dimmer, cooler, and fades into dark rather than pure transparent */
             background: radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.03) 0%, rgba(0, 0, 0, 0.4) 40%, transparent 70%);
         }
 
@@ -85,22 +96,19 @@
         /* Glowing Border Animation for Glossy Black Cards */
         .glow-card {
             position: relative;
-            /* Replaced the slate-blue with a sleek, dark obsidian gradient */
             background: linear-gradient(145deg, #171717 0%, #050505 100%);
-            /* Adding an inset shadow creates a glassy "rim light" at the top edge */
             box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(255, 255, 255, 0.05);
-            transition: all 0.1s ease-out; /* Faster transition for 3D tilt */
+            transition: all 0.1s ease-out; 
             overflow: hidden;
             transform-style: preserve-3d;
             perspective: 1000px;
         }
-        /* 3D Tilt Shine Effect (Aesthetic Black Shade) */
+        /* 3D Tilt Shine Effect */
         .glow-card::after {
             content: "";
             position: absolute;
             top: 0; left: 0; right: 0; bottom: 0;
-            /* Sweeping dark obsidian shadow instead of a white highlight */
             background: linear-gradient(125deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.3) 40%, rgba(0, 0, 0, 0) 100%);
             transform: translateY(-100%);
             transition: transform 0.6s;
@@ -109,9 +117,8 @@
         /* Custom Mouse Glow  */
         #cursor-glow {
             position: fixed;
-            width: 250px; /* Reduced from 500px */
-            height: 250px; /* Reduced from 500px */
-            /* Intense small flashlight effect */
+            width: 250px; 
+            height: 250px; 
             background: radial-gradient(
                 circle, 
                 rgba(99, 102, 241, 0.25) 15%, 
@@ -126,7 +133,7 @@
             transition: width 0.3s, height 0.3s;
         }
 
-        /* --- ADDED: Glossy Surface Effect --- */
+        /* Glossy Surface Effect */
         .glossy-surface {
             position: relative;
             overflow: hidden; 
@@ -193,7 +200,7 @@
                 Available for new opportunities
             </div>
 
-            <h1 class="text-5xl md:text-7xl font-semibold tracking-tighter text-white leading-[1.1]">
+            <h1 id="title" class="text-5xl md:text-7xl font-semibold tracking-tighter text-white leading-[1.1]">
                 I build intelligent products <br class="hidden md:block">
                 <span class="text-neutral-500">end-to-end.</span>
             </h1>
@@ -779,9 +786,33 @@
         });
     </script>
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-        
+        const titleElement = document.getElementById("title");
+        const text = "I build intelligent products end-to-end.";
+        let index = 0;
 
+        function typeLetter() {
+            // Slice the text and attach the blinking span element at the end
+            titleElement.innerHTML = text.slice(0, index) + '<span class="cursor-blink">_</span>';
+            index++;
+
+            if (index <= text.length) {
+                setTimeout(typeLetter, 65);
+            } else {
+                // Typing is finished, the cursor-blink span remains on screen
+                const subtitle = document.getElementById("subtitle");
+                if (subtitle) {
+                    subtitle.style.opacity = 1;
+                }
+            }
+        }
+
+        window.onload = () => {
+            // Clear out the hardcoded HTML text so the typing effect starts fresh
+            titleElement.innerHTML = "";
+            setTimeout(typeLetter, 400);
+        };
+        
+        document.addEventListener('DOMContentLoaded', () => {
             // 2. MOUSE GLOW & 3D TILT EFFECT
             const glow = document.getElementById('cursor-glow');
             const cards = document.querySelectorAll('.glow-card');
@@ -824,7 +855,7 @@
                 });
             }
 
-            // 4. BLOG SLIDER LOGIC (Add this new part)
+            // 4. BLOG SLIDER LOGIC 
             const blogSlider = document.getElementById('blogSliderContainer');
             const blogPrevBtn = document.getElementById('blogPrevBtn');
             const blogNextBtn = document.getElementById('blogNextBtn');
