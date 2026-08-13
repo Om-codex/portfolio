@@ -2,8 +2,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Om Mishra | ML Engineer &amp; ML & LLM Engineer</title>
-    <meta name="description" content="Portfolio of Om Mishra, a Machine Learning Engineer and Full-Stack Developer building intelligent products end-to-end.">
+    <title>Om Mishra | Machine Learning & AI Portfolio</title>
+    <meta name="description" content="Portfolio of Om Mishra, a BSc.IT student focused on Machine Learning, Deep Learning, NLP, Transformers, and practical AI engineering.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
@@ -154,6 +154,43 @@
             position: relative;
             z-index: 1;
         }
+
+        /* Project slider */
+        .project-slider {
+            scroll-behavior: smooth;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+        .project-slider::-webkit-scrollbar { display: none; }
+
+        .project-card {
+            flex: 0 0 calc((100% - 2rem) / 3);
+            min-width: 0;
+        }
+
+        .slider-control:disabled {
+            opacity: 0.25;
+            cursor: not-allowed;
+        }
+
+        @media (max-width: 1024px) {
+            .project-card {
+                flex-basis: calc((100% - 1rem) / 2);
+            }
+        }
+
+        @media (max-width: 767px) {
+            .project-card {
+                flex-basis: 88%;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto !important; }
+            .project-slider { scroll-behavior: auto; }
+            .cursor-blink, .animate-bounce { animation: none !important; }
+        }
+
     </style>
 </head>
 <body class="bg-background text-secondary font-sans antialiased selection:bg-white/20 selection:text-white overflow-x-hidden">
@@ -170,7 +207,7 @@
                 <a href="#skills" class="hover:text-white transition-colors">Skills</a>
                 <a href="#projects" class="hover:text-white transition-colors">Projects</a>
                 <a href="#experience" class="hover:text-white transition-colors">Experience</a>
-                <a href="#blog" class="hover:text-white transition-colors">Blog</a>
+                <a href="#blog" class="hover:text-white transition-colors">Writing</a>
                 <a href="#contact" class="px-4 py-2 bg-white text-black rounded-full hover:bg-neutral-200 transition-colors">Let's Connect</a>
             </div>
 
@@ -184,29 +221,30 @@
             <a href="#skills" class="block hover:text-white">Skills</a>
             <a href="#projects" class="block hover:text-white">Projects</a>
             <a href="#experience" class="block hover:text-white">Experience</a>
-            <a href="#contact" class="block text-white font-semibold">Contact Me</a>
+            <a href="#blog" class="block hover:text-white">Writing</a>
+            <a href="#contact" class="block text-white font-semibold">Let's Connect</a>
         </div>
     </nav>
 
     <section class="relative min-h-screen flex flex-col justify-center items-center text-center pt-20 px-6 bg-grid">
         <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[500px] glow-bg opacity-60 pointer-events-none"></div>
 
-        <div class="animate-slide-up space-y-8 max-w-4xl relative z-10">
+        <div class="animate-slide-up space-y-8 max-w-6xl relative z-10">
             <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/10 bg-white/5 text-xs font-medium text-white backdrop-blur-sm">
                 <span class="relative flex h-2 w-2">
                   <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
                   <span class="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
                 </span>
-                Available for new opportunities
+                Open to ML / AI internships
             </div>
 
             <h1 id="title" class="text-5xl md:text-7xl font-semibold tracking-tighter text-white leading-[1.1]">
-                I build intelligent products <br class="hidden md:block">
-                <span class="text-neutral-500">end-to-end.</span>
+                I build machine learning systems 
+                <span class="text-neutral-500">from first principles to deployment.</span>
             </h1>
 
             <p class="text-lg md:text-xl text-secondary max-w-2xl mx-auto leading-relaxed">
-                I transform raw complexity into actionable intelligence using high-level predictive modeling and scalable machine learning architectures.
+                Focused on Machine Learning, Deep Learning, NLP, and building models from architecture to deployment.
             </p>
 
             <div class="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4">
@@ -244,10 +282,10 @@
                 <div class="animate-on-scroll">
                     <h2 class="text-3xl md:text-5xl font-bold text-white mb-8">About Me</h2>
                     <p class="text-slate-400 text-lg leading-relaxed mb-6">
-                        I'm <strong class="text-white">Om Santosh Mishra</strong>, an inquisitive BSc.IT student at Smt. C.H.M. College. I am deeply passionate about the fields of <span class="text-indigo-accent">Data Science</span> and <span class="text-cyan-accent">Machine Learning</span>.
+                        I'm <strong class="text-white">Om Santosh Mishra</strong>, an inquisitive BSc.IT student at Smt. C.H.M. College focused on <span class="text-indigo-accent">Machine Learning</span>, <span class="text-cyan-accent">Deep Learning</span>, and NLP. I enjoy understanding how models work beneath the abstractions, not just using libraries and APIs.
                     </p>
                     <p class="text-slate-400 text-lg leading-relaxed mb-6">
-                        I possess a strong foundation in Data Analytics, Mathematics, and Statistics, backed by rigorous practice in Data Structures & Algorithms. I leverage Python to build efficient, scalable solutions and am driven by a commitment to continuous learning in high-impact, data-driven environments.
+                        I build by learning through implementation: from classical machine learning and computer vision to implementing Transformer architectures from scratch in PyTorch. My work involves training models, debugging failures, evaluating them properly, and turning working systems into usable applications.
                     </p>
                 </div>
                 
@@ -304,70 +342,65 @@
                     <p class="text-secondary">The tools I use to turn problems into products.</p>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div class="glow-card p-8 md:p-10 rounded-3xl animate-on-scroll">
-                        <div class="absolute top-0 right-0 p-6 opacity-10 group-hover:opacity-20 transition-opacity">
-                            <span class="iconify" data-icon="lucide:brain-circuit" data-width="80"></span>
-                        </div>
                         <div class="flex items-center gap-3 mb-6">
                             <span class="p-2 rounded-lg bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">
                                 <span class="iconify" data-icon="lucide:brain" data-width="20"></span>
                             </span>
-                            <h3 class="text-xl font-medium text-white">AI &amp; ML</h3>
+                            <h3 class="text-xl font-medium text-white">Machine Learning</h3>
                         </div>
-                        <ul class="space-y-3">
-                            <li class="flex items-center gap-2 text-sm">
-                                <span class="w-1.5 h-1.5 rounded-full bg-indigo-500"></span> Scikit-learn, XGBoost
-                            </li>
-                            <li class="flex items-center gap-2 text-sm">
-                                <span class="w-1.5 h-1.5 rounded-full bg-indigo-500"></span> PyTorch
-                            </li>
-                            <li class="flex items-center gap-2 text-sm">
-                                <span class="w-1.5 h-1.5 rounded-full bg-indigo-500"></span> NLP &amp; LLM's
-                            </li>
+                        <ul class="space-y-3 text-sm">
+                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-indigo-500"></span> Scikit-learn</li>
+                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-indigo-500"></span> XGBoost / LightGBM</li>
+                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-indigo-500"></span> Feature Engineering &amp; Evaluation</li>
+                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-indigo-500"></span> SHAP &amp; Model Interpretability</li>
                         </ul>
                     </div>
 
                     <div class="glow-card p-8 md:p-10 rounded-3xl animate-on-scroll">
-                        <div class="absolute top-0 right-0 p-6 opacity-10 group-hover:opacity-20 transition-opacity">
-                            <span class="iconify" data-icon="lucide:sparkles" data-width="80"></span>
-                        </div>
                         <div class="flex items-center gap-3 mb-6">
                             <span class="p-2 rounded-lg bg-purple-500/10 text-purple-400 border border-purple-500/20">
-                                <span class="iconify" data-icon="lucide:bot" data-width="20"></span>
+                                <span class="iconify" data-icon="lucide:network" data-width="20"></span>
                             </span>
-                            <h3 class="text-xl font-medium text-white">GenAI &amp; LLMs</h3>
+                            <h3 class="text-xl font-medium text-white">Deep Learning</h3>
                         </div>
-                        <ul class="space-y-3">
-                            <li class="flex items-center gap-2 text-sm">
-                                <span class="w-1.5 h-1.5 rounded-full bg-purple-500"></span> OpenAI API, Gemini
-                            </li>
-                            <li class="flex items-center gap-2 text-sm">
-                                <span class="w-1.5 h-1.5 rounded-full bg-purple-500"></span> LangChain
-                            </li>
-                            <li class="flex items-center gap-2 text-sm">
-                                <span class="w-1.5 h-1.5 rounded-full bg-purple-500"></span> RAG Architectures
-                            </li>
+                        <ul class="space-y-3 text-sm">
+                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-purple-500"></span> PyTorch</li>
+                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-purple-500"></span> CNNs &amp; Neural Networks</li>
+                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-purple-500"></span> Transfer Learning</li>
+                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-purple-500"></span> Training &amp; Optimization</li>
                         </ul>
                     </div>
 
                     <div class="glow-card p-8 md:p-10 rounded-3xl animate-on-scroll">
-                        <div class="flex flex-col md:flex-row gap-8">
-                             <div class="flex-1 border-l border-white/5 pl-0 md:pl-8">
-                                <div class="flex items-center gap-3 mb-6">
-                                    <span class="p-2 rounded-lg bg-orange-500/10 text-orange-400 border border-orange-500/20">
-                                        <span class="iconify" data-icon="lucide:cloud" data-width="20"></span>
-                                    </span>
-                                    <h3 class="text-xl font-medium text-white">Deployment</h3>
-                                </div>
-                                <div class="grid grid-cols-2 gap-3 text-sm">
-                                    <div class="flex items-center gap-2"><span class="iconify" data-icon="lucide:container"></span> Docker</div>
-                                    <div class="flex items-center gap-2"><span class="iconify" data-icon="lucide:server"></span> AWS</div>
-                                    <div class="flex items-center gap-2"><span class="iconify" data-icon="lucide:globe"></span> Streamlit</div>
-                                    <div class="flex items-center gap-2"><span class="iconify" data-icon="lucide:git-branch"></span> CI/CD</div>
-                                </div>
-                            </div>
+                        <div class="flex items-center gap-3 mb-6">
+                            <span class="p-2 rounded-lg bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">
+                                <span class="iconify" data-icon="lucide:message-square-code" data-width="20"></span>
+                            </span>
+                            <h3 class="text-xl font-medium text-white">NLP &amp; Transformers</h3>
                         </div>
+                        <ul class="space-y-3 text-sm">
+                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-indigo-500"></span> Tokenization &amp; Sequence Modeling</li>
+                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-indigo-500"></span> Attention Mechanisms</li>
+                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-indigo-500"></span> Encoder-Decoder Transformers</li>
+                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-indigo-500"></span> NLP &amp; LLM Fundamentals</li>
+                        </ul>
+                    </div>
+
+                    <div class="glow-card p-8 md:p-10 rounded-3xl animate-on-scroll">
+                        <div class="flex items-center gap-3 mb-6">
+                            <span class="p-2 rounded-lg bg-orange-500/10 text-orange-400 border border-orange-500/20">
+                                <span class="iconify" data-icon="lucide:server" data-width="20"></span>
+                            </span>
+                            <h3 class="text-xl font-medium text-white">Engineering &amp; Deployment</h3>
+                        </div>
+                        <ul class="space-y-3 text-sm">
+                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-orange-500"></span> Python &amp; SQL</li>
+                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-orange-500"></span> Streamlit &amp; FastAPI</li>
+                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-orange-500"></span> Git &amp; GitHub</li>
+                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-orange-500"></span> Docker &amp; Practical Deployment</li>
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -381,8 +414,8 @@
                     <div class="relative pl-10 group">
                         <div class="absolute -left-[5px] top-2 h-2.5 w-2.5 rounded-full bg-white ring-4 ring-background group-hover:bg-indigo-400 transition-colors"></div>
                         <div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between mb-2">
-                            <h3 class="text-xl font-medium text-white">@ NASA Space Apps</h3>
-                            <span class="text-sm font-mono text-secondary">Oct 2025 – Present</span>
+                            <h3 class="text-xl font-medium text-white">NASA Space Apps Challenge</h3>
+                            <span class="text-sm font-mono text-secondary">Oct 2025</span>
                         </div>
                         <p class="text-slate-400 leading-relaxed mb-4">
                                 Awarded the "Galactic Problem Solver" certificate for the project <strong>"A World Away"</strong>. We leveraged AI algorithms to accelerate <span class="text-white">exoplanet discovery</span>.
@@ -395,8 +428,8 @@
                     <div class="relative pl-10 group">
                         <div class="absolute -left-[5px] top-2 h-2.5 w-2.5 rounded-full bg-neutral-600 ring-4 ring-background group-hover:bg-indigo-400 transition-colors"></div>
                         <div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between mb-2">
-                            <h3 class="text-xl font-medium text-white">@ Self-Initiated</h3>
-                            <span class="text-sm font-mono text-secondary">2025 - Present</span>
+                            <h3 class="text-xl font-medium text-white">Independent ML / DL Development</h3>
+                            <span class="text-sm font-mono text-secondary">2025 – Present</span>
                         </div>
                         <p class="text-slate-400 leading-relaxed mb-4">
                                 Designed and executed end-to-end machine learning pipelines for complex real-world scenarios. Built robust <span class="text-white">ML, DL</span> and <span class="text-white">Attention Transformer models</span>.
@@ -414,154 +447,255 @@
                 <div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
                     <div class="space-y-2">
                         <h2 class="text-3xl md:text-4xl font-semibold text-white tracking-tight">Featured Projects</h2>
-                        <p class="text-secondary">Selected works blending AI with intuitive interfaces.</p>
+                        <p class="text-secondary">Selected systems spanning machine learning, deep learning, NLP, and practical AI applications.</p>
                     </div>
                     <div class="flex flex-wrap gap-2">
-                        <button class="px-3 py-1.5 text-xs font-medium rounded-full bg-white text-black">All</button>
-                        <button class="px-3 py-1.5 text-xs font-medium rounded-full border border-border hover:bg-white/5 transition-colors">AI/ML</button>
-                        <button class="px-3 py-1.5 text-xs font-medium rounded-full border border-border hover:bg-white/5 transition-colors">LLM's</button>
-                        <button class="px-3 py-1.5 text-xs font-medium rounded-full border border-border hover:bg-white/5 transition-colors">Gen-AI</button>
+                        <span class="px-3 py-1.5 text-xs font-medium rounded-full bg-white text-black">Featured</span>
+                        <span class="px-3 py-1.5 text-xs font-medium rounded-full border border-border text-secondary">ML</span>
+                        <span class="px-3 py-1.5 text-xs font-medium rounded-full border border-border text-secondary">Deep Learning</span>
+                        <span class="px-3 py-1.5 text-xs font-medium rounded-full border border-border text-secondary">NLP</span>
                     </div>
                 </div>
                 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <article class="glow-card p-8 md:p-10 rounded-3xl animate-on-scroll">
-                        <div class="h-48 overflow-hidden relative">
-                                <div class="absolute inset-0 bg-cyan-accent/20 group-hover:bg-transparent transition-colors z-10"></div>
-                                <img src="transformer-app.png" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" alt="Transformer Translation App">
+                <div class="relative">
+                    <div class="flex items-center justify-between mb-5">
+                        <p class="text-xs text-secondary uppercase tracking-[0.2em]">Scroll or use the arrows to explore</p>
+                        <div class="flex gap-2">
+                            <button id="projectPrevBtn" type="button" aria-label="Previous project"
+                                class="slider-control w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-secondary hover:text-white hover:border-white/20 hover:bg-white/5 transition-all">
+                                <i class="fas fa-chevron-left"></i>
+                            </button>
+                            <button id="projectNextBtn" type="button" aria-label="Next project"
+                                class="slider-control w-10 h-10 rounded-full bg-white text-black flex items-center justify-center hover:bg-neutral-200 transition-all">
+                                <i class="fas fa-chevron-right"></i>
+                            </button>
                         </div>
-                        <div class="p-6 space-y-4">
-                            <div class="flex justify-between items-start">
-                                <div>
-                                    <h3 class="text-lg font-semibold text-white mb-1 group-hover:text-red-300 transition-colors">Transformer Translation</h3>
-                                    <p class="text-xs text-secondary">Neural Machine Translation App</p>
-                                </div><a href="https://neuralbridge.streamlit.app/" class="p-2 rounded-full hover:bg-white/10 text-white"><span class="iconify" data-icon="lucide:arrow-up-right"></span></a>
-                            </div>
-                            <p class="text-sm text-secondary line-clamp-2">
-                                Encoder-Decoder architecture built from scratch for EN-to-FR translation. Achieved 34.82 BLEU score on 2.3M pairs with cross-attention heatmaps.
-                            </p>
-                            <div class="flex gap-2 pt-2">
-                                <span class="px-2 py-1 text-[10px] uppercase tracking-wider rounded border border-white/10 text-neutral-400">PyTorch</span>
-                                <span class="px-2 py-1 text-[10px] uppercase tracking-wider rounded border border-white/10 text-neutral-400">NLP</span>
-                                <span class="px-2 py-1 text-[10px] uppercase tracking-wider rounded border border-white/10 text-neutral-400">Streamlit</span>
-                            </div>
-                            <div class="flex gap-4">
-                                    <a href="https://neuralbridge.streamlit.app/" target="_blank" class="text-white hover:text-cyan-accent text-sm font-bold flex items-center"><i class="fas fa-globe mr-2"></i> App</a>
-                                    <a href="https://github.com/Om-codex/attention-is-all-you-need-from-scratch/" target="_blank" class="text-white hover:text-cyan-accent text-sm font-bold flex items-center"><i class="fab fa-github mr-2"></i> GitHub</a>
-                            </div>
-                        </div>
-                    </article>
+                    </div>
 
-                    <article class="glow-card p-8 md:p-10 rounded-3xl animate-on-scroll">
-                        <div class="h-48 overflow-hidden relative">
-                                <div class="absolute inset-0 bg-cyan-accent/20 group-hover:bg-transparent transition-colors z-10"></div>
-                                <img src="pulmoscan3.png" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" alt="PulmoScan AI App">
-                        </div>
-                        <div class="p-6 space-y-4">
-                            <div class="flex justify-between items-start">
-                                <div>
-                                    <h3 class="text-lg font-semibold text-white mb-1 group-hover:text-red-300 transition-colors">PulmoScan AI</h3>
-                                    <p class="text-xs text-secondary">High-Sensitivity Pneumonia Screening</p>
+                    <div id="projectSliderContainer"
+                         class="project-slider flex gap-6 overflow-x-auto snap-x snap-mandatory pb-5 px-1"
+                         tabindex="0"
+                         aria-label="Featured projects">
+
+                        <!-- Project 1 -->
+                        <article class="project-card snap-start glow-card rounded-3xl overflow-hidden animate-on-scroll">
+                            <div class="h-56 overflow-hidden relative">
+                                <div class="absolute inset-0 bg-indigo-accent/10 group-hover:bg-transparent transition-colors z-10 pointer-events-none"></div>
+                                <img src="transformer-app.png" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Transformer Translation App">
+                            </div>
+                            <div class="p-7 space-y-5">
+                                <div class="flex justify-between items-start gap-4">
+                                    <div>
+                                        <p class="text-xs text-indigo-accent font-bold uppercase tracking-wider mb-2">NLP · Transformers</p>
+                                        <h3 class="text-xl font-semibold text-white">English → French Transformer</h3>
+                                        <p class="text-sm text-secondary mt-1">Neural Machine Translation System</p>
+                                    </div>
+                                    <a href="https://neuralbridge.streamlit.app/" target="_blank" rel="noopener noreferrer"
+                                       class="shrink-0 p-2 rounded-full hover:bg-white/10 text-white" aria-label="Open Transformer application">
+                                        <span class="iconify" data-icon="lucide:arrow-up-right"></span>
+                                    </a>
                                 </div>
-                                <a href="https://pulmoscan.streamlit.app" class="p-2 rounded-full hover:bg-white/10 text-white">
-                                    <span class="iconify" data-icon="lucide:arrow-up-right"></span>
-                                </a>
-                            </div>
-                            <p class="text-sm text-secondary line-clamp-2">
-                                Diagnostic system fine-tuning DenseNet121 to detect pneumonia from X-rays, achieving 99.7% Recall. Features Grad-CAM explainability and a low-latency Streamlit UI.
-                            </p>
-                            <div class="flex gap-2 pt-2">
-                                <span class="px-2 py-1 text-[10px] uppercase tracking-wider rounded border border-white/10 text-neutral-400">PyTorch</span>
-                                <span class="px-2 py-1 text-[10px] uppercase tracking-wider rounded border border-white/10 text-neutral-400">Streamlit</span>
-                                <span class="px-2 py-1 text-[10px] uppercase tracking-wider rounded border border-white/10 text-neutral-400">OpenCV</span>
-                            </div>
-                            <div class="flex gap-4">
-                                    <a href="https://pulmoscan.streamlit.app" target="_blank" class="text-white hover:text-cyan-accent text-sm font-bold flex items-center"><i class="fas fa-globe mr-2"></i> App</a>
-                                    <a href="https://github.com/Om-codex/Pneumonia-Screening-CXR-DL" target="_blank" class="text-white hover:text-cyan-accent text-sm font-bold flex items-center"><i class="fab fa-github mr-2"></i> GitHub</a>
-                            </div>
-                        </div>
-                    </article>
-                    <article class="glow-card p-8 md:p-10 rounded-3xl animate-on-scroll">
-                        <div class="h-48 overflow-hidden relative">
-                                <div class="absolute inset-0 bg-blue-500/20 group-hover:bg-transparent transition-colors z-10"></div>
-                                <img src="Shriramartha.png" 
-                                     alt="Shriramartha Streamlit Interface" 
-                                     class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-                        </div>
-                        <div class="p-6 space-y-4">
-                            <div class="flex justify-between items-start">
-                                <div>
-                                    <h3 class="text-lg font-semibold text-white mb-1 group-hover:text-red-300 transition-colors">Ramartha Analysis</h3>
-                                    <p class="text-xs text-secondary">NLP Application</p>
-                                </div><a href="https://huggingface.co/spaces/OmCodex/shriramartha-streamlit-app" class="p-2 rounded-full hover:bg-white/10 text-white"><span class="iconify" data-icon="lucide:arrow-up-right"></span></a>
-                            </div>
-                            <p class="text-sm text-secondary line-clamp-2">
-                                End-to-end NLP system for semantic analysis of low-resource classical texts using Word2Vec and FastText. Features Unicode-native processing and real-time concept exploration.
-                            </p>
-                            <div class="flex gap-2 pt-2">
-                                <span class="px-2 py-1 text-[10px] uppercase tracking-wider rounded border border-white/10 text-neutral-400">NLP</span>
-                                <span class="px-2 py-1 text-[10px] uppercase tracking-wider rounded border border-white/10 text-neutral-400">Word2Vec</span>
-                                <span class="px-2 py-1 text-[10px] uppercase tracking-wider rounded border border-white/10 text-neutral-400">Hugging Face</span>
-                            </div>
-                            <div class="flex gap-4">
-                                    <a href="https://huggingface.co/spaces/OmCodex/shriramartha-streamlit-app" target="_blank" class="text-white hover:text-cyan-accent text-sm font-bold flex items-center"><i class="fas fa-globe mr-2"></i> App</a>
-                                    <a href="https://github.com/Om-codex/semantic-narrative-analysis-shriramcharitmanas" target="_blank" class="text-white hover:text-cyan-accent text-sm font-bold flex items-center"><i class="fab fa-github mr-2"></i> GitHub</a>
-                            </div>
-                        </div>
-                    </article>
 
-                    <article class="glow-card p-8 md:p-10 rounded-3xl animate-on-scroll">
-                        <div class="h-48 overflow-hidden relative">
-                                <div class="absolute inset-0 bg-cyan-accent/20 group-hover:bg-transparent transition-colors z-10"></div>
-                                <img src="urban-app.png" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-                        </div>
-                        <div class="p-6 space-y-4">
-                            <div class="flex justify-between items-start">
-                                <div>
-                                    <h3 class="text-lg font-semibold text-white mb-1 group-hover:text-red-300 transition-colors">Urban Bike Demand</h3>
-                                    <p class="text-xs text-secondary">Streamlit App</p>
-                                </div><a href="https://urban-ride-cast.streamlit.app" class="p-2 rounded-full hover:bg-white/10 text-white"><span class="iconify" data-icon="lucide:arrow-up-right"></span></a>
+                                <p class="text-sm text-secondary leading-relaxed">
+                                    Encoder-Decoder architecture built from scratch for EN-to-FR translation. Achieved 34.82 BLEU score on 2.3M pairs with cross-attention heatmaps.
+                                </p>
+
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="px-2 py-1 text-[10px] uppercase tracking-wider rounded border border-white/10 text-neutral-400">PyTorch</span>
+                                    <span class="px-2 py-1 text-[10px] uppercase tracking-wider rounded border border-white/10 text-neutral-400">NLP</span>
+                                    <span class="px-2 py-1 text-[10px] uppercase tracking-wider rounded border border-white/10 text-neutral-400">Streamlit</span>
+                                </div>
+
+                                <div class="flex gap-5 pt-1">
+                                    <a href="https://neuralbridge.streamlit.app/" target="_blank" rel="noopener noreferrer"
+                                       class="text-white hover:text-cyan-accent text-sm font-bold flex items-center">
+                                        <i class="fas fa-globe mr-2"></i> App
+                                    </a>
+                                    <a href="https://github.com/Om-codex/attention-is-all-you-need-from-scratch/" target="_blank" rel="noopener noreferrer"
+                                       class="text-white hover:text-cyan-accent text-sm font-bold flex items-center">
+                                        <i class="fab fa-github mr-2"></i> GitHub
+                                    </a>
+                                </div>
                             </div>
-                            <p class="text-sm text-secondary line-clamp-2">
-                                Logistics optimization system achieving 93.5% R² with LightGBM. Uses cyclic encoding and weather analysis to proactively prevent station stockouts.
-                            </p>
-                            <div class="flex gap-2 pt-2">
-                                <span class="px-2 py-1 text-[10px] uppercase tracking-wider rounded border border-white/10 text-neutral-400">Python</span>
-                                <span class="px-2 py-1 text-[10px] uppercase tracking-wider rounded border border-white/10 text-neutral-400">Sklearn</span>
-                                <span class="px-2 py-1 text-[10px] uppercase tracking-wider rounded border border-white/10 text-neutral-400">Streamlit</span>
+                        </article>
+
+                        <!-- Project 2 -->
+                        <article class="project-card snap-start glow-card rounded-3xl overflow-hidden animate-on-scroll">
+                            <div class="h-56 overflow-hidden relative">
+                                <div class="absolute inset-0 bg-indigo-accent/10 group-hover:bg-transparent transition-colors z-10 pointer-events-none"></div>
+                                <img src="pulmoscan3.png" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="PulmoScan AI App">
                             </div>
-                            <div class="flex gap-4">
-                                    <a href="https://urban-ride-cast.streamlit.app" target="_blank" class="text-white hover:text-cyan-accent text-sm font-bold flex items-center"><i class="fas fa-globe mr-2"></i> Demo</a>
-                                    <a href="https://github.com/Om-codex/Urban_Mobility_Optimization_Streamlit_App" target="_blank" class="text-white hover:text-cyan-accent text-sm font-bold flex items-center"><i class="fab fa-github mr-2"></i> Code</a>
+                            <div class="p-7 space-y-5">
+                                <div class="flex justify-between items-start gap-4">
+                                    <div>
+                                        <p class="text-xs text-purple-400 font-bold uppercase tracking-wider mb-2">Computer Vision · Deep Learning</p>
+                                        <h3 class="text-xl font-semibold text-white">PulmoScan AI</h3>
+                                        <p class="text-sm text-secondary mt-1">High-Sensitivity Pneumonia Screening</p>
+                                    </div>
+                                    <a href="https://pulmoscan.streamlit.app" target="_blank" rel="noopener noreferrer"
+                                       class="shrink-0 p-2 rounded-full hover:bg-white/10 text-white" aria-label="Open PulmoScan application">
+                                        <span class="iconify" data-icon="lucide:arrow-up-right"></span>
+                                    </a>
+                                </div>
+
+                                <p class="text-sm text-secondary leading-relaxed">
+                                    Diagnostic system fine-tuning DenseNet121 to detect pneumonia from X-rays, achieving 99.7% Recall. Features Grad-CAM explainability and a low-latency Streamlit UI.
+                                </p>
+
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="px-2 py-1 text-[10px] uppercase tracking-wider rounded border border-white/10 text-neutral-400">PyTorch</span>
+                                    <span class="px-2 py-1 text-[10px] uppercase tracking-wider rounded border border-white/10 text-neutral-400">Streamlit</span>
+                                    <span class="px-2 py-1 text-[10px] uppercase tracking-wider rounded border border-white/10 text-neutral-400">OpenCV</span>
+                                </div>
+
+                                <div class="flex gap-5 pt-1">
+                                    <a href="https://pulmoscan.streamlit.app" target="_blank" rel="noopener noreferrer"
+                                       class="text-white hover:text-cyan-accent text-sm font-bold flex items-center">
+                                        <i class="fas fa-globe mr-2"></i> App
+                                    </a>
+                                    <a href="https://github.com/Om-codex/Pneumonia-Screening-CXR-DL" target="_blank" rel="noopener noreferrer"
+                                       class="text-white hover:text-cyan-accent text-sm font-bold flex items-center">
+                                        <i class="fab fa-github mr-2"></i> GitHub
+                                    </a>
+                                </div>
                             </div>
-                        </div>
-                    </article>
-                    <article class="glow-card p-8 md:p-10 rounded-3xl animate-on-scroll">
-                        <div class="h-48 overflow-hidden relative">
-                                <div class="absolute inset-0 bg-indigo-accent/20 group-hover:bg-transparent transition-colors z-10"></div>
-                                <img src="telco-app.png" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-                        </div>
-                        <div class="p-6 space-y-4">
-                            <div class="flex justify-between items-start">
-                                <div>
-                                    <h3 class="text-lg font-semibold text-white mb-1 group-hover:text-indigo-300 transition-colors">Telco Customer Churn</h3>
-                                    <p class="text-xs text-secondary">Streamlit App</p>
-                                    </div><a href="https://telco-customer-churn-prediction-om-codex.onrender.com/" class="p-2 rounded-full hover:bg-white/10 text-white"><span class="iconify" data-icon="lucide:arrow-up-right"></span></a>
-                                </div></div>
-                            <p class="text-sm text-secondary line-clamp-2">
-                                End-to-end ML pipeline optimizing retention via Logistic Regression (81% Recall). Features a live Streamlit dashboard for real-time customer risk assessment.
-                            </p>
-                            <div class="flex gap-2 pt-2">
-                                <span class="px-2 py-1 text-[10px] uppercase tracking-wider rounded border border-white/10 text-neutral-400">Python</span>
-                                <span class="px-2 py-1 text-[10px] uppercase tracking-wider rounded border border-white/10 text-neutral-400">Sklearn</span>
-                                <span class="px-2 py-1 text-[10px] uppercase tracking-wider rounded border border-white/10 text-neutral-400">Streamlit</span>
+                        </article>
+
+                        <!-- Project 3 -->
+                        <article class="project-card snap-start glow-card rounded-3xl overflow-hidden animate-on-scroll">
+                            <div class="h-56 overflow-hidden relative">
+                                <div class="absolute inset-0 bg-blue-500/10 group-hover:bg-transparent transition-colors z-10 pointer-events-none"></div>
+                                <img src="Shriramartha.png" alt="Shriramartha Streamlit Interface"
+                                     class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                             </div>
-                            <div class="flex gap-4">
-                                    <a href="https://telco-customer-churn-prediction-om-codex.onrender.com/" target="_blank" class="text-white hover:text-indigo-accent text-sm font-bold flex items-center"><i class="fas fa-globe mr-2"></i> Demo</a>
-                                    <a href="https://github.com/Om-codex/Telco-Customer-Churn-Prediction" target="_blank" class="text-white hover:text-indigo-accent text-sm font-bold flex items-center"><i class="fab fa-github mr-2"></i> Code</a>
+                            <div class="p-7 space-y-5">
+                                <div class="flex justify-between items-start gap-4">
+                                    <div>
+                                        <p class="text-xs text-indigo-accent font-bold uppercase tracking-wider mb-2">NLP</p>
+                                        <h3 class="text-xl font-semibold text-white">Ramartha Analysis</h3>
+                                        <p class="text-sm text-secondary mt-1">Semantic Analysis Application</p>
+                                    </div>
+                                    <a href="https://huggingface.co/spaces/OmCodex/shriramartha-streamlit-app" target="_blank" rel="noopener noreferrer"
+                                       class="shrink-0 p-2 rounded-full hover:bg-white/10 text-white" aria-label="Open Ramartha application">
+                                        <span class="iconify" data-icon="lucide:arrow-up-right"></span>
+                                    </a>
+                                </div>
+
+                                <p class="text-sm text-secondary leading-relaxed">
+                                    End-to-end NLP system for semantic analysis of low-resource classical texts using Word2Vec and FastText. Features Unicode-native processing and real-time concept exploration.
+                                </p>
+
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="px-2 py-1 text-[10px] uppercase tracking-wider rounded border border-white/10 text-neutral-400">NLP</span>
+                                    <span class="px-2 py-1 text-[10px] uppercase tracking-wider rounded border border-white/10 text-neutral-400">Word2Vec</span>
+                                    <span class="px-2 py-1 text-[10px] uppercase tracking-wider rounded border border-white/10 text-neutral-400">Hugging Face</span>
+                                </div>
+
+                                <div class="flex gap-5 pt-1">
+                                    <a href="https://huggingface.co/spaces/OmCodex/shriramartha-streamlit-app" target="_blank" rel="noopener noreferrer"
+                                       class="text-white hover:text-cyan-accent text-sm font-bold flex items-center">
+                                        <i class="fas fa-globe mr-2"></i> App
+                                    </a>
+                                    <a href="https://github.com/Om-codex/semantic-narrative-analysis-shriramcharitmanas" target="_blank" rel="noopener noreferrer"
+                                       class="text-white hover:text-cyan-accent text-sm font-bold flex items-center">
+                                        <i class="fab fa-github mr-2"></i> GitHub
+                                    </a>
+                                </div>
                             </div>
-                        </div>
-                    </article>
+                        </article>
+
+                        <!-- Project 4 -->
+                        <article class="project-card snap-start glow-card rounded-3xl overflow-hidden animate-on-scroll">
+                            <div class="h-56 overflow-hidden relative">
+                                <div class="absolute inset-0 bg-cyan-accent/10 group-hover:bg-transparent transition-colors z-10 pointer-events-none"></div>
+                                <img src="urban-app.png" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Urban Bike Demand App">
+                            </div>
+                            <div class="p-7 space-y-5">
+                                <div class="flex justify-between items-start gap-4">
+                                    <div>
+                                        <p class="text-xs text-cyan-accent font-bold uppercase tracking-wider mb-2">Machine Learning</p>
+                                        <h3 class="text-xl font-semibold text-white">Urban Bike Demand</h3>
+                                        <p class="text-sm text-secondary mt-1">Demand Prediction System</p>
+                                    </div>
+                                    <a href="https://urban-ride-cast.streamlit.app" target="_blank" rel="noopener noreferrer"
+                                       class="shrink-0 p-2 rounded-full hover:bg-white/10 text-white" aria-label="Open Urban Bike Demand application">
+                                        <span class="iconify" data-icon="lucide:arrow-up-right"></span>
+                                    </a>
+                                </div>
+
+                                <p class="text-sm text-secondary leading-relaxed">
+                                    Logistics optimization system achieving 93.5% R² with LightGBM. Uses cyclic encoding and weather analysis to proactively prevent station stockouts.
+                                </p>
+
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="px-2 py-1 text-[10px] uppercase tracking-wider rounded border border-white/10 text-neutral-400">Python</span>
+                                    <span class="px-2 py-1 text-[10px] uppercase tracking-wider rounded border border-white/10 text-neutral-400">Sklearn</span>
+                                    <span class="px-2 py-1 text-[10px] uppercase tracking-wider rounded border border-white/10 text-neutral-400">Streamlit</span>
+                                </div>
+
+                                <div class="flex gap-5 pt-1">
+                                    <a href="https://urban-ride-cast.streamlit.app" target="_blank" rel="noopener noreferrer"
+                                       class="text-white hover:text-cyan-accent text-sm font-bold flex items-center">
+                                        <i class="fas fa-globe mr-2"></i> Demo
+                                    </a>
+                                    <a href="https://github.com/Om-codex/Urban_Mobility_Optimization_Streamlit_App" target="_blank" rel="noopener noreferrer"
+                                       class="text-white hover:text-cyan-accent text-sm font-bold flex items-center">
+                                        <i class="fab fa-github mr-2"></i> Code
+                                    </a>
+                                </div>
+                            </div>
+                        </article>
+
+                        <!-- Project 5 -->
+                        <article class="project-card snap-start glow-card rounded-3xl overflow-hidden animate-on-scroll">
+                            <div class="h-56 overflow-hidden relative">
+                                <div class="absolute inset-0 bg-indigo-accent/10 group-hover:bg-transparent transition-colors z-10 pointer-events-none"></div>
+                                <img src="telco-app.png" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Telco Customer Churn App">
+                            </div>
+                            <div class="p-7 space-y-5">
+                                <div class="flex justify-between items-start gap-4">
+                                    <div>
+                                        <p class="text-xs text-indigo-accent font-bold uppercase tracking-wider mb-2">Machine Learning</p>
+                                        <h3 class="text-xl font-semibold text-white">Telco Customer Churn</h3>
+                                        <p class="text-sm text-secondary mt-1">Customer Risk Prediction</p>
+                                    </div>
+                                    <a href="https://telco-customer-churn-prediction-om-codex.onrender.com/" target="_blank" rel="noopener noreferrer"
+                                       class="shrink-0 p-2 rounded-full hover:bg-white/10 text-white" aria-label="Open Telco Customer Churn application">
+                                        <span class="iconify" data-icon="lucide:arrow-up-right"></span>
+                                    </a>
+                                </div>
+
+                                <p class="text-sm text-secondary leading-relaxed">
+                                    End-to-end ML pipeline optimizing retention via Logistic Regression (81% Recall). Features a live Streamlit dashboard for real-time customer risk assessment.
+                                </p>
+
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="px-2 py-1 text-[10px] uppercase tracking-wider rounded border border-white/10 text-neutral-400">Python</span>
+                                    <span class="px-2 py-1 text-[10px] uppercase tracking-wider rounded border border-white/10 text-neutral-400">Sklearn</span>
+                                    <span class="px-2 py-1 text-[10px] uppercase tracking-wider rounded border border-white/10 text-neutral-400">Streamlit</span>
+                                </div>
+
+                                <div class="flex gap-5 pt-1">
+                                    <a href="https://telco-customer-churn-prediction-om-codex.onrender.com/" target="_blank" rel="noopener noreferrer"
+                                       class="text-white hover:text-indigo-accent text-sm font-bold flex items-center">
+                                        <i class="fas fa-globe mr-2"></i> Demo
+                                    </a>
+                                    <a href="https://github.com/Om-codex/Telco-Customer-Churn-Prediction" target="_blank" rel="noopener noreferrer"
+                                       class="text-white hover:text-indigo-accent text-sm font-bold flex items-center">
+                                        <i class="fab fa-github mr-2"></i> Code
+                                    </a>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+
+                    <div class="flex justify-center gap-2 mt-5" aria-hidden="true">
+                        <span class="project-dot w-1.5 h-1.5 rounded-full bg-white/50"></span>
+                        <span class="project-dot w-1.5 h-1.5 rounded-full bg-white/15"></span>
+                        <span class="project-dot w-1.5 h-1.5 rounded-full bg-white/15"></span>
+                        <span class="project-dot w-1.5 h-1.5 rounded-full bg-white/15"></span>
+                        <span class="project-dot w-1.5 h-1.5 rounded-full bg-white/15"></span>
+                    </div>
                 </div>
             </div>
         </section>
@@ -572,10 +706,10 @@
         <div class="flex flex-col md:flex-row justify-between items-end mb-12 animate-on-scroll">
           <div class="text-center md:text-left">
             <h2 class="text-3xl md:text-5xl font-bold text-white mb-4">
-              Latest Insights
+              Technical Writing
             </h2>
             <p class="text-slate-400">
-              Read my thoughts on AI, Data, and Tech.
+              Notes and engineering write-ups on AI, Data, and the systems I build.
             </p>
           </div>
 
@@ -757,9 +891,9 @@
 
         <section id="contact" class="py-24 px-6 border-t border-white/5 bg-gradient-to-b from-background to-surface/20">
             <div class="max-w-3xl mx-auto text-center space-y-8">
-                <h2 class="text-3xl font-semibold text-white tracking-tight">Ready to build something intelligent?</h2>
+                <h2 class="text-3xl font-semibold text-white tracking-tight">Let's build something useful.</h2>
                 <p class="text-secondary text-lg leading-relaxed">
-                    I'm currently looking for new opportunities to apply my skills in Machine Learning and AI. Whether you have a question or just want to say hi, I'll try my best to get back to you!
+                    I'm currently looking for ML / AI internship opportunities where I can contribute, learn from experienced engineers, and build real-world systems.
                 </p>
                 
                 <div class="flex justify-center gap-6 pt-6">
@@ -769,8 +903,8 @@
                     </a>
                     
                     <a href="tel:7021552396" class="group flex items-center gap-3 px-6 py-3 border border-border rounded-lg font-medium hover:bg-white/5 transition-colors">
-                        <span class="iconify" data-icon="lucide:calendar"></span>
-                        <span>Book a Call</span>
+                        <span class="iconify" data-icon="lucide:phone"></span>
+                        <span>Call Me</span>
                     </a>
                 </div>
 
@@ -793,8 +927,8 @@
 
         <footer class="py-12 bg-obsidian border-t border-glass-border">
             <div class="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6 text-sm text-slate-500">
-                <p>&copy; 2025 Om Mishra.</p>
-                <p>Built with <span class="text-indigo-accent">Intelligence</span> & Tailwind CSS</p>
+                <p>&copy; 2026 Om Mishra.</p>
+                <p>Built with <span class="text-indigo-accent">Tailwind CSS</span></p>
             </div>
         </footer>
 
@@ -824,99 +958,105 @@
         });
     </script>
     <script>
-        const titleElement = document.getElementById("title");
-        const text = "I build intelligent products end-to-end.";
-        let index = 0;
-
-        function typeLetter() {
-            // Slice the text and attach the blinking span element at the end
-            titleElement.innerHTML = text.slice(0, index) + '<span class="cursor-blink">_</span>';
-            index++;
-
-            if (index <= text.length) {
-                setTimeout(typeLetter, 65);
-            } else {
-                // Typing is finished, the cursor-blink span remains on screen
-                const subtitle = document.getElementById("subtitle");
-                if (subtitle) {
-                    subtitle.style.opacity = 1;
-                }
-            }
-        }
-
-        window.onload = () => {
-            // Clear out the hardcoded HTML text so the typing effect starts fresh
-            titleElement.innerHTML = "";
-            setTimeout(typeLetter, 400);
-        };
-        
         document.addEventListener('DOMContentLoaded', () => {
-            // 2. MOUSE GLOW & 3D TILT EFFECT
             const glow = document.getElementById('cursor-glow');
             const cards = document.querySelectorAll('.glow-card');
 
-            document.addEventListener('mousemove', (e) => {
-                requestAnimationFrame(() => {
-                    glow.style.left = e.clientX + 'px';
-                    glow.style.top = e.clientY + 'px';
+            // Subtle cursor glow on pointer devices only.
+            if (glow && window.matchMedia('(pointer: fine)').matches) {
+                document.addEventListener('mousemove', (e) => {
+                    requestAnimationFrame(() => {
+                        glow.style.left = e.clientX + 'px';
+                        glow.style.top = e.clientY + 'px';
+                    });
                 });
-            });
+            } else if (glow) {
+                glow.style.display = 'none';
+            }
 
-            cards.forEach(card => {
-                card.addEventListener('mousemove', (e) => {
-                    const rect = card.getBoundingClientRect();
-                    const x = e.clientX - rect.left;
-                    const y = e.clientY - rect.top;
-                    const centerX = rect.width / 2;
-                    const centerY = rect.height / 2;
-                    const rotateX = ((y - centerY) / centerY) * -5;
-                    const rotateY = ((x - centerX) / centerX) * 5;
-                    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
-                });
-                card.addEventListener('mouseleave', () => {
-                    card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1)';
-                });
-            });
-
-            // 3. SLIDER LOGIC
-            const slider = document.getElementById('sliderContainer');
-            const prevBtn = document.getElementById('prevBtn');
-            const nextBtn = document.getElementById('nextBtn');
-            if (slider && prevBtn && nextBtn) {
-                nextBtn.addEventListener('click', () => {
-                    const scrollAmount = slider.clientWidth > 768 ? slider.clientWidth / 3 : slider.clientWidth;
-                    slider.scrollBy({ left: scrollAmount, behavior: 'smooth' });
-                });
-                prevBtn.addEventListener('click', () => {
-                    const scrollAmount = slider.clientWidth > 768 ? slider.clientWidth / 3 : slider.clientWidth;
-                    slider.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+            // Subtle card tilt; disabled for touch/reduced-motion users.
+            if (window.matchMedia('(pointer: fine)').matches &&
+                !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                cards.forEach(card => {
+                    card.addEventListener('mousemove', (e) => {
+                        const rect = card.getBoundingClientRect();
+                        const x = e.clientX - rect.left;
+                        const y = e.clientY - rect.top;
+                        const centerX = rect.width / 2;
+                        const centerY = rect.height / 2;
+                        const rotateX = ((y - centerY) / centerY) * -2.5;
+                        const rotateY = ((x - centerX) / centerX) * 2.5;
+                        card.style.transform =
+                            `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+                    });
+                    card.addEventListener('mouseleave', () => {
+                        card.style.transform = '';
+                    });
                 });
             }
 
-            // 4. BLOG SLIDER LOGIC 
+            // Project slider: 3 cards on desktop, 2 on tablet, 1 on mobile.
+            const projectSlider = document.getElementById('projectSliderContainer');
+            const projectPrevBtn = document.getElementById('projectPrevBtn');
+            const projectNextBtn = document.getElementById('projectNextBtn');
+            const projectDots = document.querySelectorAll('.project-dot');
+
+            if (projectSlider && projectPrevBtn && projectNextBtn) {
+                const getStep = () => {
+                    const card = projectSlider.querySelector('.project-card');
+                    if (!card) return projectSlider.clientWidth;
+                    const gap = parseFloat(getComputedStyle(projectSlider).gap) || 24;
+                    return card.getBoundingClientRect().width + gap;
+                };
+
+                const updateProjectControls = () => {
+                    const maxScroll = projectSlider.scrollWidth - projectSlider.clientWidth;
+                    const current = projectSlider.scrollLeft;
+                    projectPrevBtn.disabled = current <= 4;
+                    projectNextBtn.disabled = current >= maxScroll - 4;
+
+                    const step = Math.max(getStep(), 1);
+                    const activeIndex = Math.round(current / step);
+                    projectDots.forEach((dot, index) => {
+                        dot.classList.toggle('bg-white/50', index === activeIndex);
+                        dot.classList.toggle('bg-white/15', index !== activeIndex);
+                    });
+                };
+
+                projectNextBtn.addEventListener('click', () => {
+                    projectSlider.scrollBy({ left: getStep(), behavior: 'smooth' });
+                });
+
+                projectPrevBtn.addEventListener('click', () => {
+                    projectSlider.scrollBy({ left: -getStep(), behavior: 'smooth' });
+                });
+
+                projectSlider.addEventListener('scroll', updateProjectControls, { passive: true });
+                window.addEventListener('resize', updateProjectControls);
+                updateProjectControls();
+            }
+
+            // Blog slider.
             const blogSlider = document.getElementById('blogSliderContainer');
             const blogPrevBtn = document.getElementById('blogPrevBtn');
             const blogNextBtn = document.getElementById('blogNextBtn');
 
             if (blogSlider && blogPrevBtn && blogNextBtn) {
+                const getBlogStep = () => {
+                    const card = blogSlider.querySelector('article');
+                    if (!card) return blogSlider.clientWidth;
+                    const gap = parseFloat(getComputedStyle(blogSlider).gap) || 32;
+                    return card.getBoundingClientRect().width + gap;
+                };
+
                 blogNextBtn.addEventListener('click', () => {
-                    const scrollAmount = blogSlider.clientWidth > 768 ? blogSlider.clientWidth / 3 : blogSlider.clientWidth;
-                    blogSlider.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+                    blogSlider.scrollBy({ left: getBlogStep(), behavior: 'smooth' });
                 });
 
                 blogPrevBtn.addEventListener('click', () => {
-                    const scrollAmount = blogSlider.clientWidth > 768 ? blogSlider.clientWidth / 3 : blogSlider.clientWidth;
-                    blogSlider.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+                    blogSlider.scrollBy({ left: -getBlogStep(), behavior: 'smooth' });
                 });
             }
-
-            // 5. ENTRANCE OBSERVER
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) entry.target.classList.add('is-visible');
-                });
-            }, { threshold: 0.1 });
-            document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
         });
     </script>
 </body>
