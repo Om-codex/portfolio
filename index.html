@@ -3,7 +3,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Om Mishra | Machine Learning & AI Portfolio</title>
-    <meta name="description" content="Portfolio of Om Mishra, a BSc.IT student focused on Machine Learning, Deep Learning, NLP, Transformers, and practical AI engineering.">
+    <meta name="description" content="Om Mishra — machine learning and AI portfolio focused on first-principles ML, deep learning, NLP, transformers, and practical deployment.">
+    <meta name="author" content="Om Mishra">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Om Mishra | Machine Learning & AI">
+    <meta property="og:description" content="Machine learning systems built from first principles to deployment.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://github.com/Om-codex">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
@@ -47,184 +53,349 @@
         }
     </script>
 
-    <style>
-        /* Terminal Cursor Blink Animation */
-        /* Smooth Fading Cursor Animation */
-        @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0; }
+    
+<style>
+    :root {
+        --bg: #050505;
+        --surface: #0b0b0b;
+        --surface-2: #101010;
+        --border: rgba(255,255,255,.09);
+        --text: #f5f5f5;
+        --muted: #8b8b8b;
+        --soft: #b5b5b5;
+        --accent: #f5f5f5;
+    }
+
+    html {
+        scroll-behavior: smooth;
+        background: var(--bg);
+        color-scheme: dark;
+    }
+
+    body {
+        background: var(--bg);
+        color: var(--soft);
+        overflow-x: hidden;
+    }
+
+    ::selection {
+        background: rgba(255,255,255,.16);
+        color: #fff;
+    }
+
+    :focus-visible {
+        outline: 2px solid rgba(255,255,255,.7);
+        outline-offset: 3px;
+    }
+
+    .glass-nav {
+        background: rgba(5,5,5,.94);
+        border-bottom: 1px solid var(--border);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+    }
+
+    .bg-grid {
+        background-size: 44px 44px;
+        background-image:
+            linear-gradient(to right, rgba(255,255,255,.1) 1px, transparent 1px),
+            linear-gradient(to bottom, rgba(255,255,255,.1) 1px, transparent 1px);
+    }
+
+    .glow-bg {
+        background: radial-gradient(circle at 50% 0%, rgba(255,255,255,.045), rgba(0,0,0,0) 65%);
+    }
+
+    .glossy-surface {
+        position: relative;
+        background: #050505;
+    }
+
+    .glossy-surface::before {
+        display: none;
+    }
+
+    .glow-card {
+        position: relative;
+        background: linear-gradient(180deg, #101010 0%, #090909 100%);
+        border: 1px solid var(--border);
+        box-shadow: none;
+        overflow: hidden;
+        transition: border-color .2s ease, background .2s ease;
+    }
+
+    .glow-card:hover {
+        border-color: rgba(255,255,255,.16);
+        background: linear-gradient(180deg, #121212 0%, #0a0a0a 100%);
+    }
+
+    .glow-card::after {
+        display: none;
+    }
+
+    .section-rule {
+        border-top: 1px solid rgba(255,255,255,.07);
+    }
+
+    .eyebrow {
+        color: #777;
+        font-size: .72rem;
+        font-weight: 600;
+        letter-spacing: .18em;
+        text-transform: uppercase;
+    }
+
+    .proof-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: .75rem;
+        padding-top: .25rem;
+    }
+
+    .proof-item {
+        border-top: 1px solid rgba(255,255,255,.08);
+        padding-top: .7rem;
+    }
+
+    .proof-value {
+        display: block;
+        color: #f4f4f4;
+        font-family: "JetBrains Mono", monospace;
+        font-size: .9rem;
+        font-weight: 500;
+    }
+
+    .proof-label {
+        display: block;
+        color: #666;
+        font-size: .68rem;
+        margin-top: .2rem;
+        line-height: 1.35;
+    }
+
+    .project-slider,
+    .blog-slider {
+        scroll-behavior: smooth;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+        overscroll-behavior-x: contain;
+        scroll-padding-inline: .25rem;
+    }
+
+    .project-slider::-webkit-scrollbar,
+    .blog-slider::-webkit-scrollbar {
+        display: none;
+    }
+
+    .project-card,
+    .blog-card {
+        min-width: 0;
+        scroll-snap-align: start;
+    }
+
+    .project-card {
+        flex: 0 0 calc((100% - 3rem) / 3);
+    }
+
+    .blog-card {
+        flex: 0 0 calc((100% - 3rem) / 3);
+    }
+
+    .slider-control:disabled {
+        opacity: .25;
+        cursor: not-allowed;
+        pointer-events: none;
+    }
+
+    .filter-btn {
+        border: 1px solid rgba(255,255,255,.1);
+        color: #8d8d8d;
+        background: transparent;
+        transition: background .2s ease, color .2s ease, border-color .2s ease;
+    }
+
+    .filter-btn:hover,
+    .filter-btn.active {
+        background: #f5f5f5;
+        color: #050505;
+        border-color: #f5f5f5;
+    }
+
+    .github-card {
+        border: 1px solid rgba(255,255,255,.08);
+        background: #090909;
+        transition: border-color .2s ease, transform .2s ease;
+    }
+
+    .github-card:hover {
+        border-color: rgba(255,255,255,.16);
+        transform: translateY(-2px);
+    }
+
+    .github-graph-wrap {
+        overflow-x: auto;
+        scrollbar-width: thin;
+        border: 1px solid rgba(255,255,255,.08);
+        background: #090909;
+    }
+
+    .github-graph {
+        min-width: 720px;
+    }
+
+    .contribution-grid {
+        display: grid;
+        grid-auto-flow: column;
+        grid-template-rows: repeat(7, 10px);
+        grid-auto-columns: 10px;
+        gap: 4px;
+        min-height: 94px;
+        align-items: end;
+    }
+
+    .contribution-cell {
+        width: 10px;
+        height: 10px;
+        border-radius: 2px;
+        background: #171717;
+        border: 1px solid rgba(255,255,255,.025);
+    }
+
+    .contribution-cell[data-level="1"] { background: #303030; }
+    .contribution-cell[data-level="2"] { background: #555; }
+    .contribution-cell[data-level="3"] { background: #888; }
+    .contribution-cell[data-level="4"] { background: #d6d6d6; }
+
+    .github-stat {
+        border-left: 1px solid rgba(255,255,255,.08);
+        padding-left: 1rem;
+    }
+
+    .cursor-blink {
+        display: none;
+    }
+
+    .btn-shimmer::after,
+    .btn-shimmer-light::after {
+        display: none;
+    }
+
+    .mobile-menu-link {
+        padding: .75rem 0;
+        border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+
+    .mobile-menu-link:last-child {
+        border-bottom: 0;
+    }
+
+    .mobile-only-scroll {
+        -webkit-overflow-scrolling: touch;
+    }
+
+    @media (max-width: 1024px) {
+        .project-card,
+        .blog-card {
+            flex-basis: calc((100% - 1.5rem) / 2);
         }
-        .cursor-blink {
-            /* Changed from step-end to ease-in-out and slowed it down slightly to 1s */
-            animation: blink 1s ease-in-out infinite; 
-            color: #a1a1aa; 
-            margin-left: 2px; 
-        }
-        /* Custom Utilities */
-        .glass-nav {
-            background: rgba(10, 10, 10, 0.7);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-        }
-        .gradient-text {
-            background: linear-gradient(to bottom right, #ffffff, #a1a1aa);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        .card-hover {
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        .card-hover:hover {
-            transform: translateY(-4px);
-            border-color: rgba(255, 255, 255, 0.15);
-            box-shadow: 0 0 40px -10px rgba(255, 255, 255, 0.05);
-        }
-        /* Subtle grid background */
-        .bg-grid {
-            background-size: 40px 40px;
-            background-image: linear-gradient(to right, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
-            linear-gradient(to bottom, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
-        }
-        /* Glossy Obsidian Glow Effect Container */
-        .glow-bg {
-            background: radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.03) 0%, rgba(0, 0, 0, 0.4) 40%, transparent 70%);
+    }
+
+    @media (max-width: 767px) {
+        .project-card,
+        .blog-card {
+            flex-basis: 88%;
         }
 
-        .glow-card:hover::after { transform: translateY(100%); }
-
-        /* Glowing Border Animation for Glossy Black Cards */
-        .glow-card {
-            position: relative;
-            background: linear-gradient(145deg, #171717 0%, #050505 100%);
-            box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            transition: all 0.1s ease-out; 
-            overflow: hidden;
-            transform-style: preserve-3d;
-            perspective: 1000px;
-        }
-        /* 3D Tilt Shine Effect */
-        .glow-card::after {
-            content: "";
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: linear-gradient(125deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.3) 40%, rgba(0, 0, 0, 0) 100%);
-            transform: translateY(-100%);
-            transition: transform 0.6s;
-            pointer-events: none;
-        }
-        /* Custom Mouse Glow  */
-        #cursor-glow {
-            position: fixed;
-            width: 250px; 
-            height: 250px; 
-            background: radial-gradient(
-                circle, 
-                rgba(99, 102, 241, 0.25) 15%, 
-                rgba(99, 102, 241, 0.25) 15%, 
-                rgba(99, 102, 241, 0.08) 45%, 
-                transparent 80%
-            );
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 1;
-            transform: translate(-50%, -50%);
-            transition: width 0.3s, height 0.3s;
+        .proof-grid {
+            grid-template-columns: repeat(3, minmax(0,1fr));
+            gap: .5rem;
         }
 
-        /* Glossy Surface Effect */
-        .glossy-surface {
-            position: relative;
-            overflow: hidden; 
+        .proof-value {
+            font-size: .78rem;
         }
 
-        .glossy-surface::before {
-            content: '';
-            position: absolute;
-            inset: 0; 
-            background: 
-                linear-gradient(105deg, transparent 20%, rgba(255, 255, 255, 0.03) 25%, rgba(255, 255, 255, 0.01) 30%, transparent 50%),
-                radial-gradient(ellipse at top right, rgba(255, 255, 255, 0.05) 0%, transparent 50%);
-            pointer-events: none; 
-            z-index: 0;
+        .proof-label {
+            font-size: .62rem;
         }
 
-        .glossy-surface > * {
-            position: relative;
-            z-index: 1;
+        .hero-title {
+            font-size: clamp(2.45rem, 11vw, 4rem);
+            line-height: 1.02;
         }
 
-        /* Project slider */
-        .project-slider {
-            scroll-behavior: smooth;
-            scrollbar-width: none;
-            -ms-overflow-style: none;
-        }
-        .project-slider::-webkit-scrollbar { display: none; }
-
-        .project-card {
-            flex: 0 0 calc((100% - 2rem) / 3);
-            min-width: 0;
+        .hero-copy {
+            font-size: .98rem;
+            line-height: 1.65;
         }
 
-        .slider-control:disabled {
-            opacity: 0.25;
-            cursor: not-allowed;
+        .section-padding {
+            padding-top: 5rem;
+            padding-bottom: 5rem;
         }
 
-        @media (max-width: 1024px) {
-            .project-card {
-                flex-basis: calc((100% - 1rem) / 2);
-            }
+        .project-card .project-image {
+            height: 12.5rem;
         }
 
-        @media (max-width: 767px) {
-            .project-card {
-                flex-basis: 88%;
-            }
+        .blog-card {
+            height: 500px;
         }
 
-        @media (prefers-reduced-motion: reduce) {
-            html { scroll-behavior: auto !important; }
-            .project-slider { scroll-behavior: auto; }
-            .cursor-blink, .animate-bounce { animation: none !important; }
+        .github-stat {
+            border-left: 0;
+            padding-left: 0;
         }
 
-        /* Shimmer Effect for the Primary Button */
-        @keyframes shimmer {
-            0% { transform: translateX(-150%) skewX(-20deg); }
-            100% { transform: translateX(250%) skewX(-20deg); }
+        .contact-actions > * {
+            width: 100%;
         }
-        .btn-shimmer::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 50%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.08), transparent);
-            animation: shimmer 2.5s infinite;
-            pointer-events: none;
+    }
+
+    @media (max-width: 450px) {
+        .project-card,
+        .blog-card {
+            flex-basis: 92%;
         }
 
-        .btn-shimmer-light::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 50%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-            animation: shimmer 2.5s infinite;
-            pointer-events: none;
-            /* Adding a slight delay so both buttons don't flash at the exact same millisecond */
-            animation-delay: 0.5s; 
+        .proof-grid {
+            grid-template-columns: 1fr;
         }
 
-    </style>
+        .proof-item {
+            display: grid;
+            grid-template-columns: 90px 1fr;
+            gap: .5rem;
+            align-items: baseline;
+        }
+
+        .proof-label {
+            margin-top: 0;
+        }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        html { scroll-behavior: auto !important; }
+        .project-slider,
+        .blog-slider { scroll-behavior: auto; }
+        *, *::before, *::after {
+            animation-duration: .01ms !important;
+            animation-iteration-count: 1 !important;
+            transition-duration: .01ms !important;
+        }
+    }
+
+    .text-indigo-accent { color: #b5b5b5 !important; }
+    .text-cyan-accent { color: #c7c7c7 !important; }
+    .bg-indigo-accent\/10, .bg-cyan-accent\/10, .bg-indigo-500\/10 { background: rgba(255,255,255,.035) !important; }
+    .border-indigo-500\/20 { border-color: rgba(255,255,255,.09) !important; }
+    .text-obsidian { color: #050505 !important; }
+    .bg-obsidian { background: #050505 !important; }
+    .border-glass-border { border-color: rgba(255,255,255,.06) !important; }
+<style>[data-project-card][hidden]{display:none!important;}</style>
+
 </head>
-<body class="bg-background text-secondary font-sans antialiased selection:bg-white/20 selection:text-white overflow-x-hidden">
+<body id="top" class="bg-background text-secondary font-sans antialiased overflow-x-hidden">
 
     <nav class="fixed top-0 w-full z-50 glass-nav">
         <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
@@ -239,6 +410,7 @@
                 <a href="#projects" class="hover:text-white transition-colors">Projects</a>
                 <a href="#experience" class="hover:text-white transition-colors">Experience</a>
                 <a href="#blog" class="hover:text-white transition-colors">Writing</a>
+                <a href="#github" class="hover:text-white transition-colors">GitHub</a>
                 <a href="#contact" class="px-4 py-2 bg-white text-black rounded-full hover:bg-neutral-200 transition-colors">Let's Connect</a>
             </div>
 
@@ -247,20 +419,20 @@
             </button>
         </div>
         
-        <div id="mobile-menu" class="hidden absolute top-16 left-0 w-full bg-surface border-b border-border p-6 flex flex-col gap-4 md:hidden">
-            <a href="#about" class="block hover:text-white">About</a>
-            <a href="#skills" class="block hover:text-white">Skills</a>
-            <a href="#projects" class="block hover:text-white">Projects</a>
-            <a href="#experience" class="block hover:text-white">Experience</a>
+        <div id="mobile-menu" class="hidden absolute top-16 left-0 w-full bg-black border-b border-white/10 px-6 py-4 flex flex-col md:hidden">
+            <a href="#about" class="mobile-menu-link block text-sm hover:text-white">About</a>
+            <a href="#skills" class="mobile-menu-link block text-sm hover:text-white">Skills</a>
+            <a href="#projects" class="mobile-menu-link block text-sm hover:text-white">Projects</a>
+            <a href="#experience" class="mobile-menu-link block text-sm hover:text-white">Experience</a>
             <a href="#blog" class="block hover:text-white">Writing</a>
-            <a href="#contact" class="block text-white font-semibold">Let's Connect</a>
+            <a href="#contact" class="mobile-menu-link block text-white font-semibold">Let's Connect</a>
         </div>
     </nav>
 
-    <section class="relative min-h-screen flex flex-col justify-center items-center text-center pt-20 px-6 bg-grid">
+<section class="relative min-h-screen flex flex-col justify-center items-center text-center pt-20 px-6 bg-grid">
         <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[500px] glow-bg opacity-60 pointer-events-none"></div>
 
-        <div class="animate-slide-up space-y-8 max-w-6xl relative z-10">
+        <div class="animate-slide-up space-y-8 max-w-6xl w-full relative z-10 hero-copy">
             <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/10 bg-white/5 text-xs font-medium text-white backdrop-blur-sm">
                 <span class="relative flex h-2 w-2">
                   <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
@@ -282,53 +454,77 @@
                 <span id="typewriter-text"></span><span class="cursor-blink font-mono">_</span>
             </p>
 
-            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4">
+            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4 hero-actions">
                 <a href="#projects" class="btn-shimmer relative overflow-hidden px-8 py-3 bg-white text-black font-medium rounded-full hover:bg-neutral-200 transition-all flex items-center gap-2 group">
                     <span class="relative z-10 flex items-center gap-2">
                         View Projects
                         <span class="iconify group-hover:translate-x-1 transition-transform" data-icon="lucide:arrow-right" data-width="18"></span>
                     </span>
-                </a>
                 <a href="Om's-Resume.pdf" class="btn-shimmer-light relative overflow-hidden px-8 py-3 border border-border text-white font-medium rounded-full hover:bg-white/5 transition-all flex items-center gap-2 group">
                     <span class="relative z-10 flex items-center gap-2">
                         <span class="iconify group-hover:-translate-y-1 transition-transform duration-300" data-icon="lucide:download" data-width="18"></span>
-                        Download CV
+                        Resume(CV)
                     </span>
                 </a>
-                <div class="flex gap-4 sm:ml-4">
-                    <a href="https://www.github.com/Om-codex" class="p-3 text-secondary hover:text-white transition-colors" aria-label="GitHub">
-                        <span class="iconify" data-icon="lucide:github" data-width="22"></span>
-                    </a>
-                    <a href="https://www.linkedin.com/in/om-mishra-a55263329" class="p-3 text-secondary hover:text-white transition-colors" aria-label="LinkedIn">
-                        <span class="iconify" data-icon="lucide:linkedin" data-width="22"></span>
-                    </a>
-                    <a href="https://x.com/OmCodex_tweets" class="p-3 text-secondary hover:text-white transition-colors" aria-label="Twitter">
-                        <span class="iconify" data-icon="lucide:twitter" data-width="22"></span>
-                    </a>
-                </div>
             </div>
-        </div>
-        
-        <div class="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce opacity-50">
-            <span class="iconify text-white" data-icon="lucide:chevron-down" data-width="24"></span>
+
+            <div class="flex justify-center gap-5 mt-7">
+                <a href="https://www.github.com/Om-codex" class="text-secondary hover:text-white transition-colors" aria-label="GitHub">
+                    <span class="iconify" data-icon="lucide:github" data-width="20"></span>
+                </a>
+                <a href="https://www.linkedin.com/in/om-mishra-a55263329" class="text-secondary hover:text-white transition-colors" aria-label="LinkedIn">
+                    <span class="iconify" data-icon="lucide:linkedin" data-width="20"></span>
+                </a>
+                <a href="https://x.com/OmCodex_tweets" class="text-secondary hover:text-white transition-colors" aria-label="X / Twitter">
+                    <span class="iconify" data-icon="lucide:twitter" data-width="20"></span>
+                </a>
+            </div>
         </div>
     </section>
 
     <div class="glossy-surface">
 
+        <section class="border-y border-white/[.06] bg-[#070707]">
+            <div class="max-w-6xl mx-auto px-5 sm:px-6 py-6">
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-0 md:divide-x md:divide-white/[.07]">
+                    <div class="md:px-8 first:md:pl-0">
+                        <span class="eyebrow">Scale</span>
+                        <p class="mt-1 text-white font-mono text-lg">2.3M</p>
+                        <p class="text-xs text-neutral-600 mt-1">translation pairs</p>
+                    </div>
+                    <div class="md:px-8">
+                        <span class="eyebrow">Transformer</span>
+                        <p class="mt-1 text-white font-mono text-lg">34.82</p>
+                        <p class="text-xs text-neutral-600 mt-1">BLEU score</p>
+                    </div>
+                    <div class="md:px-8">
+                        <span class="eyebrow">Computer vision</span>
+                        <p class="mt-1 text-white font-mono text-lg">99.7%</p>
+                        <p class="text-xs text-neutral-600 mt-1">recall reported</p>
+                    </div>
+                    <div class="md:px-8 last:md:pr-0">
+                        <span class="eyebrow">Projects</span>
+                        <p class="mt-1 text-white font-mono text-lg">5+</p>
+                        <p class="text-xs text-neutral-600 mt-1">deployed ML systems</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
         <section id="about" class="py-24 bg-obsidian relative">
             <div class="container mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-                <div class="animate-on-scroll">
+                <div>
                     <h2 class="text-3xl md:text-5xl font-bold text-white mb-8">About Me</h2>
                     <p class="text-slate-400 text-lg leading-relaxed mb-6">
-                        I'm <strong class="text-white">Om Santosh Mishra</strong>, an inquisitive BSc.IT student at Smt. C.H.M. College focused on <span class="text-indigo-accent">Machine Learning</span>, <span class="text-cyan-accent">Deep Learning</span>, and NLP. I enjoy understanding how models work beneath the abstractions, not just using libraries and APIs.
+                        I'm <strong class="text-white">Om Santosh Mishra</strong>, an inquisitive BSc.IT student at Smt. C.H.M. College focused on <span class="text-indigo-accent">Machine Learning</span>, <span class="text-cyan-accent">Deep Learning</span>, and <span class="text-indigo-accent">NLP</span>. I enjoy understanding how models work beneath the abstractions, not just using libraries and APIs.
                     </p>
                     <p class="text-slate-400 text-lg leading-relaxed mb-6">
                         I build by learning through implementation: from classical machine learning and computer vision to implementing Transformer architectures from scratch in PyTorch. My work involves training models, debugging failures, evaluating them properly, and turning working systems into usable applications.
                     </p>
                 </div>
                 
-                <div class="glow-card p-8 md:p-10 rounded-3xl animate-on-scroll">
+                <div class="glow-card p-8 md:p-10 rounded-3xl">
                     <ul class="space-y-8">
                         <li class="flex items-start">
                             <div class="bg-indigo-accent/10 p-3 rounded-lg mr-4 text-indigo-accent text-2xl">
@@ -382,7 +578,7 @@
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div class="glow-card p-8 md:p-10 rounded-3xl animate-on-scroll">
+                    <div class="glow-card p-8 md:p-10 rounded-3xl">
                         <div class="flex items-center gap-3 mb-6">
                             <span class="p-2 rounded-lg bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">
                                 <span class="iconify" data-icon="lucide:brain" data-width="20"></span>
@@ -397,7 +593,7 @@
                         </ul>
                     </div>
 
-                    <div class="glow-card p-8 md:p-10 rounded-3xl animate-on-scroll">
+                    <div class="glow-card p-8 md:p-10 rounded-3xl">
                         <div class="flex items-center gap-3 mb-6">
                             <span class="p-2 rounded-lg bg-purple-500/10 text-purple-400 border border-purple-500/20">
                                 <span class="iconify" data-icon="lucide:network" data-width="20"></span>
@@ -412,7 +608,7 @@
                         </ul>
                     </div>
 
-                    <div class="glow-card p-8 md:p-10 rounded-3xl animate-on-scroll">
+                    <div class="glow-card p-8 md:p-10 rounded-3xl">
                         <div class="flex items-center gap-3 mb-6">
                             <span class="p-2 rounded-lg bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">
                                 <span class="iconify" data-icon="lucide:message-square-code" data-width="20"></span>
@@ -427,7 +623,7 @@
                         </ul>
                     </div>
 
-                    <div class="glow-card p-8 md:p-10 rounded-3xl animate-on-scroll">
+                    <div class="glow-card p-8 md:p-10 rounded-3xl">
                         <div class="flex items-center gap-3 mb-6">
                             <span class="p-2 rounded-lg bg-orange-500/10 text-orange-400 border border-orange-500/20">
                                 <span class="iconify" data-icon="lucide:server" data-width="20"></span>
@@ -482,23 +678,25 @@
         </section>
 
         <section id="projects" class="py-24 px-6 relative">
-            <div class="max-w-6xl mx-auto space-y-12">
-                <div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
+            <div class="max-w-6xl mx-auto space-y-10">
+                <div class="space-y-5">
                     <div class="space-y-2">
-                        <h2 class="text-3xl md:text-4xl font-semibold text-white tracking-tight">Featured Projects</h2>
-                        <p class="text-secondary">Selected systems spanning machine learning, deep learning, NLP, and practical AI applications.</p>
+                        <p class="eyebrow">Selected work</p>
+                        <h2 class="text-3xl md:text-4xl font-semibold text-white tracking-tight">Featured projects</h2>
+                        <p class="text-secondary max-w-2xl">A small set of systems where the implementation, evaluation, and deployment matter as much as the model.</p>
                     </div>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1.5 text-xs font-medium rounded-full bg-white text-black">Featured</span>
-                        <span class="px-3 py-1.5 text-xs font-medium rounded-full border border-border text-secondary">ML</span>
-                        <span class="px-3 py-1.5 text-xs font-medium rounded-full border border-border text-secondary">Deep Learning</span>
-                        <span class="px-3 py-1.5 text-xs font-medium rounded-full border border-border text-secondary">NLP</span>
+                    <div class="flex flex-wrap gap-2" role="group" aria-label="Filter projects">
+                        <button type="button" class="filter-btn active px-3 py-1.5 rounded-full text-xs" data-project-filter="all">All</button>
+                        <button type="button" class="filter-btn px-3 py-1.5 rounded-full text-xs" data-project-filter="ml">ML</button>
+                        <button type="button" class="filter-btn px-3 py-1.5 rounded-full text-xs" data-project-filter="deep-learning">Deep learning</button>
+                        <button type="button" class="filter-btn px-3 py-1.5 rounded-full text-xs" data-project-filter="nlp">NLP</button>
+                        <button type="button" class="filter-btn px-3 py-1.5 rounded-full text-xs" data-project-filter="computer-vision">Computer vision</button>
                     </div>
                 </div>
-                
+
                 <div class="relative">
                     <div class="flex items-center justify-between mb-5">
-                        <p class="text-xs text-secondary uppercase tracking-[0.2em]">Scroll or use the arrows to explore</p>
+                        <p class="text-xs text-neutral-600 uppercase tracking-[0.18em]">Swipe or use the arrows</p>
                         <div class="flex gap-2">
                             <button id="projectPrevBtn" type="button" aria-label="Previous project"
                                 class="slider-control w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-secondary hover:text-white hover:border-white/20 hover:bg-white/5 transition-all">
@@ -517,8 +715,8 @@
                          aria-label="Featured projects">
 
                         <!-- Project 1 -->
-                        <article class="project-card snap-start glow-card rounded-3xl overflow-hidden animate-on-scroll">
-                            <div class="h-56 overflow-hidden relative">
+                        <article class="project-card snap-start glow-card rounded-3xl overflow-hidden" data-project-card data-category="nlp">
+                            <div class="project-image h-56 overflow-hidden relative">
                                 <div class="absolute inset-0 bg-indigo-accent/10 group-hover:bg-transparent transition-colors z-10 pointer-events-none"></div>
                                 <img src="transformer-app.png" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Transformer Translation App">
                             </div>
@@ -545,6 +743,12 @@
                                     <span class="px-2 py-1 text-[10px] uppercase tracking-wider rounded border border-white/10 text-neutral-400">Streamlit</span>
                                 </div>
 
+                                <div class="proof-grid">
+    <div class="proof-item"><span class="proof-value">34.82</span><span class="proof-label">BLEU</span></div>
+    <div class="proof-item"><span class="proof-value">2.3M</span><span class="proof-label">sentence pairs</span></div>
+    <div class="proof-item"><span class="proof-value">from scratch</span><span class="proof-label">PyTorch architecture</span></div>
+</div>
+
                                 <div class="flex gap-5 pt-1">
                                     <a href="https://neuralbridge.streamlit.app/" target="_blank" rel="noopener noreferrer"
                                        class="text-white hover:text-cyan-accent text-sm font-bold flex items-center">
@@ -559,8 +763,8 @@
                         </article>
 
                         <!-- Project 2 -->
-                        <article class="project-card snap-start glow-card rounded-3xl overflow-hidden animate-on-scroll">
-                            <div class="h-56 overflow-hidden relative">
+                        <article class="project-card snap-start glow-card rounded-3xl overflow-hidden" data-project-card data-category="computer-vision deep-learning">
+                            <div class="project-image h-56 overflow-hidden relative">
                                 <div class="absolute inset-0 bg-indigo-accent/10 group-hover:bg-transparent transition-colors z-10 pointer-events-none"></div>
                                 <img src="pulmoscan3.png" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="PulmoScan AI App">
                             </div>
@@ -587,6 +791,12 @@
                                     <span class="px-2 py-1 text-[10px] uppercase tracking-wider rounded border border-white/10 text-neutral-400">OpenCV</span>
                                 </div>
 
+                                <div class="proof-grid">
+    <div class="proof-item"><span class="proof-value">99.7%</span><span class="proof-label">reported recall</span></div>
+    <div class="proof-item"><span class="proof-value">DenseNet121</span><span class="proof-label">fine-tuned backbone</span></div>
+    <div class="proof-item"><span class="proof-value">Grad-CAM</span><span class="proof-label">explainability</span></div>
+</div>
+
                                 <div class="flex gap-5 pt-1">
                                     <a href="https://pulmoscan.streamlit.app" target="_blank" rel="noopener noreferrer"
                                        class="text-white hover:text-cyan-accent text-sm font-bold flex items-center">
@@ -601,8 +811,8 @@
                         </article>
 
                         <!-- Project 3 -->
-                        <article class="project-card snap-start glow-card rounded-3xl overflow-hidden animate-on-scroll">
-                            <div class="h-56 overflow-hidden relative">
+                        <article class="project-card snap-start glow-card rounded-3xl overflow-hidden" data-project-card data-category="nlp">
+                            <div class="project-image h-56 overflow-hidden relative">
                                 <div class="absolute inset-0 bg-blue-500/10 group-hover:bg-transparent transition-colors z-10 pointer-events-none"></div>
                                 <img src="Shriramartha.png" alt="Shriramartha Streamlit Interface"
                                      class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
@@ -630,6 +840,12 @@
                                     <span class="px-2 py-1 text-[10px] uppercase tracking-wider rounded border border-white/10 text-neutral-400">Hugging Face</span>
                                 </div>
 
+                                <div class="proof-grid">
+    <div class="proof-item"><span class="proof-value">Word2Vec</span><span class="proof-label">embeddings</span></div>
+    <div class="proof-item"><span class="proof-value">FastText</span><span class="proof-label">semantic features</span></div>
+    <div class="proof-item"><span class="proof-value">Unicode</span><span class="proof-label">native processing</span></div>
+</div>
+
                                 <div class="flex gap-5 pt-1">
                                     <a href="https://huggingface.co/spaces/OmCodex/shriramartha-streamlit-app" target="_blank" rel="noopener noreferrer"
                                        class="text-white hover:text-cyan-accent text-sm font-bold flex items-center">
@@ -644,8 +860,8 @@
                         </article>
 
                         <!-- Project 4 -->
-                        <article class="project-card snap-start glow-card rounded-3xl overflow-hidden animate-on-scroll">
-                            <div class="h-56 overflow-hidden relative">
+                        <article class="project-card snap-start glow-card rounded-3xl overflow-hidden" data-project-card data-category="ml">
+                            <div class="project-image h-56 overflow-hidden relative">
                                 <div class="absolute inset-0 bg-cyan-accent/10 group-hover:bg-transparent transition-colors z-10 pointer-events-none"></div>
                                 <img src="urban-app.png" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Urban Bike Demand App">
                             </div>
@@ -672,6 +888,12 @@
                                     <span class="px-2 py-1 text-[10px] uppercase tracking-wider rounded border border-white/10 text-neutral-400">Streamlit</span>
                                 </div>
 
+                                <div class="proof-grid">
+    <div class="proof-item"><span class="proof-value">93.5%</span><span class="proof-label">reported R²</span></div>
+    <div class="proof-item"><span class="proof-value">LightGBM</span><span class="proof-label">prediction model</span></div>
+    <div class="proof-item"><span class="proof-value">cyclic</span><span class="proof-label">time encoding</span></div>
+</div>
+
                                 <div class="flex gap-5 pt-1">
                                     <a href="https://urban-ride-cast.streamlit.app" target="_blank" rel="noopener noreferrer"
                                        class="text-white hover:text-cyan-accent text-sm font-bold flex items-center">
@@ -686,8 +908,8 @@
                         </article>
 
                         <!-- Project 5 -->
-                        <article class="project-card snap-start glow-card rounded-3xl overflow-hidden animate-on-scroll">
-                            <div class="h-56 overflow-hidden relative">
+                        <article class="project-card snap-start glow-card rounded-3xl overflow-hidden" data-project-card data-category="ml">
+                            <div class="project-image h-56 overflow-hidden relative">
                                 <div class="absolute inset-0 bg-indigo-accent/10 group-hover:bg-transparent transition-colors z-10 pointer-events-none"></div>
                                 <img src="telco-app.png" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Telco Customer Churn App">
                             </div>
@@ -714,6 +936,12 @@
                                     <span class="px-2 py-1 text-[10px] uppercase tracking-wider rounded border border-white/10 text-neutral-400">Streamlit</span>
                                 </div>
 
+                                <div class="proof-grid">
+    <div class="proof-item"><span class="proof-value">81%</span><span class="proof-label">reported recall</span></div>
+    <div class="proof-item"><span class="proof-value">Logistic</span><span class="proof-label">regression baseline</span></div>
+    <div class="proof-item"><span class="proof-value">live</span><span class="proof-label">risk assessment</span></div>
+</div>
+
                                 <div class="flex gap-5 pt-1">
                                     <a href="https://telco-customer-churn-prediction-om-codex.onrender.com/" target="_blank" rel="noopener noreferrer"
                                        class="text-white hover:text-indigo-accent text-sm font-bold flex items-center">
@@ -739,41 +967,96 @@
             </div>
         </section>
 
-        <section id="blog" class="py-24 bg-obsidian relative">
-      <div class="container mx-auto px-6">
+        
+        <section id="github" class="py-24 px-5 sm:px-6 section-rule">
+            <div class="max-w-6xl mx-auto space-y-10">
+                <div class="flex flex-col md:flex-row md:items-end justify-between gap-5">
+                    <div>
+                        <p class="eyebrow">Open source</p>
+                        <h2 class="text-3xl md:text-4xl font-semibold text-white tracking-tight mt-2">GitHub</h2>
+                        <p class="text-secondary mt-2 max-w-2xl">A live snapshot of the code behind the portfolio — repositories, activity, and the systems I keep building.</p>
+                    </div>
+                    <a href="https://github.com/Om-codex" target="_blank" rel="noopener noreferrer"
+                       class="inline-flex items-center gap-2 text-sm text-white hover:text-neutral-300 transition-colors">
+                        View profile
+                        <span class="iconify" data-icon="lucide:arrow-up-right" data-width="16"></span>
+                    </a>
+                </div>
 
-        <div class="flex flex-col md:flex-row justify-between items-end mb-12 animate-on-scroll">
-          <div class="text-center md:text-left">
-            <h2 class="text-3xl md:text-5xl font-bold text-white mb-4">
-              Technical Writing
-            </h2>
+                <div class="github-graph-wrap rounded-2xl p-4 sm:p-6">
+                    <div class="flex items-center justify-between gap-4 mb-5">
+                        <div>
+                            <p class="text-sm font-medium text-white">Contribution activity</p>
+                            <p id="githubContributionSummary" class="text-xs text-neutral-600 mt-1">Loading GitHub activity…</p>
+                        </div>
+                        <div class="hidden sm:flex items-center gap-2 text-[10px] text-neutral-600">
+                            <span>Less</span>
+                            <span class="contribution-cell"></span>
+                            <span class="contribution-cell" data-level="1"></span>
+                            <span class="contribution-cell" data-level="2"></span>
+                            <span class="contribution-cell" data-level="3"></span>
+                            <span class="contribution-cell" data-level="4"></span>
+                            <span>More</span>
+                        </div>
+                    </div>
+                    <div class="github-graph">
+                        <div class="flex items-end gap-3">
+                            <div class="flex flex-col justify-between h-[94px] text-[9px] text-neutral-700 py-[1px]">
+                                <span>Mon</span><span>Wed</span><span>Fri</span>
+                            </div>
+                            <div id="githubContributionGrid" class="contribution-grid flex-1" aria-label="GitHub contribution activity"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="flex items-center justify-between mb-4">
+                        <p class="text-sm font-medium text-white">Selected repositories</p>
+                        <span id="githubRepoStatus" class="text-xs text-neutral-700">Loading…</span>
+                    </div>
+                    <div id="githubRepoGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+                </div>
+            </div>
+        </section>
+
+<section id="blog" class="py-24 px-5 sm:px-6 bg-[#050505] relative section-rule">
+      <div class="max-w-6xl mx-auto">
+
+        <div class="flex flex-col md:flex-row justify-between items-end gap-5 mb-10">
+          <div class="text-center md:text-left max-w-2xl">
+            <p class="eyebrow">Writing</p>
+            <h2 class="text-3xl md:text-4xl font-semibold text-white mt-2">Technical writing</h2>
             <p class="text-slate-400">
               Notes and engineering write-ups on AI, Data, and the systems I build.
             </p>
           </div>
 
-          <div class="hidden md:flex gap-4 mt-6 md:mt-0">
+          <div class="flex gap-2 mt-2 md:mt-0">
             <button
-              id="blogPrevBtn"
-              class="w-12 h-12 rounded-full border border-indigo-accent/30 flex items-center justify-center text-indigo-accent hover:bg-indigo-accent hover:text-white transition-all duration-300 active:scale-95">
-              <i class="fas fa-chevron-left"></i>
+                id="blogPrevBtn"
+                type="button"
+                aria-label="Previous article"
+                class="slider-control w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-secondary hover:text-white hover:bg-white/5 transition-all">
+                <i class="fas fa-chevron-left"></i>
             </button>
             <button
-              id="blogNextBtn"
-              class="w-12 h-12 rounded-full bg-indigo-accent text-white flex items-center justify-center hover:bg-white hover:text-obsidian transition-all duration-300 shadow-lg shadow-indigo-500/20 active:scale-95">
-              <i class="fas fa-chevron-right"></i>
+                id="blogNextBtn"
+                type="button"
+                aria-label="Next article"
+                class="slider-control w-10 h-10 rounded-full bg-white text-black flex items-center justify-center hover:bg-neutral-200 transition-all">
+                <i class="fas fa-chevron-right"></i>
             </button>
           </div>
         </div>
+            <div
+                id="blogSliderContainer"
+                class="blog-slider flex gap-4 overflow-x-auto snap-x snap-mandatory pb-5 px-1 mobile-only-scroll"
+                tabindex="0"
+                aria-label="Technical writing">
 
-        <div
-          id="blogSliderContainer"
-          class="flex gap-8 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-12 no-scrollbar">
-
-              <article
-                class="min-w-full md:min-w-[calc(50%-1rem)] lg:min-w-[calc(33.333%-1.34rem)]
-                       snap-start glow-card rounded-2xl overflow-hidden
-                       flex flex-col h-[520px] animate-on-scroll">
+            <article
+                class="blog-card snap-start glow-card rounded-2xl overflow-hidden
+                    flex flex-col h-[570px]">
             
                 <div class="h-48 overflow-hidden shrink-0">
                     <img
@@ -799,7 +1082,6 @@
                         href="https://medium.com/@omm512462/building-the-transformer-architecture-from-scratch-my-journey-implementing-attention-is-all-you-e4b41ee83f6a?sharedUserId=omm512462"
                         target="_blank"
                         class="text-white text-sm font-bold flex items-center mt-auto hover:text-indigo-accent">
-            
                         Read Article
                         <i class="fas fa-arrow-right ml-2"></i>
             
@@ -808,10 +1090,9 @@
                 </div>
             </article>
 
-          <article
-            class="min-w-full md:min-w-[calc(50%-1rem)] lg:min-w-[calc(33.333%-1.34rem)]
-                   snap-start glow-card rounded-2xl overflow-hidden
-                   flex flex-col h-[520px] animate-on-scroll">
+            <article
+                class="blog-card snap-start glow-card rounded-2xl overflow-hidden
+                    flex flex-col h-[570px]">
 
             <div class="h-48 overflow-hidden shrink-0">
               <img
@@ -837,10 +1118,9 @@
             </div>
           </article>
 
-          <article
-            class="min-w-full md:min-w-[calc(50%-1rem)] lg:min-w-[calc(33.333%-1.34rem)]
-                   snap-start glow-card rounded-2xl overflow-hidden
-                   flex flex-col h-[520px] animate-on-scroll">
+         <article
+            class="blog-card snap-start glow-card rounded-2xl overflow-hidden
+                flex flex-col h-[570px]">
 
             <div class="h-48 overflow-hidden shrink-0">
               <img
@@ -866,10 +1146,9 @@
             </div>
           </article>
 
-          <article
-            class="min-w-full md:min-w-[calc(50%-1rem)] lg:min-w-[calc(33.333%-1.34rem)]
-                   snap-start glow-card rounded-2xl overflow-hidden
-                   flex flex-col h-[520px] animate-on-scroll">
+            <article
+                class="blog-card snap-start glow-card rounded-2xl overflow-hidden
+                    flex flex-col h-[570px]">
 
             <div class="h-48 overflow-hidden shrink-0">
               <img
@@ -895,10 +1174,9 @@
             </div>
           </article>
 
-          <article
-            class="min-w-full md:min-w-[calc(50%-1rem)] lg:min-w-[calc(33.333%-1.34rem)]
-                   snap-start glow-card rounded-2xl overflow-hidden
-                   flex flex-col h-[520px] animate-on-scroll">
+            <article
+                class="blog-card snap-start glow-card rounded-2xl overflow-hidden
+                    flex flex-col h-[570px]">
 
             <div class="h-48 overflow-hidden shrink-0">
               <img
@@ -925,180 +1203,328 @@
           </article>
 
         </div>
+        <div class="flex justify-center gap-2 mt-5" aria-hidden="true">
+            <span class="blog-dot w-1.5 h-1.5 rounded-full bg-white/50"></span>
+            <span class="blog-dot w-1.5 h-1.5 rounded-full bg-white/15"></span>
+            <span class="blog-dot w-1.5 h-1.5 rounded-full bg-white/15"></span>
+            <span class="blog-dot w-1.5 h-1.5 rounded-full bg-white/15"></span>
+            <span class="blog-dot w-1.5 h-1.5 rounded-full bg-white/15"></span>
+        </div>
       </div>
     </section>
 
-        <section id="contact" class="py-24 px-6 border-t border-white/5 bg-gradient-to-b from-background to-surface/20">
-            <div class="max-w-3xl mx-auto text-center space-y-8">
-                <h2 class="text-3xl font-semibold text-white tracking-tight">Let's build something useful.</h2>
-                <p class="text-secondary text-lg leading-relaxed">
-                    I'm currently looking for ML / AI internship opportunities where I can contribute, learn from experienced engineers, and build real-world systems.
-                </p>
-                
-                <div class="flex justify-center gap-6 pt-6">
-                    <a href="mailto:omm512462@gmail.com" class="group flex items-center gap-3 px-6 py-3 bg-white text-black rounded-lg font-medium hover:scale-105 transition-transform">
-                        <span class="iconify" data-icon="lucide:mail"></span>
-                        <span>Send Email</span>
-                    </a>
-                    
-                    <a href="tel:7021552396" class="group flex items-center gap-3 px-6 py-3 border border-border rounded-lg font-medium hover:bg-white/5 transition-colors">
-                        <span class="iconify" data-icon="lucide:phone"></span>
-                        <span>Call Me</span>
-                    </a>
-                </div>
+        
+<section id="contact" class="py-24 px-5 sm:px-6 border-t border-white/[.06] bg-[#050505]">
+    <div class="max-w-4xl mx-auto">
+        <div class="max-w-2xl">
+            <p class="eyebrow">Contact</p>
+            <h2 class="text-4xl md:text-5xl font-semibold tracking-tight text-white mt-3">
+                Have an ML problem worth building?
+            </h2>
+            <p class="text-secondary text-lg leading-relaxed mt-5">
+                I'm open to ML / AI internships, research-oriented work, and collaborations where I can contribute to real systems and keep learning from strong engineers.
+            </p>
+        </div>
 
-                <div class="flex justify-center items-center gap-8 pt-12 opacity-60">
-                    <a href="https://www.github.com/Om-codex" class="hover:text-white hover:opacity-100 transition-all flex flex-col items-center gap-2">
-                        <span class="iconify" data-icon="lucide:github" data-width="24"></span>
-                        <span class="text-xs">GitHub</span>
-                    </a>
-                    <a href="https://www.linkedin.com/in/om-mishra-a55263329" class="hover:text-white hover:opacity-100 transition-all flex flex-col items-center gap-2">
-                        <span class="iconify" data-icon="lucide:linkedin" data-width="24"></span>
-                        <span class="text-xs">LinkedIn</span>
-                    </a>
-                    <a href="https://x.com/OmCodex_tweets" class="hover:text-white hover:opacity-100 transition-all flex flex-col items-center gap-2">
-                        <span class="iconify" data-icon="lucide:twitter" data-width="24"></span>
-                        <span class="text-xs">Twitter</span>
-                    </a>
-                </div>
-            </div>
-        </section>
+        <div class="contact-actions flex flex-col sm:flex-row gap-3 mt-9">
+            <a href="mailto:omm512462@gmail.com"
+               class="inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-white text-black rounded-full font-medium hover:bg-neutral-200 transition-colors">
+                <span class="iconify" data-icon="lucide:mail" data-width="18"></span>
+                Email me
+            </a>
+            <a href="https://www.linkedin.com/in/om-mishra-a55263329" target="_blank" rel="noopener noreferrer"
+               class="inline-flex items-center justify-center gap-2 px-6 py-3.5 border border-white/10 text-white rounded-full hover:bg-white/5 transition-colors">
+                LinkedIn
+                <span class="iconify" data-icon="lucide:arrow-up-right" data-width="17"></span>
+            </a>
+            <a href="https://github.com/Om-codex" target="_blank" rel="noopener noreferrer"
+               class="inline-flex items-center justify-center gap-2 px-6 py-3.5 border border-white/10 text-white rounded-full hover:bg-white/5 transition-colors">
+                GitHub
+                <span class="iconify" data-icon="lucide:arrow-up-right" data-width="17"></span>
+            </a>
+        </div>
 
-        <footer class="py-12 bg-obsidian border-t border-glass-border">
-            <div class="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6 text-sm text-slate-500">
-                <p>&copy; 2026 Om Mishra.</p>
-                <p>Built with <span class="text-indigo-accent">Tailwind CSS</span></p>
-            </div>
-        </footer>
+        <div class="mt-12 pt-6 border-t border-white/[.06] flex flex-col sm:flex-row justify-between gap-4 text-sm">
+            <p class="text-neutral-700">Usually best reached by email or LinkedIn.</p>
+            <a href="#top" class="text-neutral-500 hover:text-white transition-colors">Back to top ↑</a>
+        </div>
+    </div>
+</section>
 
-    </div> 
-    <div id="cursor-glow"></div>
+        
+<footer class="py-8 px-5 sm:px-6 bg-[#050505] border-t border-white/[.06]">
+    <div class="max-w-6xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-3 text-xs text-neutral-700">
+        <p>&copy; 2026 Om Mishra.</p>
+        <p>Built with HTML, Tailwind CSS & JavaScript.</p>
+    </div>
+</footer>
 
-    <script>
-        // Simple Intersection Observer to trigger fade-ins
-        const observerOptions = {
-            root: null,
-            rootMargin: '0px',
-            threshold: 0.1
+    </div>
+    
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // Mobile menu
+    const mobileMenu = document.getElementById('mobile-menu');
+    document.querySelectorAll('#mobile-menu a').forEach(link => {
+        link.addEventListener('click', () => mobileMenu?.classList.add('hidden'));
+    });
+
+    // Shared slider controls for projects and writing.
+    const setupSlider = (sliderId, prevId, nextId, dotSelector, cardSelector) => {
+        const slider = document.getElementById(sliderId);
+        const prev = document.getElementById(prevId);
+        const next = document.getElementById(nextId);
+        const dots = document.querySelectorAll(dotSelector);
+
+        if (!slider || !prev || !next) return;
+
+        const getStep = () => {
+            const card = slider.querySelector(`${cardSelector}:not([hidden])`);
+            if (!card) return slider.clientWidth;
+            const gap = parseFloat(getComputedStyle(slider).gap) || 24;
+            return card.getBoundingClientRect().width + gap;
         };
 
-        const observer = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('animate-slide-up');
-                    observer.unobserve(entry.target);
-                }
+        const update = () => {
+            const maxScroll = Math.max(slider.scrollWidth - slider.clientWidth, 0);
+            const current = slider.scrollLeft;
+            const step = Math.max(getStep(), 1);
+            const visibleCards = [...slider.querySelectorAll(`${cardSelector}:not([hidden])`)];
+            const activeIndex = Math.min(
+                Math.max(Math.round(current / step), 0),
+                Math.max(visibleCards.length - 1, 0)
+            );
+
+            prev.disabled = current <= 4;
+            next.disabled = current >= maxScroll - 4;
+
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('bg-white/50', index === activeIndex);
+                dot.classList.toggle('bg-white/15', index !== activeIndex);
             });
-        }, observerOptions);
+        };
 
-        document.querySelectorAll('section > div').forEach(section => {
-            section.classList.add('opacity-0'); // Initial state
-            observer.observe(section);
+        next.addEventListener('click', () => {
+            slider.scrollBy({ left: getStep(), behavior: prefersReducedMotion ? 'auto' : 'smooth' });
         });
-    </script>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const glow = document.getElementById('cursor-glow');
-            const cards = document.querySelectorAll('.glow-card');
 
-            // Subtle cursor glow on pointer devices only.
-            if (glow && window.matchMedia('(pointer: fine)').matches) {
-                document.addEventListener('mousemove', (e) => {
-                    requestAnimationFrame(() => {
-                        glow.style.left = e.clientX + 'px';
-                        glow.style.top = e.clientY + 'px';
-                    });
-                });
-            } else if (glow) {
-                glow.style.display = 'none';
+        prev.addEventListener('click', () => {
+            slider.scrollBy({ left: -getStep(), behavior: prefersReducedMotion ? 'auto' : 'smooth' });
+        });
+
+        slider.addEventListener('keydown', event => {
+            if (event.key === 'ArrowRight') {
+                event.preventDefault();
+                slider.scrollBy({ left: getStep(), behavior: prefersReducedMotion ? 'auto' : 'smooth' });
             }
-
-            // Subtle card tilt; disabled for touch/reduced-motion users.
-            if (window.matchMedia('(pointer: fine)').matches &&
-                !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-                cards.forEach(card => {
-                    card.addEventListener('mousemove', (e) => {
-                        const rect = card.getBoundingClientRect();
-                        const x = e.clientX - rect.left;
-                        const y = e.clientY - rect.top;
-                        const centerX = rect.width / 2;
-                        const centerY = rect.height / 2;
-                        const rotateX = ((y - centerY) / centerY) * -2.5;
-                        const rotateY = ((x - centerX) / centerX) * 2.5;
-                        card.style.transform =
-                            `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
-                    });
-                    card.addEventListener('mouseleave', () => {
-                        card.style.transform = '';
-                    });
-                });
-            }
-
-            // Project slider: 3 cards on desktop, 2 on tablet, 1 on mobile.
-            const projectSlider = document.getElementById('projectSliderContainer');
-            const projectPrevBtn = document.getElementById('projectPrevBtn');
-            const projectNextBtn = document.getElementById('projectNextBtn');
-            const projectDots = document.querySelectorAll('.project-dot');
-
-            if (projectSlider && projectPrevBtn && projectNextBtn) {
-                const getStep = () => {
-                    const card = projectSlider.querySelector('.project-card');
-                    if (!card) return projectSlider.clientWidth;
-                    const gap = parseFloat(getComputedStyle(projectSlider).gap) || 24;
-                    return card.getBoundingClientRect().width + gap;
-                };
-
-                const updateProjectControls = () => {
-                    const maxScroll = projectSlider.scrollWidth - projectSlider.clientWidth;
-                    const current = projectSlider.scrollLeft;
-                    projectPrevBtn.disabled = current <= 4;
-                    projectNextBtn.disabled = current >= maxScroll - 4;
-
-                    const step = Math.max(getStep(), 1);
-                    const activeIndex = Math.round(current / step);
-                    projectDots.forEach((dot, index) => {
-                        dot.classList.toggle('bg-white/50', index === activeIndex);
-                        dot.classList.toggle('bg-white/15', index !== activeIndex);
-                    });
-                };
-
-                projectNextBtn.addEventListener('click', () => {
-                    projectSlider.scrollBy({ left: getStep(), behavior: 'smooth' });
-                });
-
-                projectPrevBtn.addEventListener('click', () => {
-                    projectSlider.scrollBy({ left: -getStep(), behavior: 'smooth' });
-                });
-
-                projectSlider.addEventListener('scroll', updateProjectControls, { passive: true });
-                window.addEventListener('resize', updateProjectControls);
-                updateProjectControls();
-            }
-
-            // Blog slider.
-            const blogSlider = document.getElementById('blogSliderContainer');
-            const blogPrevBtn = document.getElementById('blogPrevBtn');
-            const blogNextBtn = document.getElementById('blogNextBtn');
-
-            if (blogSlider && blogPrevBtn && blogNextBtn) {
-                const getBlogStep = () => {
-                    const card = blogSlider.querySelector('article');
-                    if (!card) return blogSlider.clientWidth;
-                    const gap = parseFloat(getComputedStyle(blogSlider).gap) || 32;
-                    return card.getBoundingClientRect().width + gap;
-                };
-
-                blogNextBtn.addEventListener('click', () => {
-                    blogSlider.scrollBy({ left: getBlogStep(), behavior: 'smooth' });
-                });
-
-                blogPrevBtn.addEventListener('click', () => {
-                    blogSlider.scrollBy({ left: -getBlogStep(), behavior: 'smooth' });
-                });
+            if (event.key === 'ArrowLeft') {
+                event.preventDefault();
+                slider.scrollBy({ left: -getStep(), behavior: prefersReducedMotion ? 'auto' : 'smooth' });
             }
         });
-    </script>
-    <script>
+
+        slider.addEventListener('scroll', update, { passive: true });
+        window.addEventListener('resize', update);
+        update();
+    };
+
+    setupSlider(
+        'projectSliderContainer',
+        'projectPrevBtn',
+        'projectNextBtn',
+        '.project-dot',
+        '.project-card'
+    );
+
+    setupSlider(
+        'blogSliderContainer',
+        'blogPrevBtn',
+        'blogNextBtn',
+        '.blog-dot',
+        '.blog-card'
+    );
+
+    document.querySelectorAll('.project-dot').forEach(dot => dot.style.display = '');
+
+    // Project filters.
+    const filterButtons = document.querySelectorAll('[data-project-filter]');
+    const projectCards = document.querySelectorAll('[data-project-card]');
+    const projectSlider = document.getElementById('projectSliderContainer');
+
+    filterButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const filter = button.dataset.projectFilter;
+
+            filterButtons.forEach(btn => btn.classList.toggle('active', btn === button));
+
+            projectCards.forEach(card => {
+                const categories = (card.dataset.category || '').split(' ');
+                card.hidden = filter !== 'all' && !categories.includes(filter);
+            });
+
+            const visibleCount = [...projectCards].filter(card => !card.hidden).length;
+            document.querySelectorAll('.project-dot').forEach((dot, index) => {
+                dot.style.display = index < visibleCount ? '' : 'none';
+            });
+
+            if (projectSlider) {
+                projectSlider.scrollTo({
+                    left: 0,
+                    behavior: prefersReducedMotion ? 'auto' : 'smooth'
+                });
+            }
+
+            window.dispatchEvent(new Event('resize'));
+        });
+    });
+
+    // GitHub contribution graph.
+    
+    const contributionGrid = document.getElementById('githubContributionGrid');
+    const contributionSummary = document.getElementById('githubContributionSummary');
+
+    const renderContributionFallback = () => {
+        if (!contributionGrid) return;
+        contributionGrid.innerHTML = '';
+        for (let i = 0; i < 52 * 7; i++) {
+            const cell = document.createElement('span');
+            cell.className = 'contribution-cell';
+            cell.dataset.level = '0';
+            contributionGrid.appendChild(cell);
+        }
+        if (contributionSummary) {
+            contributionSummary.textContent = 'Live activity is unavailable right now — open GitHub for the full history.';
+        }
+    };
+
+    const renderContributions = data => {
+        if (!contributionGrid) return;
+
+        const weeks = Array.isArray(data?.contributions) ? data.contributions : [];
+        if (!weeks.length) {
+            renderContributionFallback();
+            return;
+        }
+
+        contributionGrid.innerHTML = '';
+        weeks.slice(-52).forEach(week => {
+            (week.days || []).forEach(day => {
+                const cell = document.createElement('span');
+                cell.className = 'contribution-cell';
+                cell.dataset.level = Math.min(Number(day.level || 0), 4);
+                cell.title = `${day.date}: ${day.count} contribution${day.count === 1 ? '' : 's'}`;
+                contributionGrid.appendChild(cell);
+            });
+        });
+
+        const total = weeks.reduce(
+            (sum, week) => sum + (week.days || []).reduce((s, day) => s + Number(day.count || 0), 0),
+            0
+        );
+
+        if (contributionSummary) {
+            contributionSummary.textContent = `${total.toLocaleString()} contributions in the displayed period`;
+        }
+    };
+
+    fetch('https://github-contributions-api.jogruber.de/v4/Om-codex?y=last', {
+        headers: { 'Accept': 'application/json' }
+    })
+    .then(response => {
+        if (!response.ok) throw new Error('Contribution request failed');
+        return response.json();
+    })
+    .then(renderContributions)
+    .catch(renderContributionFallback);
+
+    // GitHub repositories.
+    const repoGrid = document.getElementById('githubRepoGrid');
+    const repoStatus = document.getElementById('githubRepoStatus');
+
+    const fallbackRepos = [
+        {
+            name: 'attention-is-all-you-need-from-scratch',
+            description: 'Encoder-decoder Transformer implementation built from scratch in PyTorch.',
+            language: 'Python',
+            stars: 0,
+            forks: 0,
+            url: 'https://github.com/Om-codex/attention-is-all-you-need-from-scratch/'
+        },
+        {
+            name: 'Pneumonia-Screening-CXR-DL',
+            description: 'DenseNet-based pneumonia screening system with Grad-CAM explainability.',
+            language: 'Python',
+            stars: 0,
+            forks: 0,
+            url: 'https://github.com/Om-codex/Pneumonia-Screening-CXR-DL'
+        },
+        {
+            name: 'Urban_Mobility_Optimization_Streamlit_App',
+            description: 'Bike-demand prediction and urban mobility optimization application.',
+            language: 'Python',
+            stars: 0,
+            forks: 0,
+            url: 'https://github.com/Om-codex/Urban_Mobility_Optimization_Streamlit_App'
+        }
+    ];
+
+    const renderRepos = repos => {
+        if (!repoGrid) return;
+        repoGrid.innerHTML = repos.slice(0, 6).map(repo => `
+            <a href="${repo.html_url || repo.url}" target="_blank" rel="noopener noreferrer"
+               class="github-card rounded-2xl p-5 block">
+                <div class="flex items-start justify-between gap-4">
+                    <div class="min-w-0">
+                        <p class="text-sm font-medium text-white truncate">${repo.name}</p>
+                        <p class="text-xs text-neutral-500 leading-relaxed mt-2 line-clamp-3">${repo.description || 'Open-source project by Om Mishra.'}</p>
+                    </div>
+                    <span class="iconify text-neutral-600 shrink-0" data-icon="lucide:arrow-up-right" data-width="16"></span>
+                </div>
+                <div class="flex items-center gap-4 mt-5 text-[11px] text-neutral-600">
+                    <span>${repo.language || 'Code'}</span>
+                    <span>★ ${repo.stargazers_count ?? repo.stars ?? 0}</span>
+                    <span>⑂ ${repo.forks_count ?? repo.forks ?? 0}</span>
+                </div>
+            </a>
+        `).join('');
+        if (repoStatus) repoStatus.textContent = `${Math.min(repos.length, 6)} repositories`;
+    };
+
+    renderRepos(fallbackRepos);
+
+    fetch('https://api.github.com/users/Om-codex/repos?sort=updated&direction=desc&per_page=100', {
+        headers: { 'Accept': 'application/vnd.github+json' }
+    })
+    .then(response => {
+        if (!response.ok) throw new Error('Repository request failed');
+        return response.json();
+    })
+    .then(repos => {
+        const preferred = [
+            'attention-is-all-you-need-from-scratch',
+            'Pneumonia-Screening-CXR-DL',
+            'semantic-narrative-analysis-shriramcharitmanas',
+            'Urban_Mobility_Optimization_Streamlit_App',
+            'Telco-Customer-Churn-Prediction'
+        ];
+        const preferredRepos = preferred
+            .map(name => repos.find(repo => repo.name.toLowerCase() === name.toLowerCase()))
+            .filter(Boolean);
+
+        const remaining = repos.filter(repo => !preferred.some(name => repo.name.toLowerCase() === name.toLowerCase()));
+        renderRepos([...preferredRepos, ...remaining]);
+    })
+    .catch(() => {
+        if (repoStatus) repoStatus.textContent = 'Selected repositories';
+    });
+
+    // Keep dynamically rendered Iconify icons working.
+    if (window.Iconify) window.Iconify.scan(document.body);
+});
+</script>
+<script>
         document.addEventListener('DOMContentLoaded', () => {
             const textToType = "Focused on Machine Learning, Deep Learning, NLP, LLM's, and building models from architecture to deployment.";
             const typeContainer = document.getElementById('typewriter-text');
