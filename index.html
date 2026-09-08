@@ -1407,30 +1407,54 @@ document.addEventListener('DOMContentLoaded', () => {
     const renderContributions = data => {
         if (!contributionGrid) return;
 
-        const weeks = Array.isArray(data?.contributions) ? data.contributions : [];
-        if (!weeks.length) {
+        // The API returns a flat `contributions` array (one entry per day).
+        // Keep support for a week-based response as well, so the widget remains
+        // compatible if its data source changes in the future.
+        const rawContributions = Array.isArray(data?.contributions) ? data.contributions : [];
+        const days = rawContributions.flatMap(item =>
+            Array.isArray(item?.days) ? item.days : [item]
+        ).filter(day => day && day.date);
+
+        if (!days.length) {
             renderContributionFallback();
             return;
         }
 
-        contributionGrid.innerHTML = '';
-        weeks.slice(-52).forEach(week => {
-            (week.days || []).forEach(day => {
-                const cell = document.createElement('span');
-                cell.className = 'contribution-cell';
-                cell.dataset.level = Math.min(Number(day.level || 0), 4);
-                cell.title = `${day.date}: ${day.count} contribution${day.count === 1 ? '' : 's'}`;
-                contributionGrid.appendChild(cell);
-            });
-        });
+        const activityByDate = new Map(days.map(day => [day.date, day]));
+        const formatDateKey = date => {
+            const year = date.getFullYear();
+            const month = String(date.getMonth() + 1).padStart(2, '0');
+            const day = String(date.getDate()).padStart(2, '0');
+            return `${year}-${month}-${day}`;
+        };
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
 
-        const total = weeks.reduce(
-            (sum, week) => sum + (week.days || []).reduce((s, day) => s + Number(day.count || 0), 0),
-            0
-        );
+        // Start on a Monday so each CSS-grid column is a calendar week.
+        const mondayOffset = (today.getDay() + 6) % 7;
+        const start = new Date(today);
+        start.setDate(today.getDate() - mondayOffset - (51 * 7));
+
+        contributionGrid.innerHTML = '';
+        let total = 0;
+        for (let index = 0; index < 52 * 7; index++) {
+            const date = new Date(start);
+            date.setDate(start.getDate() + index);
+            const dateKey = formatDateKey(date);
+            const day = activityByDate.get(dateKey);
+            const count = Math.max(0, Number(day?.count || 0));
+            const level = Math.max(0, Math.min(Number(day?.level || 0), 4));
+            const cell = document.createElement('span');
+
+            cell.className = 'contribution-cell';
+            cell.dataset.level = String(level);
+            cell.title = `${dateKey}: ${count} contribution${count === 1 ? '' : 's'}`;
+            contributionGrid.appendChild(cell);
+            total += count;
+        }
 
         if (contributionSummary) {
-            contributionSummary.textContent = `${total.toLocaleString()} contributions in the displayed period`;
+            contributionSummary.textContent = `${total.toLocaleString()} contributions in the last 52 weeks`;
         }
     };
 
@@ -1472,6 +1496,14 @@ document.addEventListener('DOMContentLoaded', () => {
             stars: 0,
             forks: 0,
             url: 'https://github.com/Om-codex/Urban_Mobility_Optimization_Streamlit_App'
+        },
+        {
+            name: 'flyrank-ml-internship',
+            description: 'Machine learning internship work for FlyRank.',
+            language: 'Python',
+            stars: 0,
+            forks: 0,
+            url: 'https://github.com/Om-codex/flyrank-ml-internship'
         }
     ];
 
@@ -1512,13 +1544,17 @@ document.addEventListener('DOMContentLoaded', () => {
             'Pneumonia-Screening-CXR-DL',
             'semantic-narrative-analysis-shriramcharitmanas',
             'Urban_Mobility_Optimization_Streamlit_App',
-            'Telco-Customer-Churn-Prediction'
+            'Telco-Customer-Churn-Prediction',
+            'flyrank-ml-internship'
         ];
         const preferredRepos = preferred
             .map(name => repos.find(repo => repo.name.toLowerCase() === name.toLowerCase()))
             .filter(Boolean);
 
-        const remaining = repos.filter(repo => !preferred.some(name => repo.name.toLowerCase() === name.toLowerCase()));
+        const remaining = repos.filter(repo =>
+            !preferred.some(name => repo.name.toLowerCase() === name.toLowerCase()) &&
+            !repo.name.toLowerCase().includes('portfolio')
+        );
         renderRepos([...preferredRepos, ...remaining]);
     })
     .catch(() => {
