@@ -95,17 +95,6 @@
         -webkit-backdrop-filter: blur(12px);
     }
 
-    .bg-grid {
-        background-size: 44px 44px;
-        background-image:
-            linear-gradient(to right, rgba(255,255,255,.1) 1px, transparent 1px),
-            linear-gradient(to bottom, rgba(255,255,255,.1) 1px, transparent 1px);
-    }
-
-    .glow-bg {
-        background: radial-gradient(circle at 50% 0%, rgba(255,255,255,.045), rgba(0,0,0,0) 65%);
-    }
-
     .glossy-surface {
         position: relative;
         background: #050505;
@@ -392,75 +381,1869 @@
     .text-obsidian { color: #050505 !important; }
     .bg-obsidian { background: #050505 !important; }
     .border-glass-border { border-color: rgba(255,255,255,.06) !important; }
+</style>
+
 <style>[data-project-card][hidden]{display:none!important;}</style>
 
+<style>
+
+/* ===== Portfolio 2.0 visual layer ===== */
+:root{
+  --neo-bg:#070707;
+  --neo-surface:#0c0c0d;
+  --neo-surface-2:#111113;
+  --neo-line:rgba(255,255,255,.09);
+  --neo-line-strong:rgba(255,255,255,.15);
+  --neo-text:#f5f5f5;
+  --neo-muted:#8d8d93;
+  --neo-dim:#55555c;
+  --neo-accent:#ffffff;
+  --dock-bg:rgba(12,12,13,.78);
+}
+body{background:var(--neo-bg)!important;color:#a3a3aa!important}
+body.light-theme{
+  --neo-bg:#f5f5f5;--neo-surface:#fff;--neo-surface-2:#f0f0f1;
+  --neo-line:rgba(0,0,0,.10);--neo-line-strong:rgba(0,0,0,.16);
+  --neo-text:#111;--neo-muted:#666;--neo-dim:#999;--neo-accent:#111;
+  --dock-bg:rgba(255,255,255,.82);
+  background:#f5f5f5!important;color:#555!important;
+}
+body.light-theme .glass-nav{background:rgba(245,245,245,.88)!important;border-color:rgba(0,0,0,.08)!important}
+body.light-theme .glow-card,
+body.light-theme .analytics-panel,
+body.light-theme .skills-marquee-shell{background:linear-gradient(180deg,#fff,#f7f7f7)!important;border-color:rgba(0,0,0,.09)!important}
+body.light-theme .text-white{color:#111!important}
+body.light-theme .text-secondary,
+body.light-theme .text-slate-400,
+body.light-theme .text-slate-500{color:#666!important}
+body.light-theme .bg-obsidian,
+body.light-theme #blog,
+body.light-theme #contact,
+body.light-theme footer{background:#f5f5f5!important}
+body.light-theme .theme-dock{box-shadow:0 16px 45px rgba(0,0,0,.13)}
+body.light-theme .theme-dock button{color:#444}
+body.light-theme .command-palette{background:rgba(250,250,250,.96);border-color:rgba(0,0,0,.12);box-shadow:0 30px 90px rgba(0,0,0,.22)}
+body.light-theme .command-item:hover,body.light-theme .command-item.active{background:#eee}
+body.light-theme .search-backdrop{background:rgba(255,255,255,.52)}
+body.light-theme .analytics-grid-line{stroke:rgba(0,0,0,.08)}
+body.light-theme .analytics-axis{fill:#777}
+body.light-theme .analytics-tooltip{background:#111;color:#fff}
+
+.glass-nav{background:rgba(4,5,6,.72)!important;backdrop-filter:blur(10px)!important;-webkit-backdrop-filter:blur(10px)!important;border-bottom:1px solid var(--neo-line)!important}
+.nav-analytics-link{display:inline-flex;align-items:center;gap:.35rem}
+.nav-analytics-link .nav-live-dot{width:5px;height:5px;border-radius:50%;background:#7dd3a5;box-shadow:0 0 6px rgba(125,211,165,.45)}
+.glow-card{background:linear-gradient(180deg,#101011,#09090a)!important;border:1px solid var(--neo-line)!important;box-shadow:0 20px 70px rgba(0,0,0,.15)!important}
+.glow-card:hover{border-color:var(--neo-line-strong)!important;background:linear-gradient(180deg,#131314,#0a0a0b)!important}
+.section-heading{display:flex;align-items:end;justify-content:space-between;gap:1.5rem}
+.section-index{font:500 .68rem "JetBrains Mono",monospace;color:#555;letter-spacing:.14em}
+.modern-section{border-top:1px solid rgba(255,255,255,.055)}
+body.light-theme .modern-section{border-color:rgba(0,0,0,.08)}
+
+/* Skills: opposing infinite rows */
+.skills-marquee-shell{position:relative;overflow:hidden;border:1px solid var(--neo-line);border-radius:26px;background:#0b0b0c;padding:1rem 0}
+.skills-marquee-shell:before,.skills-marquee-shell:after{content:"";position:absolute;z-index:3;top:0;bottom:0;width:90px;pointer-events:none}
+.skills-marquee-shell:before{left:0;background:linear-gradient(90deg,var(--neo-bg),transparent)}
+.skills-marquee-shell:after{right:0;background:linear-gradient(-90deg,var(--neo-bg),transparent)}
+.skill-marquee{display:flex;width:max-content;gap:.7rem;padding:.55rem 1rem}
+.skill-marquee.row-a{animation:skillLeft 30s linear infinite}
+.skill-marquee.row-b{animation:skillRight 34s linear infinite}
+.skill-chip{display:inline-flex;align-items:center;gap:.55rem;padding:.7rem .95rem;border:1px solid var(--neo-line);border-radius:999px;background:rgba(255,255,255,.025);color:#cfcfd2;white-space:nowrap;font-size:.78rem}
+.skill-chip:hover{border-color:rgba(255,255,255,.22);background:rgba(255,255,255,.055);color:#fff}
+.skill-chip .iconify{color:#aaa}
+@keyframes skillLeft{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@keyframes skillRight{from{transform:translateX(-50%)}to{transform:translateX(0)}}
+@media(prefers-reduced-motion:reduce){.skill-marquee{animation:none!important}}
+
+.skill-groups{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:.8rem;margin-top:1.2rem}
+.skill-group{padding:1rem 1.1rem;border:1px solid var(--neo-line);border-radius:18px;background:rgba(255,255,255,.018)}
+.skill-group-label{font:500 .65rem "JetBrains Mono",monospace;color:#666;letter-spacing:.12em;text-transform:uppercase}
+.skill-group p{margin-top:.45rem;font-size:.8rem;color:#aaa;line-height:1.6}
+@media(max-width:800px){.skill-groups{grid-template-columns:1fr 1fr}}
+@media(max-width:520px){.skill-groups{grid-template-columns:1fr}.skills-marquee-shell:before,.skills-marquee-shell:after{width:35px}}
+
+/* =========================
+   PROJECTS — MINIMAL CASE STUDIES
+   ========================= */
+
+.project-modern-list {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    width: 100%;
+}
+
+.project-modern {
+    width: 100%;
+    min-height: 208px;
+
+    display: grid;
+    grid-template-columns: 320px minmax(0, 1fr);
+
+    background: #090909;
+    border: 1px dashed rgba(255, 255, 255, 0.16);
+
+    transition:
+        border-color 0.25s ease,
+        background 0.25s ease,
+        transform 0.25s ease;
+
+    overflow: hidden;
+}
+
+.project-modern:hover {
+    background: #0c0c0c;
+    border-color: rgba(255, 255, 255, 0.28);
+    transform: translateY(-2px);
+}
+
+
+/* IMAGE */
+
+.project-modern-media {
+    position: relative;
+
+    margin: 18px;
+    min-height: 168px;
+
+    overflow: hidden;
+
+    background: #111;
+
+    border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.project-modern-media img {
+    width: 100%;
+    height: 100%;
+
+    min-height: 168px;
+
+    display: block;
+
+    object-fit: cover;
+
+    opacity: 0.88;
+
+    transition:
+        transform 0.5s ease,
+        opacity 0.35s ease;
+}
+
+.project-modern:hover .project-modern-media img {
+    transform: scale(1.035);
+    opacity: 1;
+}
+
+
+/* PROJECT NUMBER */
+
+.project-number {
+    position: absolute;
+
+    top: 8px;
+    left: 8px;
+
+    z-index: 3;
+
+    padding: 4px 7px;
+
+    font-family: "JetBrains Mono", monospace;
+    font-size: 10px;
+    font-weight: 500;
+
+    line-height: 1.2;
+
+    color: #f5f5f5;
+
+    background: rgba(5, 5, 5, 0.88);
+
+    border: 1px solid rgba(255, 255, 255, 0.12);
+
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+
+/* CONTENT */
+
+.project-modern-content {
+    min-width: 0;
+
+    padding: 18px 22px 16px 6px;
+
+    display: flex;
+    flex-direction: column;
+}
+
+
+/* TOP ROW */
+
+.project-meta {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+
+    gap: 20px;
+
+    margin-bottom: 4px;
+}
+
+.project-kicker {
+    color: #a3a3a3;
+
+    font-family: "JetBrains Mono", monospace;
+
+    font-size: 10px;
+    font-weight: 500;
+
+    letter-spacing: 0.08em;
+
+    text-transform: uppercase;
+}
+
+
+/* ARROW */
+
+.project-arrow {
+    width: 34px;
+    height: 34px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: #e5e5e5;
+
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: #0d0d0d;
+
+    transition:
+        color 0.2s ease,
+        background 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.project-arrow:hover {
+    color: #050505;
+
+    background: #f5f5f5;
+
+    border-color: #f5f5f5;
+
+    transform: translate(2px, -2px);
+}
+
+
+/* TITLE */
+
+.project-modern-title {
+    margin: 0;
+
+    color: #f5f5f5;
+
+    font-size: 20px;
+    line-height: 1.25;
+
+    font-weight: 600;
+
+    letter-spacing: -0.025em;
+}
+
+
+/* SUBTITLE */
+
+.project-modern-sub {
+    margin: 4px 0 0;
+
+    color: #737373;
+
+    font-size: 12px;
+}
+
+
+/* DESCRIPTION */
+
+.project-modern-description {
+    max-width: 610px;
+
+    margin: 10px 0 12px;
+
+    color: #9a9a9a;
+
+    font-size: 12px;
+    line-height: 1.65;
+}
+
+
+/* TECHNOLOGY TAGS */
+
+.project-modern-tags {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 6px;
+
+    margin-top: auto;
+}
+
+.project-modern-tags span {
+    display: inline-flex;
+    align-items: center;
+
+    padding: 4px 8px;
+
+    color: #d4d4d4;
+
+    background: #101010;
+
+    border: 1px solid rgba(255, 255, 255, 0.12);
+
+    border-radius: 3px;
+
+    font-family: "JetBrains Mono", monospace;
+
+    font-size: 9px;
+
+    line-height: 1.2;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.project-modern-tags span:hover {
+    background: #171717;
+    border-color: rgba(255, 255, 255, 0.22);
+}
+
+
+/* METRICS */
+
+.project-modern-proof {
+    display: flex;
+
+    gap: 28px;
+
+    margin-top: 18px;
+
+    padding-top: 13px;
+
+    border-top: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+/* the shared .proof-* base styles (border-top, larger type) are for the
+   generic proof grid, so clear them for the compact metrics row */
+.project-modern-proof .proof-item {
+    display: flex;
+    flex-direction: column;
+
+    gap: 3px;
+
+    border-top: 0;
+    padding-top: 0;
+}
+
+.project-modern-proof .proof-value {
+    color: #f5f5f5;
+
+    font-family: "JetBrains Mono", monospace;
+
+    font-size: 11px;
+    font-weight: 500;
+}
+
+.project-modern-proof .proof-label {
+    color: #555;
+
+    font-size: 9px;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.06em;
+
+    margin-top: 0;
+}
+
+
+/* LINKS */
+
+.project-modern-links {
+    display: flex;
+
+    align-items: center;
+
+    gap: 18px;
+
+    margin-top: 14px;
+}
+
+.project-modern-links a {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 6px;
+
+    color: #a3a3a3;
+
+    font-size: 11px;
+
+    font-weight: 500;
+
+    text-decoration: none;
+
+    transition:
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.project-modern-links a:hover {
+    color: #fff;
+
+    transform: translateX(2px);
+}
+
+
+
+/* Small corner cuts — similar to screenshot */
+
+headings h2::before,
+headings h2::after {
+    content: "";
+
+    position: absolute;
+
+    width: 7px;
+    height: 7px;
+
+    background: #050505;
+}
+
+headings h2::before {
+    top: -1px;
+    left: -1px;
+
+    border-right: 1px solid #050505;
+    border-bottom: 1px solid #050505;
+}
+
+headings h2::after {
+    bottom: -1px;
+    right: -1px;
+
+    border-left: 1px solid #050505;
+    border-top: 1px solid #050505;
+}
+
+/* =========================
+   RESPONSIVE
+   ========================= */
+
+@media (max-width: 900px) {
+
+    .project-modern {
+        grid-template-columns: 280px minmax(0, 1fr);
+    }
+
+    .project-modern-content {
+        padding-left: 2px;
+    }
+
+    .project-modern-proof {
+        gap: 18px;
+    }
+}
+
+
+@media (max-width: 700px) {
+
+    .project-modern {
+        grid-template-columns: 1fr;
+
+        min-height: auto;
+    }
+
+    .project-modern-media {
+        margin: 14px 14px 0;
+
+        min-height: 210px;
+    }
+
+    .project-modern-media img {
+        min-height: 210px;
+    }
+
+    .project-modern-content {
+        padding: 18px;
+    }
+
+    .project-modern-title {
+        font-size: 19px;
+    }
+
+    .project-modern-description {
+        margin-bottom: 16px;
+    }
+
+    .project-modern-proof {
+        gap: 18px;
+
+        flex-wrap: wrap;
+    }
+}
+
+
+@media (max-width: 420px) {
+
+    .project-modern-media {
+        min-height: 180px;
+    }
+
+    .project-modern-media img {
+        min-height: 180px;
+    }
+
+    .project-modern-proof {
+        display: grid;
+
+        grid-template-columns: repeat(2, 1fr);
+
+        gap: 14px;
+    }
+}
+
+/* Analytics */
+.analytics-panel{border:1px solid var(--neo-line);border-radius:24px;background:#0b0b0c;overflow:hidden}
+.analytics-top{display:grid;grid-template-columns:repeat(4,1fr);border-bottom:1px solid var(--neo-line)}
+.analytics-stat{padding:1.35rem 1.4rem;border-right:1px solid var(--neo-line)}
+.analytics-stat:last-child{border-right:0}
+.analytics-label{font-size:.68rem;color:#6f6f76}
+.analytics-value{margin-top:.35rem;color:#f2f2f2;font:500 1.5rem "JetBrains Mono",monospace}
+.analytics-delta{font:500 .65rem "JetBrains Mono",monospace;color:#7dd3a5;margin-top:.25rem}
+.analytics-chart-wrap{padding:1.25rem 1.35rem 1rem}
+.analytics-chart-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem}
+.analytics-path{font:500 .72rem "JetBrains Mono",monospace;color:#777}
+.analytics-range{display:flex;gap:.2rem}
+.analytics-range button{border:0;background:transparent;color:#666;font:500 .67rem "JetBrains Mono",monospace;padding:.4rem .55rem;border-radius:7px;cursor:pointer}
+.analytics-range button.active{background:#f2f2f2;color:#111}
+.analytics-chart{width:100%;height:270px;display:block}
+.analytics-legend{display:flex;gap:1rem;font-size:.67rem;color:#777}
+.analytics-legend span{display:inline-flex;align-items:center;gap:.35rem}
+.legend-dot{width:6px;height:6px;border-radius:50%;background:#b8b8b8}
+.legend-dot.views{background:#666}
+.analytics-note{font-size:.67rem;color:#555;margin-top:.65rem}
+@media(max-width:800px){.analytics-top{grid-template-columns:1fr 1fr}.analytics-stat:nth-child(2){border-right:0}.analytics-stat:nth-child(-n+2){border-bottom:1px solid var(--neo-line)}}
+@media(max-width:520px){.analytics-top{grid-template-columns:1fr}.analytics-stat{border-right:0;border-bottom:1px solid var(--neo-line)!important}.analytics-stat:last-child{border-bottom:0!important}.analytics-chart{height:210px}}
+
+/* Command palette */
+.search-backdrop{position:fixed;inset:0;z-index:90;background:rgba(0,0,0,.62);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);opacity:0;visibility:hidden;transition:opacity .19s ease,visibility .19s ease}
+.search-backdrop.open{opacity:1;visibility:visible}
+.command-palette{position:fixed;z-index:91;left:50%;top:15vh;width:min(620px,calc(100vw - 28px));transform:translate(-50%,-6px) scale(.97);opacity:0;visibility:hidden;background:rgba(15,16,17,.95);border:1px solid rgba(255,255,255,.13);border-radius:18px;overflow:hidden;box-shadow:0 30px 90px rgba(0,0,0,.55);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);transition:opacity .19s ease,transform .19s cubic-bezier(.2,.7,.3,1),visibility .19s ease}
+.command-palette.open{opacity:1;visibility:visible;transform:translate(-50%,0) scale(1)}
+.command-search{display:flex;align-items:center;gap:.7rem;padding:.95rem 1rem;border-bottom:1px solid var(--neo-line)}
+.command-search input{flex:1;background:transparent;border:0;outline:0;color:#f4f4f4;font-size:.9rem}
+.command-search input::placeholder{color:#5f5f65}
+.command-key{font:500 .6rem "JetBrains Mono",monospace;color:#666;border:1px solid var(--neo-line);border-radius:5px;padding:.2rem .35rem}
+.command-list{max-height:360px;overflow:auto;padding:.45rem}
+.command-item{display:flex;align-items:center;gap:.8rem;width:100%;padding:.7rem .7rem;border-radius:10px;color:#aaa;background:transparent;border:0;text-align:left;cursor:pointer}
+.command-item:hover,.command-item.active{background:rgba(255,255,255,.06);color:#fff}
+.command-item .cmd-icon{width:30px;height:30px;border:1px solid var(--neo-line);border-radius:8px;display:grid;place-items:center;color:#777}
+.command-item strong{display:block;font-size:.75rem;font-weight:500}
+.command-item small{display:block;color:#555;font-size:.62rem;margin-top:.15rem}
+.command-footer{display:flex;justify-content:space-between;padding:.65rem .85rem;border-top:1px solid var(--neo-line);font-size:.6rem;color:#555}
+body.search-open{overflow:hidden}
+
+/* Bottom command/theme dock */
+.theme-dock{position:fixed;z-index:80;left:50%;bottom:18px;transform:translateX(-50%);display:flex;align-items:center;gap:.18rem;padding:.34rem;border:1px solid rgba(255,255,255,.12);border-radius:999px;background:var(--dock-bg);box-shadow:0 14px 50px rgba(0,0,0,.35);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px)}
+.theme-dock button{height:34px;border:0;background:transparent;color:#aaa;border-radius:999px;padding:0 .72rem;display:flex;align-items:center;gap:.45rem;cursor:pointer;font-size:.72rem}
+.theme-dock button:hover{color:#fff;background:rgba(255,255,255,.06)}
+.theme-dock .dock-theme{position:relative;width:34px;padding:0;justify-content:center}
+.theme-dock .dock-theme .iconify{position:absolute;transition:opacity .2s ease,transform .26s cubic-bezier(.2,.7,.3,1)}
+.theme-dock #themeToggle .iconify-sun{opacity:1;transform:none}
+.theme-dock #themeToggle .iconify-moon{opacity:0;transform:scale(.65) rotate(-30deg)}
+body.light-theme .theme-dock #themeToggle .iconify-sun{opacity:0;transform:scale(.65) rotate(30deg)}
+body.light-theme .theme-dock #themeToggle .iconify-moon{opacity:1;transform:none}
+.dock-divider{height:18px;width:1px;background:var(--neo-line);margin:0 .1rem}
+.theme-transition{position:fixed;z-index:120;left:0;top:0;width:0;height:0;border-radius:50%;pointer-events:none;background:#f5f5f5;transform:translate(-50%,-50%);transition:none}
+.theme-transition.dark{background:#070707}
+.theme-transition.run{animation:themeReveal .7s cubic-bezier(.76,0,.24,1) forwards}
+@keyframes themeReveal{0%{width:0;height:0}100%{width:260vmax;height:260vmax}}
+@media(max-width:520px){.theme-dock{bottom:12px}.dock-label{display:none}.theme-dock button{padding:0 .6rem}.theme-dock .dock-theme{width:36px}}
+
+/* ===== Fix layer: theme parity, marquee loop, chart labels, palette/dock ===== */
+html{scrollbar-gutter:stable}
+html.light-theme{background:#f5f5f5;color-scheme:light}
+
+/* marquee: fade must match the shell surface, and loop stays seamless */
+.skills-marquee-shell{--shell-bg:#0b0b0c;background:var(--shell-bg)}
+.skills-marquee-shell:before{background:linear-gradient(90deg,var(--shell-bg),transparent)}
+.skills-marquee-shell:after{background:linear-gradient(-90deg,var(--shell-bg),transparent)}
+.skill-marquee{will-change:transform}
+.skills-marquee-shell:hover .skill-marquee{animation-play-state:paused}
+body.light-theme .skills-marquee-shell{--shell-bg:#fff}
+
+/* analytics axis labels live in HTML so the stretched viewBox cannot distort text */
+.analytics-xlabels{position:relative;height:1.1rem;margin-top:.4rem;font:500 .62rem "JetBrains Mono",monospace;color:#5a5a61}
+.analytics-xlabels span{position:absolute;top:0;white-space:nowrap}
+body.light-theme .analytics-xlabels{color:#8a8a91}
+
+/* command palette: items are flex by default so JS only toggles visibility */
+.command-item{display:flex}
+.command-empty{padding:1.7rem 1rem;text-align:center;font-size:.75rem;color:#5f5f65}
+body.light-theme .command-empty{color:#8a8a91}
+.dock-search{color:#cfcfd2!important}
+body.light-theme .dock-search{color:#333!important}
+
+/* light-theme component parity for every surface the dock/palette can reveal */
+body.light-theme .skill-chip{background:rgba(0,0,0,.022);border-color:rgba(0,0,0,.1);color:#4a4a52}
+body.light-theme .skill-chip:hover{background:rgba(0,0,0,.05);border-color:rgba(0,0,0,.2);color:#111}
+body.light-theme .skill-chip .iconify{color:#5a5a62}
+body.light-theme .skill-group{background:rgba(0,0,0,.015);border-color:rgba(0,0,0,.09)}
+body.light-theme .skill-group p{color:#5c5c64}
+body.light-theme .project-modern{background:#fff;border-color:rgba(0,0,0,.24)}
+body.light-theme .project-modern:hover{background:#fbfbfb;border-color:rgba(0,0,0,.38)}
+body.light-theme .project-modern-media{background:#ececee;border-color:rgba(0,0,0,.08)}
+body.light-theme .project-modern-media img{opacity:.94}
+body.light-theme .project-number{background:rgba(255,255,255,.92);border-color:rgba(0,0,0,.14);color:#111}
+body.light-theme .project-kicker{color:#6b6b73}
+body.light-theme .project-arrow{color:#2a2a30;background:#f6f6f7;border-color:rgba(0,0,0,.14)}
+body.light-theme .project-arrow:hover{color:#fff;background:#111;border-color:#111}
+body.light-theme .project-modern-title,
+body.light-theme .project-modern-links a,
+body.light-theme .project-modern-proof .proof-value,
+body.light-theme .analytics-value,
+body.light-theme .command-search input{color:#111!important}
+body.light-theme .project-modern-sub,
+body.light-theme .project-modern-proof .proof-label,
+body.light-theme .project-modern-description{color:#5f5f66}
+body.light-theme .project-modern-tags span{color:#3f3f47;background:#f2f2f4;border-color:rgba(0,0,0,.12)}
+body.light-theme .project-modern-tags span:hover{background:#e8e8ec;border-color:rgba(0,0,0,.22)}
+body.light-theme .project-modern-proof{border-top-color:rgba(0,0,0,.1)}
+body.light-theme .analytics-label{color:#5f5f66}
+body.light-theme .analytics-delta{color:#1c7a4e}
+body.light-theme .analytics-path,
+body.light-theme .analytics-legend,
+body.light-theme .analytics-note{color:#6b6b73}
+body.light-theme .analytics-range button{color:#777}
+body.light-theme .analytics-range button.active{background:#111!important;color:#fff!important}
+body.light-theme .legend-dot{background:#111}
+body.light-theme .legend-dot.views{background:#9a9aa2}
+body.light-theme .eyebrow,
+body.light-theme .section-index{color:#8a8a91}
+body.light-theme .github-graph-wrap{background:#fff;border-color:rgba(0,0,0,.09)}
+body.light-theme .github-card{background:#fff;border-color:rgba(0,0,0,.09)}
+body.light-theme .github-card:hover{border-color:rgba(0,0,0,.2)}
+body.light-theme .contribution-cell{background:#e7e7ea;border-color:rgba(0,0,0,.05)}
+body.light-theme .contribution-cell[data-level="1"]{background:#c9c9cf}
+body.light-theme .contribution-cell[data-level="2"]{background:#a3a3ab}
+body.light-theme .contribution-cell[data-level="3"]{background:#70707a}
+body.light-theme .contribution-cell[data-level="4"]{background:#2a2a30}
+body.light-theme .command-key{color:#777;border-color:rgba(0,0,0,.14)}
+body.light-theme .command-item .cmd-icon{color:#777;border-color:rgba(0,0,0,.12)}
+body.light-theme .command-item small,
+body.light-theme .command-footer{color:#8a8a91}
+body.light-theme .command-search input::placeholder{color:#a0a0a8}
+body.light-theme .text-primary{color:#111!important}
+body.light-theme :where([class*="border-white/"]):not(.blog-dot){border-color:rgba(0,0,0,.13)!important}
+body.light-theme :where([class*="bg-white/"]):not(.blog-dot){background-color:rgba(0,0,0,.04)!important}
+body.light-theme .dock-divider{background:rgba(0,0,0,.12)}
+body.theme-animating{overflow:hidden}
+
+</style>
+
+<style>
+/* ===== Dedicated pages: a section is lifted into a fixed overlay on demand ===== */
+.page-overlay{
+  position:fixed;top:0;right:0;bottom:0;left:0;z-index:45;
+  overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain;
+  -webkit-overflow-scrolling:touch;
+  padding-top:4rem;padding-bottom:7.5rem;
+  background:var(--neo-bg);
+  opacity:0;visibility:hidden;pointer-events:none;
+  transform:translate3d(0,14px,0);
+  transition:opacity .34s ease,transform .34s cubic-bezier(.22,.7,.24,1),visibility .34s;
+}
+.page-overlay.open{opacity:1;visibility:visible;pointer-events:auto;transform:none}
+.page-overlay:focus{outline:none}
+/* a lifted section is the whole page, so its top rule is meaningless here */
+.page-overlay>section{border-top:0!important}
+body.page-open{overflow:hidden}
+
+/* ===== Scroll-progress ring around the dock "back to top" arrow ===== */
+.theme-dock .dock-top{position:relative;width:34px;padding:0;justify-content:center}
+.theme-dock .dock-top .iconify{position:relative;z-index:1}
+.dock-ring{position:absolute;inset:0;width:100%;height:100%;overflow:visible;pointer-events:none;transform:rotate(-90deg)}
+.dock-ring-track{fill:none;stroke:var(--neo-line);stroke-width:1.6}
+.dock-ring-bar{fill:none;stroke:#e8e8ec;stroke-width:1.6;stroke-linecap:round;transition:stroke .25s ease}
+body.light-theme .dock-ring-bar{stroke:#15151a}
+.theme-dock .dock-top[data-complete="1"] .dock-ring-bar{stroke:#7dd3a5}
+body.light-theme .theme-dock .dock-top[data-complete="1"] .dock-ring-bar{stroke:#1c7a4e}
+@media(max-width:520px){.theme-dock .dock-top{width:36px}}
+</style>
+
+<style>
+/* ==========================================================
+   HERO — cinematic orbital stage
+   Layer 1 near-black base · 2 atmosphere · 3 orbital arcs
+   4 planetary limb · 5 particles · 6 content · 7 chrome
+   ========================================================== */
+
+.hero-stage{
+  --planet-w:min(78vw,1080px);
+  --planet-h:min(39vw,540px);
+  --arc-ink:rgba(255,255,255,.13);
+  position:relative;
+  min-height:100vh;
+  min-height:100svh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  padding:6.75rem 1.5rem 7rem;
+  overflow:hidden;
+  isolation:isolate;
+  background:#030405;
+}
+
+/* --- Layer 1 + 2: base + very soft atmospheric gradients --- */
+.hero-stage::before{
+  content:"";
+  position:absolute;
+  inset:-8% -8% 0;
+  z-index:0;
+  pointer-events:none;
+  background:
+    radial-gradient(52% 38% at 50% -8%, rgba(170,188,208,.055), transparent 62%),
+    radial-gradient(40% 34% at 6% 20%, rgba(152,170,192,.032), transparent 70%),
+    radial-gradient(62% 46% at 97% 78%, rgba(122,134,150,.026), transparent 72%),
+    linear-gradient(180deg,#050607 0%,#030405 44%,#050607 100%);
+  animation:heroAtmos 52s ease-in-out infinite;
+}
+.hero-stage::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:4;
+  pointer-events:none;
+  background:radial-gradient(ellipse 72% 66% at 50% 47%, transparent 38%, rgba(0,0,0,.10) 67%, rgba(0,0,0,.56) 100%);
+}
+@keyframes heroAtmos{0%,100%{opacity:1}50%{opacity:.8}}
+
+/* --- Layer 2b: one distant light raking an orbital arc --- */
+.hero-beacon{
+  position:absolute;
+  z-index:1;
+  left:34%;
+  top:21%;
+  width:clamp(285px,27vw,460px);
+  height:1px;
+  pointer-events:none;
+  transform:rotate(-31deg);
+  transform-origin:0 0;
+  animation:heroBeacon 44s ease-in-out infinite;
+}
+.hero-beam{
+  position:absolute;
+  left:0;
+  top:0;
+  width:100%;
+  height:1px;
+  background:linear-gradient(90deg,rgba(214,228,242,0) 0%,rgba(214,228,242,.50) 7%,rgba(190,210,234,.15) 36%,rgba(190,210,234,.025) 67%,rgba(190,210,234,0) 100%);
+  box-shadow:0 0 12px rgba(191,211,235,.30),0 0 38px rgba(144,181,224,.10);
+}
+.hero-beam::after{
+  content:"";
+  position:absolute;
+  left:7%;
+  top:50%;
+  width:3px;
+  height:3px;
+  margin:-1px 0 0 -1px;
+  border-radius:50%;
+  background:#edf5ff;
+  box-shadow:0 0 5px 1px rgba(230,242,255,.95),0 0 18px 5px rgba(162,201,244,.34),0 0 48px 13px rgba(112,161,217,.12);
+}
+.hero-core{
+  position:absolute;
+  left:7%;
+  top:0;
+  width:clamp(230px,22vw,370px);
+  height:clamp(135px,13vw,220px);
+  margin-left:calc(-0.5 * clamp(230px,22vw,370px));
+  margin-top:calc(-0.5 * clamp(135px,13vw,220px));
+  border-radius:50%;
+  background:radial-gradient(closest-side,rgba(220,234,248,.15) 0%,rgba(190,214,240,.055) 43%,rgba(190,214,240,0) 76%);
+}
+.hero-core::after{
+  content:"";
+  position:absolute;
+  left:50%;
+  top:50%;
+  width:3px;
+  height:3px;
+  margin:-1.5px 0 0 -1.5px;
+  border-radius:50%;
+  background:rgba(226,236,246,.42);
+}
+@keyframes heroBeacon{0%,100%{opacity:.72}50%{opacity:1}}
+
+/* --- Layer 3: orbital trajectories / system architecture --- */
+.hero-arcs{
+  position:absolute;
+  inset:-6% -4%;
+  z-index:2;
+  width:108%;
+  height:112%;
+  pointer-events:none;
+  animation:heroArcDrift 54s ease-in-out infinite;
+}
+.hero-arcs .arc{
+  fill:none;
+  stroke:var(--arc-ink);
+  stroke-width:1;
+  vector-effect:non-scaling-stroke;
+  opacity:var(--a,.12);
+}
+.hero-arcs .arc--soft{opacity:calc(var(--a,.12) * .65)}
+.hero-arcs .node{fill:none;stroke:rgba(255,255,255,.18);stroke-width:1;vector-effect:non-scaling-stroke}
+.hero-arcs .arc-glow{fill:rgba(212,230,249,.16);filter:drop-shadow(0 0 4px rgba(180,213,247,.48)) drop-shadow(0 0 13px rgba(122,167,216,.17));animation:arcGlow 9s ease-in-out var(--delay,0s) infinite}
+.hero-arcs .arc-spark{fill:rgba(237,246,255,.72);filter:drop-shadow(0 0 3px rgba(226,242,255,.75))}
+@keyframes arcGlow{0%,100%{opacity:.3;transform:scale(.72);transform-origin:center}50%{opacity:.92;transform:scale(1.1);transform-origin:center}}
+@keyframes heroArcDrift{
+  0%,100%{transform:translate3d(0,0,0) rotate(0deg)}
+  50%{transform:translate3d(-1.1%,.5%,0) rotate(.45deg)}
+}
+
+/* --- Layer 4: abstract planetary limb, almost entirely in shadow --- */
+.hero-backglow{
+  position:absolute;
+  z-index:2;
+  left:50%;
+  top:calc(100% - min(39vw,540px) - clamp(4px,1.5vw,24px));
+  width:min(82vw,1300px);
+  height:clamp(180px,24vw,380px);
+  transform:translateX(-50%);
+  pointer-events:none;
+  background:radial-gradient(ellipse 34% 22% at 69% 70%,rgba(145,185,231,.20),rgba(104,145,190,.075) 37%,transparent 75%);
+  opacity:.9;
+}
+.hero-planet{
+  position:absolute;
+  z-index:3;
+  left:50%;
+  top:auto;
+  bottom:calc(-1 * clamp(64px,6vw,102px));
+  width:var(--planet-w);
+  height:var(--planet-h);
+  transform:translateX(-50%) translateY(var(--planet-shift,0px));
+  border-radius:50% 50% 0 0 / 100% 100% 0 0;
+  overflow:hidden;
+  background:
+    radial-gradient(122% 24% at 50% 0%, rgba(160,178,198,.085) 0%, rgba(98,110,124,.045) 22%, rgba(42,47,52,.02) 46%, rgba(0,0,0,0) 72%),
+    linear-gradient(180deg,#0a0c0e 0%,#070809 24%,#050607 52%,#040405 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(210,224,240,.115),
+    inset 0 30px 60px -30px rgba(172,192,214,.10),
+    0 -1px 2px rgba(200,216,232,.105),
+    0 -18px 50px -14px rgba(150,174,200,.085);
+}
+.hero-planet::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  border-radius:inherit;
+  pointer-events:none;
+  background:
+    radial-gradient(24% 3% at 30% 6.5%, rgba(158,172,190,.020), transparent 72%),
+    radial-gradient(18% 2.4% at 58% 4.5%, rgba(146,160,178,.015), transparent 74%),
+    radial-gradient(30% 4% at 44% 10.5%, rgba(120,134,150,.013), transparent 76%);
+}
+.hero-planet::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  border-radius:inherit;
+  pointer-events:none;
+  background:
+    radial-gradient(32% 3.4% at 70% .25%, rgba(213,229,247,.42), rgba(174,202,232,.12) 34%, transparent 75%),
+    radial-gradient(44% 10% at 78% 8%, rgba(82,104,129,.075), transparent 70%),
+    linear-gradient(116deg, transparent 56%, rgba(124,151,178,.048) 72%, transparent 88%);
+}
+.hero-atmosphere{
+  position:absolute;
+  z-index:3;
+  left:50%;
+  top:auto;
+  bottom:calc(-1 * clamp(64px,6vw,102px));
+  width:var(--planet-w);
+  height:var(--planet-h);
+  transform:translateX(-50%) translateY(var(--planet-shift,0px));
+  border-radius:50% 50% 0 0 / 100% 100% 0 0;
+  pointer-events:none;
+  background:radial-gradient(closest-side ellipse at 50% 0%, rgba(178,198,222,.055) 0%, rgba(152,172,198,.022) 26%, rgba(152,172,198,0) 62%);
+  animation:heroGlow 46s ease-in-out infinite;
+}
+@keyframes heroGlow{0%,100%{opacity:.72}50%{opacity:1}}
+
+/* --- Layer 5: a handful of particles, not a starfield --- */
+.hero-stars{
+  position:absolute;
+  inset:0;
+  z-index:4;
+  pointer-events:none;
+}
+.hero-star{
+  position:absolute;
+  left:var(--x);
+  top:var(--y);
+  width:var(--s,2px);
+  height:var(--s,2px);
+  border-radius:50%;
+  background:rgba(255,255,255,var(--o,.18));
+  animation:heroStar var(--d,46s) ease-in-out var(--t,0s) infinite;
+}
+@keyframes heroStar{
+  0%,100%{transform:translate3d(0,0,0);opacity:var(--o,.18)}
+  50%{transform:translate3d(var(--dx,4px),var(--dy,-8px),0);opacity:calc(var(--o,.18) * 1.9)}
+}
+.hero-star:nth-child(1){--x:6%;--y:22%;--s:2px;--o:.20;--d:44s;--t:0s;--dx:5px;--dy:-9px}
+.hero-star:nth-child(2){--x:13%;--y:11%;--s:1.5px;--o:.14;--d:57s;--t:6s;--dx:-4px;--dy:-6px}
+.hero-star:nth-child(3){--x:21%;--y:64%;--s:1.5px;--o:.11;--d:38s;--t:11s;--dx:6px;--dy:5px}
+.hero-star:nth-child(4){--x:28%;--y:34%;--s:2px;--o:.17;--d:50s;--t:3s;--dx:-5px;--dy:-8px}
+.hero-star:nth-child(5){--x:34%;--y:8%;--s:1.5px;--o:.13;--d:41s;--t:14s;--dx:4px;--dy:-10px}
+.hero-star:nth-child(6){--x:41%;--y:78%;--s:1.5px;--o:.10;--d:61s;--t:8s;--dx:-6px;--dy:-4px}
+.hero-star:nth-child(7){--x:47%;--y:27%;--s:1.5px;--o:.15;--d:47s;--t:18s;--dx:5px;--dy:6px}
+.hero-star:nth-child(8){--x:54%;--y:13%;--s:2px;--o:.19;--d:53s;--t:1s;--dx:-4px;--dy:-9px}
+.hero-star:nth-child(9){--x:58%;--y:83%;--s:1.5px;--o:.10;--d:36s;--t:22s;--dx:5px;--dy:-7px}
+.hero-star:nth-child(10){--x:63%;--y:41%;--s:1.5px;--o:.16;--d:59s;--t:9s;--dx:-6px;--dy:5px}
+.hero-star:nth-child(11){--x:69%;--y:19%;--s:1.5px;--o:.12;--d:43s;--t:26s;--dx:4px;--dy:-8px}
+.hero-star:nth-child(12){--x:74%;--y:57%;--s:2px;--o:.15;--d:48s;--t:4s;--dx:-5px;--dy:-6px}
+.hero-star:nth-child(13){--x:79%;--y:31%;--s:1.5px;--o:.13;--d:55s;--t:16s;--dx:6px;--dy:-9px}
+.hero-star:nth-child(14){--x:85%;--y:73%;--s:1.5px;--o:.10;--d:39s;--t:12s;--dx:-4px;--dy:-5px}
+.hero-star:nth-child(15){--x:89%;--y:15%;--s:2px;--o:.18;--d:51s;--t:20s;--dx:5px;--dy:-7px}
+.hero-star:nth-child(16){--x:94%;--y:47%;--s:1.5px;--o:.12;--d:45s;--t:7s;--dx:-5px;--dy:-8px}
+.hero-star:nth-child(17){--x:3%;--y:58%;--s:1.5px;--o:.11;--d:49s;--t:24s;--dx:4px;--dy:-6px}
+.hero-star:nth-child(18){--x:97%;--y:88%;--s:1.5px;--o:.09;--d:63s;--t:2s;--dx:-4px;--dy:-5px}
+
+/* --- Layer 6: hero content --- */
+.hero-content{position:relative;z-index:5;width:100%;max-width:78rem}
+.hero-content > * + *{margin-top:2rem}
+
+.hero-badge{
+  display:inline-flex;
+  align-items:center;
+  gap:.55rem;
+  padding:.4rem .9rem;
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,.13);
+  background:rgba(255,255,255,.035);
+  -webkit-backdrop-filter:blur(10px);
+  backdrop-filter:blur(10px);
+  color:#d4d4d9;
+  font-size:.78rem;
+  font-weight:500;
+  letter-spacing:.005em;
+}
+.hero-badge .badge-dot{
+  position:relative;
+  width:7px;
+  height:7px;
+  border-radius:50%;
+  background:#22C55E;
+  box-shadow:0 0 0 3px rgba(34,197,94,.11);
+  flex:none;
+}
+.hero-badge .badge-dot::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  border-radius:50%;
+  background:#22C55E;
+  opacity:.5;
+  animation:heroPulse 3.8s cubic-bezier(.4,0,.2,1) infinite;
+}
+@keyframes heroPulse{
+  0%{transform:scale(1);opacity:.5}
+  70%{transform:scale(3.4);opacity:0}
+  100%{transform:scale(3.4);opacity:0}
+}
+
+.hero-title{
+  font-size:clamp(2.25rem,5.4vw,4.25rem);
+  font-weight:600;
+  line-height:1.08;
+  letter-spacing:-.035em;
+  color:#f7f7f8;
+}
+.hero-title .hero-line{display:block}
+.hero-title .hero-line--sub{color:#7c7c85}
+
+.hero-desc{
+  max-width:650px;
+  margin-left:auto;
+  margin-right:auto;
+  color:#9a9aa2;
+  font-size:1.06rem;
+  line-height:1.7;
+}
+
+.hero-actions .hero-btn-primary{
+  background:#f6f6f7;
+  color:#08090a;
+  border:1px solid #f6f6f7;
+  transition:background .22s ease,border-color .22s ease,transform .22s ease;
+}
+.hero-actions .hero-btn-primary:hover{
+  background:#e3e3e6;
+  border-color:#e3e3e6;
+  transform:translateY(-1px);
+}
+.hero-actions .hero-btn-secondary{
+  background:transparent;
+  color:#f2f2f4;
+  border:1px solid rgba(255,255,255,.2);
+  transition:background .22s ease,border-color .22s ease,transform .22s ease;
+}
+.hero-actions .hero-btn-secondary:hover{
+  background:rgba(255,255,255,.045);
+  border-color:rgba(255,255,255,.4);
+  transform:translateY(-1px);
+}
+
+.hero-socials{display:flex;justify-content:center;gap:1.4rem;margin-top:1.9rem}
+.hero-socials a{
+  display:inline-flex;
+  padding:.4rem;
+  border-radius:10px;
+  color:#6d6d76;
+  transition:color .2s ease,transform .2s ease,background .2s ease;
+}
+.hero-socials a:hover{color:#fff;transform:translateY(-2px)}
+
+/* --- Decorative edge annotations --- */
+.hero-note{
+  position:absolute;
+  z-index:5;
+  display:flex;
+  flex-direction:column;
+  gap:.4rem;
+  font-family:"JetBrains Mono",monospace;
+  font-size:.575rem;
+  font-weight:400;
+  line-height:1.55;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  color:rgba(255,255,255,.19);
+  pointer-events:none;
+}
+.hero-note b{
+  font-weight:500;
+  font-size:.6rem;
+  letter-spacing:.2em;
+  color:rgba(255,255,255,.3);
+}
+.hero-note--tl{top:6.75rem;left:2.25rem}
+.hero-note--tr{top:6.75rem;right:2.25rem;align-items:flex-end;text-align:right}
+.hero-note--bl{bottom:6.5rem;left:2.25rem}
+.hero-note--br{bottom:6.5rem;right:2.25rem;align-items:flex-end;text-align:right}
+
+/* --- Light theme keeps the same composition, inverted and just as quiet --- */
+body.light-theme .hero-stage{
+  background:radial-gradient(120% 90% at 50% 104%, #e6e6e8 0%, #f0f0f2 38%, #f6f6f7 70%, #fafafa 100%);
+}
+body.light-theme .hero-stage::before{
+  background:
+    radial-gradient(52% 38% at 50% -8%, rgba(40,52,68,.05), transparent 62%),
+    radial-gradient(40% 34% at 6% 20%, rgba(40,52,68,.03), transparent 70%),
+    radial-gradient(62% 46% at 97% 78%, rgba(40,52,68,.022), transparent 72%),
+    linear-gradient(180deg,#fafafa 0%,#f4f4f5 44%,#f3f3f4 100%);
+}
+body.light-theme .hero-arcs{--arc-ink:rgba(0,0,0,.12)}
+body.light-theme .hero-arcs .node{stroke:rgba(0,0,0,.16)}
+body.light-theme .hero-beam{background:linear-gradient(180deg,rgba(40,52,68,0) 0%,rgba(40,52,68,.075) 42%,rgba(40,52,68,.022) 74%,rgba(40,52,68,0) 100%)}
+body.light-theme .hero-core{background:radial-gradient(closest-side,rgba(40,52,68,.07) 0%,rgba(40,52,68,.024) 46%,rgba(40,52,68,0) 76%)}
+body.light-theme .hero-core::after{background:rgba(40,52,68,.34)}
+body.light-theme .hero-planet{
+  background:
+    radial-gradient(122% 24% at 50% 0%, rgba(0,0,0,.055) 0%, rgba(0,0,0,.028) 22%, rgba(0,0,0,0) 70%),
+    linear-gradient(180deg,#e2e2e4 0%,#ebebed 24%,#f1f1f2 54%,#f5f5f6 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(0,0,0,.10),
+    inset 0 30px 60px -30px rgba(0,0,0,.07),
+    0 -1px 2px rgba(0,0,0,.07),
+    0 -18px 50px -14px rgba(0,0,0,.05);
+}
+body.light-theme .hero-atmosphere{background:radial-gradient(closest-side ellipse at 50% 0%, rgba(0,0,0,.05) 0%, rgba(0,0,0,.018) 26%, rgba(0,0,0,0) 62%)}
+body.light-theme .hero-star{background:rgba(0,0,0,var(--o,.18))}
+body.light-theme .hero-badge{background:rgba(255,255,255,.55);border-color:rgba(0,0,0,.1);color:#3a3a42}
+body.light-theme .hero-title{color:#0d0e10}
+body.light-theme .hero-title .hero-line--sub{color:#6a6a73}
+body.light-theme .hero-desc{color:#5c5c65}
+body.light-theme .hero-actions .hero-btn-primary{background:#111;color:#fff;border-color:#111}
+body.light-theme .hero-actions .hero-btn-primary:hover{background:#000;border-color:#000}
+body.light-theme .hero-actions .hero-btn-secondary{color:#191920;border-color:rgba(0,0,0,.2)}
+body.light-theme .hero-actions .hero-btn-secondary:hover{background:rgba(0,0,0,.04);border-color:rgba(0,0,0,.4)}
+body.light-theme .hero-socials a{color:#797981}
+body.light-theme .hero-socials a:hover{color:#0d0e10}
+body.light-theme .hero-note{color:rgba(0,0,0,.3)}
+body.light-theme .hero-note b{color:rgba(0,0,0,.44)}
+
+/* --- Responsive: same composition, progressively quieter ---
+   Opacity animations would beat a plain opacity override, so the planet
+   (static) takes the fade and the animated layers get softer paint. */
+@media (max-width:1279px){
+  .hero-planet{
+    --planet-w:88vw;
+    --planet-h:44vw;
+    opacity:.88;
+  }
+  .hero-atmosphere{
+    --planet-w:88vw;
+    --planet-h:44vw;
+    background:radial-gradient(closest-side ellipse at 50% 0%, rgba(178,198,222,.04) 0%, rgba(152,172,198,.016) 26%, rgba(152,172,198,0) 62%);
+  }
+  .hero-arcs{opacity:.78}
+  .hero-beam,.hero-core{opacity:.85}
+}
+@media (max-width:1023px){
+  .hero-note{display:none}
+  .hero-stage{padding:6rem 1.25rem 6rem}
+  .hero-planet{
+    top:auto;
+    --planet-w:96vw;
+    --planet-h:48vw;
+    opacity:.8;
+  }
+  .hero-atmosphere{
+    top:auto;
+    --planet-w:96vw;
+    --planet-h:48vw;
+    background:radial-gradient(closest-side ellipse at 50% 0%, rgba(178,198,222,.032) 0%, rgba(152,172,198,.013) 26%, rgba(152,172,198,0) 62%);
+  }
+  .hero-arcs{opacity:.62}
+  .hero-beam{opacity:.7}
+  .hero-core{opacity:.6}
+  .hero-backglow{top:calc(100% - 48vw - clamp(4px,1.5vw,18px));opacity:.72}
+  .hero-star:nth-child(n+13){display:none}
+}
+@media (max-width:767px){
+  .hero-stage{padding:5.5rem 1.25rem 5.5rem}
+  .hero-content > * + *{margin-top:1.5rem}
+  .hero-title{font-size:clamp(2.15rem,9.2vw,3rem);line-height:1.08;letter-spacing:-.03em}
+  .hero-desc{font-size:1rem;line-height:1.65;padding:0 .25rem}
+  .hero-planet{
+    top:auto;
+    --planet-w:142vw;
+    --planet-h:71vw;
+    opacity:.66;
+  }
+  .hero-atmosphere{
+    top:auto;
+    --planet-w:142vw;
+    --planet-h:71vw;
+    background:radial-gradient(closest-side ellipse at 50% 0%, rgba(178,198,222,.026) 0%, rgba(152,172,198,.01) 26%, rgba(152,172,198,0) 62%);
+  }
+  .hero-arcs{opacity:.46;inset:-2% 0;width:100%;height:104%}
+  .hero-beam{opacity:.5}
+  .hero-core{opacity:.4}
+  .hero-backglow{top:calc(100% - 71vw - 18px);width:105vw;opacity:.55}
+  .hero-star:nth-child(n+9){display:none}
+  .hero-actions{gap:.85rem}
+  .hero-actions > a{width:100%;max-width:19rem;justify-content:center;padding-left:1.5rem;padding-right:1.5rem}
+  .hero-socials{margin-top:1.5rem}
+}
+@media (max-width:400px){
+  .hero-planet{opacity:.55}
+  .hero-arcs{opacity:.36}
+}
+
+/* --- Ambient only: never a moving website background --- */
+@media (prefers-reduced-motion: reduce){
+  .hero-stage::before,
+  .hero-arcs,
+  .hero-atmosphere,
+  .hero-beacon,
+  .hero-star,
+  .hero-arcs .arc-glow{animation:none!important}
+  .hero-beacon{opacity:.8}
+  .hero-atmosphere{opacity:.9}
+}
+
+/* --- Floating navigation: deliberately quiet, with the hero still in focus --- */
+.site-nav{
+  position:fixed;
+  z-index:60;
+  top:16px;
+  left:50%;
+  width:min(1156px,calc(100% - 32px));
+  height:62px;
+  transform:translateX(-50%);
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:21px;
+  background:rgba(8,9,10,.76);
+  box-shadow:0 12px 34px rgba(0,0,0,.20);
+  backdrop-filter:blur(22px);
+  -webkit-backdrop-filter:blur(22px);
+  transition:background .3s ease,border-color .3s ease,box-shadow .3s ease;
+}
+.site-nav.is-scrolled{background:rgba(7,8,9,.90);border-color:rgba(255,255,255,.15);box-shadow:0 14px 42px rgba(0,0,0,.30)}
+.site-nav__inner{height:100%;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:1.25rem;padding:0 11px 0 13px}
+.site-brand{display:inline-flex;align-items:center;gap:.6rem;color:#f2f2f3;font-size:1rem;font-weight:600;letter-spacing:-.02em;white-space:nowrap}
+.site-brand__mark{display:grid;place-items:center;width:35px;height:35px;border-radius:9px;background:#f3f3f1;color:#101113;font-size:.7rem;font-weight:750;letter-spacing:-.05em;box-shadow:0 2px 10px rgba(255,255,255,.09)}
+.site-nav__links{display:flex;align-items:center;justify-content:center;gap:clamp(.75rem,1.35vw,1.35rem);min-width:0}
+.site-nav__links a{color:#a6a6ad;font-size:.82rem;font-weight:500;white-space:nowrap;transition:color .2s ease}
+.site-nav__links a:hover{color:#fff}
+.site-nav__actions{display:flex;align-items:center;gap:.55rem}
+.site-theme-toggle{display:grid;place-items:center;width:36px;height:36px;border:1px solid rgba(255,255,255,.11);border-radius:50%;background:rgba(255,255,255,.035);color:#c8c8cf;cursor:pointer;transition:background .2s ease,color .2s ease,border-color .2s ease}
+.site-theme-toggle:hover{background:rgba(255,255,255,.09);border-color:rgba(255,255,255,.22);color:#fff}
+.site-theme-toggle .iconify{position:absolute;transition:opacity .2s ease,transform .25s cubic-bezier(.2,.7,.3,1)}
+.site-theme-toggle .iconify-sun{opacity:1;transform:none}.site-theme-toggle .iconify-moon{opacity:0;transform:scale(.65) rotate(-30deg)}
+body.light-theme .site-theme-toggle .iconify-sun{opacity:0;transform:scale(.65) rotate(30deg)}body.light-theme .site-theme-toggle .iconify-moon{opacity:1;transform:none}
+.site-connect{display:inline-flex;align-items:center;gap:.42rem;height:38px;padding:0 1rem;border-radius:999px;background:#f3f3f1;color:#0b0c0d;font-size:.81rem;font-weight:650;white-space:nowrap;transition:transform .2s ease,background .2s ease,box-shadow .2s ease}
+.site-connect:hover{background:#fff;transform:translateY(-1px);box-shadow:0 6px 16px rgba(255,255,255,.10)}
+.site-menu-toggle{display:none;place-items:center;width:36px;height:36px;border:1px solid rgba(255,255,255,.11);border-radius:50%;background:transparent;color:#eee;cursor:pointer}
+.site-mobile-menu{position:absolute!important;top:calc(100% + 8px)!important;left:0!important;width:100%!important;padding:.6rem 1rem!important;border:1px solid rgba(255,255,255,.11)!important;border-radius:18px!important;background:rgba(8,9,10,.94)!important;box-shadow:0 16px 42px rgba(0,0,0,.28);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px)}
+.site-mobile-menu .mobile-menu-link{color:#bcbcc3;padding:.72rem .35rem}.site-mobile-menu .mobile-menu-link:last-child{color:#fff}
+body.light-theme .site-nav{background:rgba(250,250,250,.78);border-color:rgba(0,0,0,.10);box-shadow:0 12px 34px rgba(0,0,0,.10)}
+body.light-theme .site-nav.is-scrolled{background:rgba(250,250,250,.92)}body.light-theme .site-brand{color:#17171b}body.light-theme .site-nav__links a{color:#6b6b72}body.light-theme .site-nav__links a:hover{color:#111}body.light-theme .site-theme-toggle,body.light-theme .site-menu-toggle{border-color:rgba(0,0,0,.11);color:#28282e;background:rgba(0,0,0,.025)}body.light-theme .site-mobile-menu{background:rgba(250,250,250,.95)!important;border-color:rgba(0,0,0,.10)!important}.site-mobile-menu .mobile-menu-link{color:#57575e}
+@media(max-width:1050px){.site-nav__links{gap:.7rem}.site-nav__links a{font-size:.76rem}.site-connect{padding:0 .82rem}}
+@media(max-width:900px){.site-nav{height:58px}.site-nav__inner{padding:0 10px 0 12px}.site-nav__links,.site-connect{display:none}.site-nav__inner{grid-template-columns:auto 1fr auto}.site-nav__actions{justify-self:end}.site-menu-toggle{display:grid}}
+@media(max-width:480px){.site-nav{top:12px;width:calc(100% - 24px)}.site-brand{font-size:.93rem}.site-nav__inner{gap:.65rem}.site-theme-toggle,.site-menu-toggle{width:34px;height:34px}}
+
+/* Background and header adapted from experiment.html.  Scope the rules to this
+   page so the portfolio's existing sections and controls stay untouched. */
+.hero-stage{background:#050505}
+.hero-stage::before,.hero-stage::after{inset:0;background:none;animation:none}
+.hero-stage > .hero-beacon,
+.hero-stage > .hero-arcs,
+.hero-stage > .hero-backglow,
+.hero-stage > .hero-planet,
+.hero-stage > .hero-atmosphere,
+.hero-stage > .hero-stars{display:none}
+.experiment-cosmic-bg{position:absolute;inset:0;z-index:0;overflow:hidden;pointer-events:none;background:radial-gradient(circle at 50% 0%,#111 0%,#000 70%)}
+.experiment-starfield{position:absolute;inset:0;opacity:.6;background-image:radial-gradient(1px 1px at 15% 25%,#fff 100%,transparent),radial-gradient(1px 1px at 85% 15%,#fff 100%,transparent),radial-gradient(1.5px 1.5px at 10% 75%,#fff 100%,transparent),radial-gradient(1px 1px at 90% 85%,#fff 100%,transparent),radial-gradient(2px 2px at 30% 60%,rgba(255,255,255,.3) 100%,transparent),radial-gradient(1px 1px at 75% 65%,rgba(255,255,255,.4) 100%,transparent),radial-gradient(1px 1px at 45% 20%,rgba(255,255,255,.5) 100%,transparent)}
+.experiment-orbit{position:absolute;border:1px solid rgba(255,255,255,.08);border-radius:50%;pointer-events:none}
+.experiment-orbit-1{width:160vw;height:150vh;top:-20vh;left:-40vw;transform:rotate(-15deg);border-color:rgba(255,255,255,.15)}
+.experiment-orbit-2{width:140vw;height:140vh;right:-30vw;bottom:-30vh;transform:rotate(25deg)}
+.experiment-orbit-3{width:200vw;height:200vh;top:10vh;left:-50vw;transform:rotate(-5deg);border-color:rgba(255,255,255,.04)}
+.experiment-lens-flare{position:absolute;z-index:1;top:22%;left:32%;width:4px;height:4px;border-radius:50%;background:#fff;box-shadow:0 0 60px 25px rgba(255,255,255,.3),0 0 100px 40px rgba(255,255,255,.1),0 0 10px 2px #fff;animation:experimentFlare 8s ease-in-out infinite}
+@keyframes experimentFlare{0%,100%{opacity:.75}50%{opacity:1}}
+body.light-theme .experiment-cosmic-bg{background:radial-gradient(circle at 50% 0%,#fff 0%,#ececef 70%)}body.light-theme .experiment-starfield{opacity:.14;filter:invert(1)}body.light-theme .experiment-orbit{border-color:rgba(0,0,0,.10)}body.light-theme .experiment-orbit-1{border-color:rgba(0,0,0,.15)}body.light-theme .experiment-orbit-3{border-color:rgba(0,0,0,.045)}body.light-theme .experiment-lens-flare{background:#39424d;box-shadow:0 0 60px 25px rgba(53,68,87,.14),0 0 100px 40px rgba(53,68,87,.05),0 0 10px 2px rgba(53,68,87,.55)}
+
+/* The experiment header's compact pill proportions and true centered links. */
+.site-nav{top:24px;width:95%;max-width:1000px;height:50px;border-radius:100px;background:rgba(15,15,15,.6);border-color:rgba(255,255,255,.05);box-shadow:none;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}
+.site-nav.is-scrolled{background:rgba(15,15,15,.78);border-color:rgba(255,255,255,.08);box-shadow:none}
+.site-nav__inner{position:relative;display:flex;height:100%;align-items:center;justify-content:space-between;padding:8px 10px}
+.site-brand{gap:14px;padding-left:6px;font-size:14px;font-weight:600;letter-spacing:0}.site-brand__mark{width:32px;height:32px;border-radius:8px;font-size:13px;box-shadow:none}
+.site-nav__links{position:absolute;left:50%;transform:translateX(-50%);gap:28px}.site-nav__links a{font-size:12px;font-weight:400}.site-nav__actions{gap:7px}.site-theme-toggle{width:32px;height:32px}.site-connect{height:auto;padding:10px 18px;font-size:13px;font-weight:600}
+body.light-theme .site-nav{background:rgba(250,250,250,.78);border-color:rgba(0,0,0,.08);box-shadow:none}body.light-theme .site-nav.is-scrolled{background:rgba(250,250,250,.9)}
+@media(max-width:1024px){.site-nav__links{display:none}.site-menu-toggle{display:grid}.site-nav__inner{grid-template-columns:none}.site-connect{display:none}.site-mobile-menu{top:calc(100% + 8px)!important}.hero-note{display:none}}
+@media(max-width:600px){.site-nav{top:18px;width:calc(100% - 24px);height:50px}.site-brand{gap:10px;padding-left:3px}.site-theme-toggle,.site-menu-toggle{width:32px;height:32px}.experiment-lens-flare{left:27%;top:20%}.experiment-orbit-1{width:210vw;left:-82vw}.experiment-orbit-2{width:190vw;right:-86vw}}
+@media(prefers-reduced-motion:reduce){.experiment-lens-flare{animation:none}}
+</style>
+
+<style>
+/* ==========================================================
+   PAGE BACKGROUNDS — one cosmic composition per dedicated page
+   Layers: base gradient · starfield · nebula · orbits · flares
+   ========================================================== */
+
+/* Every page section hosts the layer and keeps its own content above it. */
+section[data-page]{
+  position:relative;
+  isolation:isolate;
+  overflow:hidden;
+}
+section[data-page] > .cosmic-bg{
+  position:absolute;
+  inset:0;
+  z-index:0;
+  overflow:hidden;
+  pointer-events:none;
+}
+section[data-page] > *:not(.cosmic-bg){
+  position:relative;
+  z-index:1;
+}
+
+.cosmic-bg .stars{
+  position:absolute;
+  inset:0;
+  opacity:.5;
+  background-image:
+    radial-gradient(1px 1px at 12% 22%,#fff 100%,transparent),
+    radial-gradient(1px 1px at 27% 68%,rgba(255,255,255,.7) 100%,transparent),
+    radial-gradient(1.5px 1.5px at 38% 12%,rgba(255,255,255,.85) 100%,transparent),
+    radial-gradient(1px 1px at 52% 44%,rgba(255,255,255,.6) 100%,transparent),
+    radial-gradient(1px 1px at 64% 82%,#fff 100%,transparent),
+    radial-gradient(1.5px 1.5px at 74% 26%,rgba(255,255,255,.75) 100%,transparent),
+    radial-gradient(1px 1px at 86% 58%,rgba(255,255,255,.55) 100%,transparent),
+    radial-gradient(1px 1px at 94% 88%,#fff 100%,transparent),
+    radial-gradient(2px 2px at 20% 88%,rgba(255,255,255,.3) 100%,transparent),
+    radial-gradient(1px 1px at 45% 92%,rgba(255,255,255,.4) 100%,transparent),
+    radial-gradient(1px 1px at 68% 52%,rgba(255,255,255,.35) 100%,transparent),
+    radial-gradient(1.5px 1.5px at 8% 52%,rgba(255,255,255,.5) 100%,transparent);
+  background-size:620px 620px;
+  background-repeat:repeat;
+}
+.cosmic-bg .nebula-glow{
+  position:absolute;
+  pointer-events:none;
+}
+.cosmic-bg .orbit{
+  position:absolute;
+  border-radius:50%;
+  border:1px solid rgba(255,255,255,.08);
+  pointer-events:none;
+}
+.cosmic-bg .lens-flare{
+  position:absolute;
+  z-index:1;
+  width:4px;
+  height:4px;
+  border-radius:50%;
+  background:#fff;
+  animation:cosmicFlare 9s ease-in-out infinite;
+}
+@keyframes cosmicFlare{0%,100%{opacity:.72}50%{opacity:1}}
+.cosmic-bg .grid-overlay{
+  position:absolute;
+  inset:0;
+  background-image:
+    linear-gradient(rgba(255,255,255,.02) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.02) 1px,transparent 1px);
+  background-size:60px 60px;
+  -webkit-mask-image:radial-gradient(circle at 50% 50%,black 30%,transparent 80%);
+  mask-image:radial-gradient(circle at 50% 50%,black 30%,transparent 80%);
+}
+
+/* ---------- PROJECTS: sweeping arcs framing the top right ---------- */
+.bg-projects{
+  background:radial-gradient(circle at 85% 15%,#0f172a 0%,#050505 60%);
+}
+.nebula-top-right{
+  top:-10%;
+  right:-10%;
+  width:60vw;
+  height:60vw;
+  background:radial-gradient(circle,rgba(14,165,233,.08) 0%,rgba(0,0,0,0) 70%);
+}
+.orbit-projects-1{
+  width:140vw;
+  height:140vw;
+  top:-50vw;
+  right:-40vw;
+  border:1px solid rgba(255,255,255,.07);
+}
+.orbit-projects-2{
+  width:100vw;
+  height:100vw;
+  top:-30vw;
+  right:-20vw;
+  border:1px solid rgba(255,255,255,.12);
+}
+.flare-projects{
+  top:18%;
+  right:28%;
+  width:3px;
+  height:3px;
+  box-shadow:
+    0 0 50px 20px rgba(255,255,255,.25),
+    0 0 90px 40px rgba(14,165,233,.15);
+}
+
+/* ---------- EXPERIENCE: a vertical spine beside the timeline ---------- */
+.bg-experience{
+  background:radial-gradient(circle at 10% 50%,#0d1117 0%,#050505 70%);
+}
+.nebula-left-spine{
+  top:20%;
+  left:-15%;
+  width:50vw;
+  height:80vh;
+  background:radial-gradient(ellipse,rgba(0,255,102,.04) 0%,rgba(0,0,0,0) 70%);
+}
+.orbit-spine{
+  width:220vh;
+  height:220vh;
+  top:-60vh;
+  left:-170vh;
+  border:1px solid rgba(255,255,255,.09);
+}
+.orbit-spine-outer{
+  width:240vh;
+  height:240vh;
+  top:-70vh;
+  left:-185vh;
+  border:1px dashed rgba(255,255,255,.04);
+}
+.flare-spine-1{
+  top:30%;
+  left:20%;
+  width:3px;
+  height:3px;
+  box-shadow:
+    0 0 40px 15px rgba(255,255,255,.3),
+    0 0 80px 30px rgba(0,255,102,.12);
+}
+.flare-spine-2{
+  top:75%;
+  left:28%;
+  width:2px;
+  height:2px;
+  box-shadow:0 0 35px 12px rgba(255,255,255,.2);
+}
+
+/* ---------- SKILLS: concentric radar orbits + tech matrix ---------- */
+.bg-skills{
+  background:radial-gradient(circle at 50% 50%,#0d1322 0%,#050505 80%);
+}
+.orbit-center-1{
+  width:90vw;
+  height:90vw;
+  max-width:900px;
+  max-height:900px;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  border:1px solid rgba(255,255,255,.06);
+}
+.orbit-center-2{
+  width:60vw;
+  height:60vw;
+  max-width:600px;
+  max-height:600px;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  border:1px dashed rgba(255,255,255,.08);
+}
+.flare-center{
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  width:4px;
+  height:4px;
+  box-shadow:
+    0 0 70px 30px rgba(255,255,255,.2),
+    0 0 120px 60px rgba(59,130,246,.15);
+}
+
+/* ---------- WRITING / ANALYTICS / ABOUT / GITHUB / CONTACT ---------- */
+.bg-minimal{
+  background:#040406;
+}
+.dense-stars{
+  opacity:.4;
+}
+.nebula-bottom-center{
+  bottom:-20%;
+  left:50%;
+  transform:translateX(-50%);
+  width:80vw;
+  height:40vh;
+  background:radial-gradient(ellipse at center,rgba(255,255,255,.03) 0%,rgba(0,0,0,0) 70%);
+}
+.orbit-bottom-horizon{
+  width:180vw;
+  height:180vw;
+  bottom:-165vw;
+  left:50%;
+  transform:translateX(-50%);
+  border:1px solid rgba(255,255,255,.05);
+}
+
+/* ---------- The lifted page should not show a seam at the edges ---------- */
+.page-overlay[data-bg="projects"]{background:radial-gradient(circle at 85% 15%,#0f172a 0%,#050505 60%)}
+.page-overlay[data-bg="experience"]{background:radial-gradient(circle at 10% 50%,#0d1117 0%,#050505 70%)}
+.page-overlay[data-bg="skills"]{background:radial-gradient(circle at 50% 50%,#0d1322 0%,#050505 80%)}
+.page-overlay[data-bg="minimal"]{background:#040406}
+
+/* ---------- Light theme: same composition, inverted and just as quiet ---------- */
+body.light-theme .bg-projects{background:radial-gradient(circle at 85% 15%,#e8edf4 0%,#f6f6f7 60%)}
+body.light-theme .bg-experience{background:radial-gradient(circle at 10% 50%,#f1f2f4 0%,#f8f8f9 70%)}
+body.light-theme .bg-skills{background:radial-gradient(circle at 50% 50%,#f0f1f5 0%,#f8f8f9 80%)}
+body.light-theme .bg-minimal{background:#f7f7f8}
+body.light-theme .cosmic-bg .stars{opacity:.1;filter:invert(1)}
+body.light-theme .dense-stars{opacity:.08}
+body.light-theme .cosmic-bg .orbit{border-color:rgba(0,0,0,.1)}
+body.light-theme .cosmic-bg .grid-overlay{
+  background-image:
+    linear-gradient(rgba(0,0,0,.03) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(0,0,0,.03) 1px,transparent 1px);
+}
+body.light-theme .nebula-top-right{background:radial-gradient(circle,rgba(56,132,255,.07) 0%,rgba(0,0,0,0) 70%)}
+body.light-theme .nebula-left-spine{background:radial-gradient(ellipse,rgba(22,163,74,.05) 0%,rgba(0,0,0,0) 70%)}
+body.light-theme .nebula-bottom-center{background:radial-gradient(ellipse at center,rgba(0,0,0,.03) 0%,rgba(0,0,0,0) 70%)}
+body.light-theme .orbit-projects-1{border-color:rgba(0,0,0,.09)}
+body.light-theme .orbit-projects-2{border-color:rgba(0,0,0,.16)}
+body.light-theme .orbit-spine{border-color:rgba(0,0,0,.11)}
+body.light-theme .orbit-spine-outer{border-color:rgba(0,0,0,.06)}
+body.light-theme .orbit-center-1{border-color:rgba(0,0,0,.08)}
+body.light-theme .orbit-center-2{border-color:rgba(0,0,0,.11)}
+body.light-theme .orbit-bottom-horizon{border-color:rgba(0,0,0,.07)}
+body.light-theme .cosmic-bg .lens-flare{
+  background:#39424d;
+  box-shadow:0 0 40px 14px rgba(53,68,87,.14),0 0 80px 30px rgba(53,68,87,.05);
+}
+body.light-theme .page-overlay[data-bg="projects"]{background:radial-gradient(circle at 85% 15%,#e8edf4 0%,#f6f6f7 60%)}
+body.light-theme .page-overlay[data-bg="experience"]{background:radial-gradient(circle at 10% 50%,#f1f2f4 0%,#f8f8f9 70%)}
+body.light-theme .page-overlay[data-bg="skills"]{background:radial-gradient(circle at 50% 50%,#f0f1f5 0%,#f8f8f9 80%)}
+body.light-theme .page-overlay[data-bg="minimal"]{background:#f7f7f8}
+
+/* ---------- Quieter as the viewport narrows ---------- */
+@media (max-width: 1024px){
+  .cosmic-bg .stars{opacity:.4}
+  .dense-stars{opacity:.3}
+  .orbit-projects-1{width:190vw;height:190vw;top:-70vw;right:-70vw}
+  .orbit-center-1{width:130vw;height:130vw}
+  .orbit-center-2{width:90vw;height:90vw}
+}
+@media (max-width: 640px){
+  .cosmic-bg .stars{opacity:.3}
+  .dense-stars{opacity:.24}
+  .grid-overlay{background-size:44px 44px}
+  .orbit-projects-1{width:250vw;height:250vw;top:-110vw;right:-120vw}
+  .orbit-projects-2{width:190vw;height:190vw;top:-60vw;right:-70vw}
+  .orbit-spine{width:340vh;height:340vh;top:-120vh;left:-280vh}
+  .orbit-spine-outer{width:380vh;height:380vh;top:-140vh;left:-310vh}
+  .orbit-center-1{width:190vw;height:190vw}
+  .orbit-center-2{width:130vw;height:130vw}
+  .orbit-bottom-horizon{width:300vw;height:300vw;bottom:-275vw}
+  .flare-spine-1{top:26%;left:12%}
+  .flare-spine-2{top:78%;left:18%}
+  .flare-projects{top:12%;right:22%}
+  .flare-center{box-shadow:0 0 50px 20px rgba(255,255,255,.16),0 0 90px 40px rgba(59,130,246,.12)}
+}
+@media (prefers-reduced-motion: reduce){
+  .cosmic-bg .lens-flare{animation:none}
+}
+</style>
+
+<style>
+/* ==========================================================
+   CONTACT — the invitation on the left, the reason on the right
+   ========================================================== */
+.contact-layout{
+  display:grid;
+  grid-template-columns:minmax(0,1.25fr) minmax(0,.88fr);
+  gap:3.5rem;
+  align-items:start;
+}
+
+.contact-quote{
+  position:relative;
+  margin:0;
+  padding:2.5rem 2.4rem 2.3rem;
+  border:1px solid var(--neo-line);
+  border-radius:24px;
+  background:
+    radial-gradient(130% 95% at 100% 0%, rgba(255,255,255,.05), transparent 60%),
+    rgba(255,255,255,.016);
+  overflow:hidden;
+}
+/* a single hairline of light down the leading edge */
+.contact-quote::before{
+  content:"";
+  position:absolute;
+  left:0;
+  top:24px;
+  bottom:24px;
+  width:1px;
+  background:linear-gradient(180deg,transparent,rgba(255,255,255,.34),transparent);
+}
+.contact-quote__mark{
+  display:block;
+  font-size:2.5rem;
+  line-height:.55;
+  font-weight:600;
+  letter-spacing:-.05em;
+  color:rgba(255,255,255,.2);
+  margin-bottom:1.15rem;
+}
+.contact-quote blockquote{margin:0}
+.contact-quote p{
+  margin:0;
+  color:#d9d9dd;
+  font-size:1.3rem;
+  line-height:1.6;
+  font-weight:500;
+  letter-spacing:-.02em;
+  text-wrap:balance;
+}
+.contact-quote__by{
+  display:flex;
+  align-items:center;
+  gap:.75rem;
+  margin-top:1.7rem;
+  color:#707077;
+  font:500 .66rem "JetBrains Mono",monospace;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+}
+.contact-quote__rule{
+  flex:none;
+  width:26px;
+  height:1px;
+  background:rgba(255,255,255,.24);
+}
+
+body.light-theme .contact-quote{
+  background:
+    radial-gradient(130% 95% at 100% 0%, rgba(0,0,0,.035), transparent 60%),
+    rgba(255,255,255,.55);
+}
+body.light-theme .contact-quote::before{background:linear-gradient(180deg,transparent,rgba(0,0,0,.26),transparent)}
+body.light-theme .contact-quote__mark{color:rgba(0,0,0,.2)}
+body.light-theme .contact-quote p{color:#26262c}
+body.light-theme .contact-quote__by{color:#787880}
+body.light-theme .contact-quote__rule{background:rgba(0,0,0,.22)}
+
+@media (max-width: 900px){
+  .contact-layout{grid-template-columns:minmax(0,1fr);gap:2.5rem}
+  .contact-quote{padding:1.95rem 1.6rem 1.8rem}
+  .contact-quote__mark{font-size:2.1rem;margin-bottom:.95rem}
+  .contact-quote p{font-size:1.12rem;line-height:1.6}
+  .contact-quote__by{margin-top:1.35rem}
+}
+</style>
 </head>
 <body id="top" class="bg-background text-secondary font-sans antialiased overflow-x-hidden">
 
-    <nav class="fixed top-0 w-full z-50 glass-nav">
-        <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-            <a href="https://www.github.com/Om-codex" class="text-primary font-semibold tracking-tight text-lg flex items-center gap-2 group">
-                <span class="bg-white text-black text-xs font-bold px-1.5 py-0.5 rounded-md group-hover:scale-110 transition-transform">OM</span>
-                <span>Om Mishra</span>
-            </a>
-            
-            <div class="hidden md:flex items-center gap-8 text-sm font-medium">
-                <a href="#about" class="hover:text-white transition-colors">About</a>
-                <a href="#skills" class="hover:text-white transition-colors">Skills</a>
-                <a href="#projects" class="hover:text-white transition-colors">Projects</a>
-                <a href="#experience" class="hover:text-white transition-colors">Experience</a>
-                <a href="#blog" class="hover:text-white transition-colors">Writing</a>
-                <a href="#github" class="hover:text-white transition-colors">GitHub</a>
-                <a href="#contact" class="px-4 py-2 bg-white text-black rounded-full hover:bg-neutral-200 transition-colors">Let's Connect</a>
-            </div>
+    <div id="searchBackdrop" class="search-backdrop" aria-hidden="true"></div>
 
-            <button class="md:hidden text-white" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')">
-                <span class="iconify" data-icon="lucide:menu" data-width="24"></span>
+    <div id="commandPalette" class="command-palette" role="dialog" aria-modal="true" aria-label="Command palette">
+        <div class="command-search">
+            <span class="iconify" style="color:#666" data-icon="lucide:search" data-width="17"></span>
+            <input id="commandInput" type="text" placeholder="Search sections, projects, writing and links…"
+                   autocomplete="off" spellcheck="false" aria-label="Search commands">
+            <span class="command-key">ESC</span>
+        </div>
+        <div id="commandList" class="command-list">
+            <button type="button" class="command-item" data-command="home">
+                <span class="cmd-icon"><span class="iconify" data-icon="lucide:house" data-width="15"></span></span>
+                <span><strong>Home</strong><small>Back to the landing page</small></span>
+            </button>
+            <button type="button" class="command-item" data-command="about">
+                <span class="cmd-icon"><span class="iconify" data-icon="lucide:user" data-width="15"></span></span>
+                <span><strong>About</strong><small>Background and focus areas</small></span>
+            </button>
+            <button type="button" class="command-item" data-command="skills">
+                <span class="cmd-icon"><span class="iconify" data-icon="lucide:layers" data-width="15"></span></span>
+                <span><strong>Skills</strong><small>Technical arsenal in motion</small></span>
+            </button>
+            <button type="button" class="command-item" data-command="projects">
+                <span class="cmd-icon"><span class="iconify" data-icon="lucide:folder-git-2" data-width="15"></span></span>
+                <span><strong>Projects</strong><small>Five selected case studies</small></span>
+            </button>
+            <button type="button" class="command-item" data-command="experience">
+                <span class="cmd-icon"><span class="iconify" data-icon="lucide:briefcase" data-width="15"></span></span>
+                <span><strong>Experience</strong><small>FlyRank AI — ML Intern</small></span>
+            </button>
+            <button type="button" class="command-item" data-command="analytics">
+                <span class="cmd-icon"><span class="iconify" data-icon="lucide:chart-no-axes-combined" data-width="15"></span></span>
+                <span><strong>Analytics</strong><small>Local traffic dashboard</small></span>
+            </button>
+            <button type="button" class="command-item" data-command="blog">
+                <span class="cmd-icon"><span class="iconify" data-icon="lucide:pen-line" data-width="15"></span></span>
+                <span><strong>Writing</strong><small>Technical articles and guides</small></span>
+            </button>
+            <button type="button" class="command-item" data-command="github">
+                <span class="cmd-icon"><span class="iconify" data-icon="lucide:github" data-width="15"></span></span>
+                <span><strong>GitHub</strong><small>Activity and repositories</small></span>
+            </button>
+            <button type="button" class="command-item" data-command="contact">
+                <span class="cmd-icon"><span class="iconify" data-icon="lucide:mail" data-width="15"></span></span>
+                <span><strong>Contact</strong><small>Let's build something together</small></span>
+            </button>
+            <button type="button" class="command-item" data-action="theme-light">
+                <span class="cmd-icon"><span class="iconify" data-icon="lucide:sun" data-width="15"></span></span>
+                <span><strong>Light theme</strong><small>Switch the palette</small></span>
+            </button>
+            <button type="button" class="command-item" data-action="theme-dark">
+                <span class="cmd-icon"><span class="iconify" data-icon="lucide:moon" data-width="15"></span></span>
+                <span><strong>Dark theme</strong><small>Switch back to obsidian</small></span>
+            </button>
+            <button type="button" class="command-item" data-href="https://github.com/Om-codex">
+                <span class="cmd-icon"><span class="iconify" data-icon="lucide:github" data-width="15"></span></span>
+                <span><strong>GitHub profile</strong><small>github.com/Om-codex</small></span>
+            </button>
+            <button type="button" class="command-item" data-href="https://www.linkedin.com/in/om-mishra-a55263329">
+                <span class="cmd-icon"><span class="iconify" data-icon="lucide:linkedin" data-width="15"></span></span>
+                <span><strong>LinkedIn</strong><small>om-mishra-a55263329</small></span>
+            </button>
+            <button type="button" class="command-item" data-href="mailto:omm512462@gmail.com">
+                <span class="cmd-icon"><span class="iconify" data-icon="lucide:mail" data-width="15"></span></span>
+                <span><strong>Send an email</strong><small>omm512462@gmail.com</small></span>
             </button>
         </div>
-        
-        <div id="mobile-menu" class="hidden absolute top-16 left-0 w-full bg-black border-b border-white/10 px-6 py-4 flex flex-col md:hidden">
+        <div id="commandEmpty" class="command-empty" style="display:none">No matching commands. Try a section, project or link name.</div>
+        <div class="command-footer">
+            <span><span class="command-key">↑</span> <span class="command-key">↓</span> navigate</span>
+            <span><span class="command-key">↵</span> select &nbsp;·&nbsp; <span class="command-key">esc</span> close</span>
+        </div>
+    </div>
+
+    <div class="theme-dock" role="toolbar" aria-label="Quick actions">
+        <button type="button" class="dock-search" onclick="openCommandPalette()" title="Search (Ctrl+K)" aria-label="Open search">
+            <span class="iconify" data-icon="lucide:search" data-width="16"></span>
+            <span class="dock-label">Search</span>
+        </button>
+        <span class="dock-divider" aria-hidden="true"></span>
+        <button type="button" class="dock-top" id="dockTop" onclick="handleDockTop()" title="Back to top" aria-label="Back to top">
+            <svg class="dock-ring" viewBox="0 0 34 34" aria-hidden="true" focusable="false">
+                <circle class="dock-ring-track" cx="17" cy="17" r="15.5"></circle>
+                <circle class="dock-ring-bar" id="dockRingBar" cx="17" cy="17" r="15.5"></circle>
+            </svg>
+            <span class="iconify" data-icon="lucide:arrow-up" data-width="16"></span>
+        </button>
+    </div>
+
+    <div id="pageOverlay" class="page-overlay" role="dialog" aria-modal="true" aria-label="Section view" tabindex="-1"></div>
+
+    <div id="themeTransition" class="theme-transition" aria-hidden="true"></div>
+
+    <nav class="site-nav" aria-label="Primary navigation">
+        <div class="site-nav__inner">
+            <a href="https://www.github.com/Om-codex" class="site-brand" aria-label="Om Mishra on GitHub">
+                <span class="site-brand__mark">OM</span>
+                <span>Om Mishra</span>
+            </a>
+
+            <div class="site-nav__links">
+                <a href="#about">About</a>
+                <a href="#skills">Skills</a>
+                <a href="#projects">Projects</a>
+                <a href="#experience">Experience</a>
+                <a href="#blog">Writing</a>
+                <a href="#analytics" class="nav-analytics-link">Analytics<span class="nav-live-dot" aria-hidden="true"></span></a>
+                <a href="#github">GitHub</a>
+            </div>
+
+            <div class="site-nav__actions">
+                <button type="button" class="site-theme-toggle" id="themeToggle" onclick="toggleTheme(this)" title="Switch to light theme" aria-label="Switch to light theme">
+                    <span class="iconify iconify-sun" data-icon="lucide:sun" data-width="16"></span>
+                    <span class="iconify iconify-moon" data-icon="lucide:moon" data-width="16"></span>
+                </button>
+                <a href="#contact" class="site-connect">Let's Connect <span class="iconify" data-icon="lucide:arrow-up-right" data-width="15"></span></a>
+                <button type="button" class="site-menu-toggle" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" aria-label="Toggle navigation menu" aria-controls="mobile-menu">
+                    <span class="iconify" data-icon="lucide:menu" data-width="19"></span>
+                </button>
+            </div>
+        </div>
+
+        <div id="mobile-menu" class="site-mobile-menu hidden flex flex-col">
             <a href="#about" class="mobile-menu-link block text-sm hover:text-white">About</a>
             <a href="#skills" class="mobile-menu-link block text-sm hover:text-white">Skills</a>
             <a href="#projects" class="mobile-menu-link block text-sm hover:text-white">Projects</a>
             <a href="#experience" class="mobile-menu-link block text-sm hover:text-white">Experience</a>
-            <a href="#blog" class="block hover:text-white">Writing</a>
+            <a href="#blog" class="mobile-menu-link block hover:text-white">Writing</a>
+            <a href="#analytics" class="mobile-menu-link block hover:text-white">Analytics</a>
+            <button type="button" class="mobile-menu-link block text-left hover:text-white" onclick="openCommandPalette()">Search / Navigate</button>
             <a href="#contact" class="mobile-menu-link block text-white font-semibold">Let's Connect</a>
         </div>
     </nav>
 
-<section class="relative min-h-screen flex flex-col justify-center items-center text-center pt-20 px-6 bg-grid">
-        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[500px] glow-bg opacity-60 pointer-events-none"></div>
+<section class="hero-stage">
 
-        <div class="animate-slide-up space-y-8 max-w-6xl w-full relative z-10 hero-copy">
-            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/10 bg-white/5 text-xs font-medium text-white backdrop-blur-sm">
-                <span class="relative flex h-2 w-2">
-                  <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                  <span class="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
-                </span>
+    <div class="experiment-cosmic-bg" aria-hidden="true">
+        <div class="experiment-starfield"></div>
+        <div class="experiment-lens-flare"></div>
+        <div class="experiment-orbit experiment-orbit-1"></div>
+        <div class="experiment-orbit experiment-orbit-2"></div>
+        <div class="experiment-orbit experiment-orbit-3"></div>
+    </div>
+
+    <div class="hero-beacon" aria-hidden="true">
+        <span class="hero-beam"></span>
+        <span class="hero-core"></span>
+    </div>
+
+    <svg class="hero-arcs" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
+        <path class="arc" style="--a:.13" d="M-260 880 C 180 300, 780 40, 1880 210"/>
+        <path class="arc arc--soft" style="--a:.12" d="M-180 520 C 320 372, 720 430, 1010 262"/>
+        <path class="arc" style="--a:.10" d="M-220 1040 C 420 646, 1210 640, 1840 960"/>
+        <path class="arc arc--soft" style="--a:.09" d="M1010 -120 C 1300 40, 1520 190, 1700 520"/>
+        <path class="arc" style="--a:.08" d="M120 700 C 520 560, 900 700, 1220 560 C 1420 470, 1560 300, 1680 120"/>
+        <path class="arc arc--soft" style="--a:.11" d="M240 150 C 700 40, 1120 210, 1500 96"/>
+        <path class="arc arc--soft" style="--a:.14" d="M-120 320 C 340 180, 640 420, 940 350 C 1180 296, 1300 140, 1380 -60"/>
+        <g aria-hidden="true">
+            <circle class="arc-glow" style="--delay:-1.5s" cx="1010" cy="262" r="7"></circle>
+            <circle class="arc-spark" cx="1010" cy="262" r="1.2"></circle>
+            <circle class="arc-glow" style="--delay:-4s" cx="1220" cy="560" r="5.5"></circle>
+            <circle class="arc-spark" cx="1220" cy="560" r="1"></circle>
+            <circle class="arc-glow" style="--delay:-6.5s" cx="1500" cy="96" r="5"></circle>
+            <circle class="arc-spark" cx="1500" cy="96" r=".9"></circle>
+        </g>
+        <circle class="node" cx="1010" cy="262" r="2.4"/>
+        <circle class="node" cx="1220" cy="560" r="2"/>
+        <circle class="node" cx="640" cy="420" r="2"/>
+    </svg>
+
+    <div class="hero-backglow" aria-hidden="true"></div>
+    <div class="hero-planet" aria-hidden="true"></div>
+    <div class="hero-atmosphere" aria-hidden="true"></div>
+
+    <div class="hero-stars" aria-hidden="true">
+        <i class="hero-star"></i><i class="hero-star"></i><i class="hero-star"></i>
+        <i class="hero-star"></i><i class="hero-star"></i><i class="hero-star"></i>
+        <i class="hero-star"></i><i class="hero-star"></i><i class="hero-star"></i>
+        <i class="hero-star"></i><i class="hero-star"></i><i class="hero-star"></i>
+    </div>
+
+    <div class="hero-note hero-note--tl" aria-hidden="true">
+        <span>AI/ML</span>
+        <span>Engineer</span>
+    </div>
+
+    <div class="hero-note hero-note--tr" aria-hidden="true">
+        <span>Train</span>
+        <span>Evaluate</span>
+        <span>Deploy</span>
+    </div>
+
+    <div class="hero-note hero-note--bl" aria-hidden="true">
+        <span>AI · Deep</span>
+        <span>Learning · RAG</span>
+    </div>
+
+    <div class="hero-note hero-note--br" aria-hidden="true">
+        <span>Data to</span>
+        <span>Intelligence</span>
+    </div>
+
+    <div class="animate-slide-up max-w-6xl w-full hero-content hero-copy">
+            <div class="hero-badge">
+                <span class="badge-dot" aria-hidden="true"></span>
                 Open to ML / AI internships
             </div>
 
-            <h1 id="title" class="text-5xl md:text-7xl font-semibold tracking-tighter text-white leading-[1.1] flex flex-col gap-2">
-                <span class="animate-slide-up opacity-0 block" style="animation-fill-mode: both;">
+            <h1 id="title" class="hero-title font-semibold flex flex-col gap-2">
+                <span class="hero-line animate-slide-up opacity-0 block" style="animation-fill-mode: both;">
                     I build machine learning systems
                 </span>
-                <span class="animate-slide-up opacity-0 text-neutral-500 block" style="animation-delay: 150ms; animation-fill-mode: both;">
+                <span class="hero-line hero-line--sub animate-slide-up opacity-0 block" style="animation-delay: 150ms; animation-fill-mode: both;">
                     from first principles to deployment.
                 </span>
             </h1>
 
-            <p class="text-lg md:text-xl text-secondary max-w-2xl mx-auto leading-relaxed min-h-[60px] md:min-h-[30px]">
-                <span id="typewriter-text"></span><span class="cursor-blink font-mono">_</span>
+            <p class="hero-desc mx-auto">
+                Focused on Machine Learning, Deep Learning, NLP, LLMs, and building models from architecture to deployment.
             </p>
 
             <div class="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4 hero-actions">
-                <a href="#projects" class="btn-shimmer relative overflow-hidden px-8 py-3 bg-white text-black font-medium rounded-full hover:bg-neutral-200 transition-all flex items-center gap-2 group">
+                <a href="#projects" class="btn-shimmer relative overflow-hidden px-8 py-3 bg-white text-black font-medium rounded-full hover:bg-neutral-200 transition-all flex items-center gap-2 group hero-btn-primary">
                     <span class="relative z-10 flex items-center gap-2">
                         View Projects
                         <span class="iconify group-hover:translate-x-1 transition-transform" data-icon="lucide:arrow-right" data-width="18"></span>
                     </span>
-                <a href="Om's-Resume.pdf" class="btn-shimmer-light relative overflow-hidden px-8 py-3 border border-border text-white font-medium rounded-full hover:bg-white/5 transition-all flex items-center gap-2 group">
+                </a>
+                <a href="Om's-Resume.pdf" class="btn-shimmer-light relative overflow-hidden px-8 py-3 border border-border text-white font-medium rounded-full hover:bg-white/5 transition-all flex items-center gap-2 group hero-btn-secondary">
                     <span class="relative z-10 flex items-center gap-2">
                         <span class="iconify group-hover:-translate-y-1 transition-transform duration-300" data-icon="lucide:download" data-width="18"></span>
                         Resume(CV)
@@ -468,7 +2251,7 @@
                 </a>
             </div>
 
-            <div class="flex justify-center gap-5 mt-7">
+            <div class="hero-socials">
                 <a href="https://www.github.com/Om-codex" class="text-secondary hover:text-white transition-colors" aria-label="GitHub">
                     <span class="iconify" data-icon="lucide:github" data-width="20"></span>
                 </a>
@@ -479,7 +2262,7 @@
                     <span class="iconify" data-icon="lucide:twitter" data-width="20"></span>
                 </a>
             </div>
-        </div>
+    </div>
     </section>
 
     <div class="glossy-surface">
@@ -512,10 +2295,16 @@
         </section>
 
 
-        <section id="about" class="py-24 bg-obsidian relative">
+        <section id="about" class="py-24 bg-obsidian relative" data-page>
+            <div class="cosmic-bg bg-minimal" aria-hidden="true">
+                <div class="stars dense-stars"></div>
+                <div class="nebula-glow nebula-bottom-center"></div>
+                <div class="orbit orbit-bottom-horizon"></div>
+            </div>
+
             <div class="container mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
                 <div>
-                    <h2 class="text-3xl md:text-5xl font-bold text-white mb-8">About Me</h2>
+                    <h2 class="text-3xl md:text-4xl font-semibold text-white tracking-tight mt-2">About Me</h2><br>
                     <p class="text-slate-400 text-lg leading-relaxed mb-6">
                         I'm <strong class="text-white">Om Santosh Mishra</strong>, an inquisitive BSc.IT student at Smt. C.H.M. College focused on <span class="text-indigo-accent">Machine Learning</span>, <span class="text-cyan-accent">Deep Learning</span>, and <span class="text-indigo-accent">NLP</span>. I enjoy understanding how models work beneath the abstractions, not just using libraries and APIs.
                     </p>
@@ -570,80 +2359,93 @@
             </div>
         </section>
 
-        <section id="skills" class="py-24 px-6 relative border-t border-white/5">
-            <div class="max-w-6xl mx-auto space-y-12">
-                <div class="space-y-2">
-                    <h2 class="text-3xl md:text-4xl font-semibold text-white tracking-tight">Technical Arsenal</h2>
-                    <p class="text-secondary">The tools I use to turn problems into products.</p>
-                </div>
+        
+<section id="skills" class="py-24 px-6 relative modern-section" data-page>
+  <div class="cosmic-bg bg-skills" aria-hidden="true">
+    <div class="stars"></div>
+    <div class="grid-overlay"></div>
+    <div class="orbit orbit-center-1"></div>
+    <div class="orbit orbit-center-2"></div>
+    <div class="lens-flare flare-center"></div>
+  </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div class="glow-card p-8 md:p-10 rounded-3xl">
-                        <div class="flex items-center gap-3 mb-6">
-                            <span class="p-2 rounded-lg bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">
-                                <span class="iconify" data-icon="lucide:brain" data-width="20"></span>
-                            </span>
-                            <h3 class="text-xl font-medium text-white">Machine Learning</h3>
-                        </div>
-                        <ul class="space-y-3 text-sm">
-                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-indigo-500"></span> Scikit-learn</li>
-                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-indigo-500"></span> XGBoost / LightGBM</li>
-                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-indigo-500"></span> Feature Engineering &amp; Evaluation</li>
-                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-indigo-500"></span> SHAP &amp; Model Interpretability</li>
-                        </ul>
-                    </div>
+  <div class="max-w-6xl mx-auto space-y-10">
+    <div class="section-heading">
+      <div>
+        <h2 class="text-3xl md:text-4xl font-semibold text-white tracking-tight mt-2">Skills in motion</h2>
+        <p class="text-secondary mt-2 max-w-2xl">The same stack from my existing portfolio, presented as a living system.</p>
+      </div>
+      <span class="section-index hidden md:block">FLOW / 01</span>
+    </div>
 
-                    <div class="glow-card p-8 md:p-10 rounded-3xl">
-                        <div class="flex items-center gap-3 mb-6">
-                            <span class="p-2 rounded-lg bg-purple-500/10 text-purple-400 border border-purple-500/20">
-                                <span class="iconify" data-icon="lucide:network" data-width="20"></span>
-                            </span>
-                            <h3 class="text-xl font-medium text-white">Deep Learning</h3>
-                        </div>
-                        <ul class="space-y-3 text-sm">
-                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-purple-500"></span> PyTorch</li>
-                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-purple-500"></span> CNNs &amp; Neural Networks</li>
-                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-purple-500"></span> Transfer Learning</li>
-                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-purple-500"></span> Training &amp; Optimization</li>
-                        </ul>
-                    </div>
+    <div class="skills-marquee-shell">
+      <div class="skill-marquee row-a">
+        <span class="skill-chip"><span class="iconify" data-icon="logos:python"></span>Python</span>
+        <span class="skill-chip"><span class="iconify" data-icon="logos:pytorch-icon"></span>PyTorch</span>
+        <span class="skill-chip"><span class="iconify" data-icon="logos:tensorflow"></span>TensorFlow</span>
+        <span class="skill-chip"><span class="iconify" data-icon="logos:scikit-learn"></span>Scikit-learn</span>
+        <span class="skill-chip"><span class="iconify" data-icon="logos:pandas"></span>Pandas</span>
+        <span class="skill-chip"><span class="iconify" data-icon="logos:numpy"></span>NumPy</span>
+        <span class="skill-chip"><span class="iconify" data-icon="logos:postgresql"></span>SQL</span>
+        <span class="skill-chip"><span class="iconify" data-icon="simple-icons:huggingface"></span>Hugging Face</span>
+        <span class="skill-chip"><span class="iconify" data-icon="logos:streamlit"></span>Streamlit</span>
+        <span class="skill-chip"><span class="iconify" data-icon="simple-icons:fastapi"></span>FastAPI</span>
+        <span class="skill-chip"><span class="iconify" data-icon="logos:git-icon"></span>Git</span>
+        <span class="skill-chip"><span class="iconify" data-icon="logos:github-icon"></span>GitHub</span>
+        <span class="skill-chip"><span class="iconify" data-icon="logos:python"></span>Python</span>
+        <span class="skill-chip"><span class="iconify" data-icon="logos:pytorch-icon"></span>PyTorch</span>
+        <span class="skill-chip"><span class="iconify" data-icon="logos:tensorflow"></span>TensorFlow</span>
+        <span class="skill-chip"><span class="iconify" data-icon="logos:scikit-learn"></span>Scikit-learn</span>
+        <span class="skill-chip"><span class="iconify" data-icon="logos:pandas"></span>Pandas</span>
+        <span class="skill-chip"><span class="iconify" data-icon="logos:numpy"></span>NumPy</span>
+        <span class="skill-chip"><span class="iconify" data-icon="logos:postgresql"></span>SQL</span>
+        <span class="skill-chip"><span class="iconify" data-icon="simple-icons:huggingface"></span>Hugging Face</span>
+        <span class="skill-chip"><span class="iconify" data-icon="logos:streamlit"></span>Streamlit</span>
+        <span class="skill-chip"><span class="iconify" data-icon="simple-icons:fastapi"></span>FastAPI</span>
+        <span class="skill-chip"><span class="iconify" data-icon="logos:git-icon"></span>Git</span>
+        <span class="skill-chip"><span class="iconify" data-icon="logos:github-icon"></span>GitHub</span>
+      </div>
+      <div class="skill-marquee row-b">
+        <span class="skill-chip"><span class="iconify" data-icon="lucide:brain"></span>Machine Learning</span>
+        <span class="skill-chip"><span class="iconify" data-icon="lucide:network"></span>Deep Learning</span>
+        <span class="skill-chip"><span class="iconify" data-icon="lucide:message-square-code"></span>NLP</span>
+        <span class="skill-chip"><span class="iconify" data-icon="lucide:bot"></span>Transformers</span>
+        <span class="skill-chip"><span class="iconify" data-icon="lucide:image"></span>Computer Vision</span>
+        <span class="skill-chip"><span class="iconify" data-icon="lucide:database"></span>Feature Engineering</span>
+        <span class="skill-chip"><span class="iconify" data-icon="lucide:chart-no-axes-combined"></span>Model Evaluation</span>
+        <span class="skill-chip"><span class="iconify" data-icon="lucide:boxes"></span>Deployment</span>
+        <span class="skill-chip"><span class="iconify" data-icon="lucide:brain"></span>Machine Learning</span>
+        <span class="skill-chip"><span class="iconify" data-icon="lucide:network"></span>Deep Learning</span>
+        <span class="skill-chip"><span class="iconify" data-icon="lucide:message-square-code"></span>NLP</span>
+        <span class="skill-chip"><span class="iconify" data-icon="lucide:bot"></span>Transformers</span>
+        <span class="skill-chip"><span class="iconify" data-icon="lucide:image"></span>Computer Vision</span>
+        <span class="skill-chip"><span class="iconify" data-icon="lucide:database"></span>Feature Engineering</span>
+        <span class="skill-chip"><span class="iconify" data-icon="lucide:chart-no-axes-combined"></span>Model Evaluation</span>
+        <span class="skill-chip"><span class="iconify" data-icon="lucide:boxes"></span>Deployment</span>
+      </div>
+    </div>
 
-                    <div class="glow-card p-8 md:p-10 rounded-3xl">
-                        <div class="flex items-center gap-3 mb-6">
-                            <span class="p-2 rounded-lg bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">
-                                <span class="iconify" data-icon="lucide:message-square-code" data-width="20"></span>
-                            </span>
-                            <h3 class="text-xl font-medium text-white">NLP &amp; Transformers</h3>
-                        </div>
-                        <ul class="space-y-3 text-sm">
-                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-indigo-500"></span> Tokenization &amp; Sequence Modeling</li>
-                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-indigo-500"></span> Attention Mechanisms</li>
-                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-indigo-500"></span> Encoder-Decoder Transformers</li>
-                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-indigo-500"></span> NLP &amp; LLM Fundamentals</li>
-                        </ul>
-                    </div>
+    <div class="skill-groups">
+      <div class="skill-group"><span class="skill-group-label">Machine learning</span><p>Scikit-learn · XGBoost / LightGBM · Feature Engineering & Evaluation · SHAP & Model Interpretability</p></div>
+      <div class="skill-group"><span class="skill-group-label">Deep learning</span><p>PyTorch · CNNs & Neural Networks · Transfer Learning · Training & Optimization</p></div>
+      <div class="skill-group"><span class="skill-group-label">NLP & Transformers</span><p>Tokenization & Sequence Modeling · Attention Mechanisms · Encoder-Decoder Transformers · NLP & LLM Fundamentals</p></div>
+      <div class="skill-group"><span class="skill-group-label">Engineering</span><p>Python & SQL · Streamlit & FastAPI · Git & GitHub · Docker & Practical Deployment</p></div>
+    </div>
+  </div>
+</section>
 
-                    <div class="glow-card p-8 md:p-10 rounded-3xl">
-                        <div class="flex items-center gap-3 mb-6">
-                            <span class="p-2 rounded-lg bg-orange-500/10 text-orange-400 border border-orange-500/20">
-                                <span class="iconify" data-icon="lucide:server" data-width="20"></span>
-                            </span>
-                            <h3 class="text-xl font-medium text-white">Engineering &amp; Deployment</h3>
-                        </div>
-                        <ul class="space-y-3 text-sm">
-                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-orange-500"></span> Python &amp; SQL</li>
-                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-orange-500"></span> Streamlit &amp; FastAPI</li>
-                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-orange-500"></span> Git &amp; GitHub</li>
-                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-orange-500"></span> Docker &amp; Practical Deployment</li>
-                        </ul>
-                    </div>
-                </div>
+        <section id="experience" class="py-24 px-6 bg-surface/30" data-page>
+            <div class="cosmic-bg bg-experience" aria-hidden="true">
+                <div class="stars"></div>
+                <div class="nebula-glow nebula-left-spine"></div>
+                <div class="orbit orbit-spine"></div>
+                <div class="orbit orbit-spine-outer"></div>
+                <div class="lens-flare flare-spine-1"></div>
+                <div class="lens-flare flare-spine-2"></div>
             </div>
-        </section>
 
-        <section id="experience" class="py-24 px-6 bg-surface/30">
             <div class="max-w-4xl mx-auto space-y-12">
-                <h2 class="text-3xl font-semibold text-white tracking-tight">Experience</h2>
+                <h2 class="text-3xl md:text-4xl font-semibold text-white tracking-tight mt-2">Experience</h2>
                 
                 <div class="relative border-l border-white/10 ml-3 space-y-12">
 
@@ -682,298 +2484,172 @@
             </div>
         </section>
 
-        <section id="projects" class="py-24 px-6 relative">
-            <div class="max-w-6xl mx-auto space-y-10">
-                <div class="space-y-5">
-                    <div class="space-y-2">
-                        <p class="eyebrow">Selected work</p>
-                        <h2 class="text-3xl md:text-4xl font-semibold text-white tracking-tight">Featured projects</h2>
-                        <p class="text-secondary max-w-2xl">A small set of systems where the implementation, evaluation, and deployment matter as much as the model.</p>
-                    </div>
-                    <div class="flex flex-wrap gap-2" role="group" aria-label="Filter projects">
-                        <button type="button" class="filter-btn active px-3 py-1.5 rounded-full text-xs" data-project-filter="all">All</button>
-                        <button type="button" class="filter-btn px-3 py-1.5 rounded-full text-xs" data-project-filter="ml">ML</button>
-                        <button type="button" class="filter-btn px-3 py-1.5 rounded-full text-xs" data-project-filter="deep-learning">Deep learning</button>
-                        <button type="button" class="filter-btn px-3 py-1.5 rounded-full text-xs" data-project-filter="nlp">NLP</button>
-                        <button type="button" class="filter-btn px-3 py-1.5 rounded-full text-xs" data-project-filter="computer-vision">Computer vision</button>
-                    </div>
-                </div>
+        
+<section id="projects" class="py-16 px-6 relative modern-section" data-page>
+  <div class="cosmic-bg bg-projects" aria-hidden="true">
+    <div class="stars"></div>
+    <div class="nebula-glow nebula-top-right"></div>
+    <div class="orbit orbit-projects-1"></div>
+    <div class="orbit orbit-projects-2"></div>
+    <div class="lens-flare flare-projects"></div>
+  </div>
 
-                <div class="relative">
-                    <div class="flex items-center justify-between mb-5">
-                        <p class="text-xs text-neutral-600 uppercase tracking-[0.18em]">Swipe or use the arrows</p>
-                        <div class="flex gap-2">
-                            <button id="projectPrevBtn" type="button" aria-label="Previous project"
-                                class="slider-control w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-secondary hover:text-white hover:border-white/20 hover:bg-white/5 transition-all">
-                                <i class="fas fa-chevron-left"></i>
-                            </button>
-                            <button id="projectNextBtn" type="button" aria-label="Next project"
-                                class="slider-control w-10 h-10 rounded-full bg-white text-black flex items-center justify-center hover:bg-neutral-200 transition-all">
-                                <i class="fas fa-chevron-right"></i>
-                            </button>
-                        </div>
-                    </div>
+  <div class="max-w-6xl mx-auto space-y-7">
+    <div class="section-heading">
+      <div>
+        <h2 class="text-3xl md:text-4xl font-semibold text-white tracking-tight mt-2">Projects</h2>
+      </div>
+      <span class="section-index hidden md:block">BUILD / SHIP</span>
+    </div>
 
-                    <div id="projectSliderContainer"
-                         class="project-slider flex gap-6 overflow-x-auto snap-x snap-mandatory pb-5 px-1"
-                         tabindex="0"
-                         aria-label="Featured projects">
+    <div class="flex flex-wrap gap-2" role="group" aria-label="Filter projects">
+      <button type="button" class="filter-btn active px-3 py-1.5 rounded-full text-xs" data-project-filter="all">All</button>
+      <button type="button" class="filter-btn px-3 py-1.5 rounded-full text-xs" data-project-filter="ml">ML</button>
+      <button type="button" class="filter-btn px-3 py-1.5 rounded-full text-xs" data-project-filter="deep-learning">Deep learning</button>
+      <button type="button" class="filter-btn px-3 py-1.5 rounded-full text-xs" data-project-filter="nlp">NLP</button>
+      <button type="button" class="filter-btn px-3 py-1.5 rounded-full text-xs" data-project-filter="computer-vision">Computer vision</button>
+    </div>
 
-                        <!-- Project 1 -->
-                        <article class="project-card snap-start glow-card rounded-3xl overflow-hidden" data-project-card data-category="nlp">
-                            <div class="project-image h-56 overflow-hidden relative">
-                                <div class="absolute inset-0 bg-indigo-accent/10 group-hover:bg-transparent transition-colors z-10 pointer-events-none"></div>
-                                <img src="transformer-app.png" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Transformer Translation App">
-                            </div>
-                            <div class="p-7 space-y-5">
-                                <div class="flex justify-between items-start gap-4">
-                                    <div>
-                                        <p class="text-xs text-indigo-accent font-bold uppercase tracking-wider mb-2">NLP · Transformers</p>
-                                        <h3 class="text-xl font-semibold text-white">English → French Transformer</h3>
-                                        <p class="text-sm text-secondary mt-1">Neural Machine Translation System</p>
-                                    </div>
-                                    <a href="https://neuralbridge.streamlit.app/" target="_blank" rel="noopener noreferrer"
-                                       class="shrink-0 p-2 rounded-full hover:bg-white/10 text-white" aria-label="Open Transformer application">
-                                        <span class="iconify" data-icon="lucide:arrow-up-right"></span>
-                                    </a>
-                                </div>
+    <div class="project-modern-list">
+      <article class="project-modern" data-project-card data-category="nlp">
+        <div class="project-modern-media"><span class="project-number">01</span><img src="transformer-app.png" alt="Transformer Translation App"></div>
+        <div class="project-modern-content">
+          <div class="project-meta"><div class="project-kicker">NLP · Transformers</div><a href="https://neuralbridge.streamlit.app/" target="_blank" rel="noopener noreferrer" class="project-arrow" aria-label="Open Transformer application"><span class="iconify" data-icon="lucide:arrow-up-right"></span></a></div>
+          <h3 class="project-modern-title">English → French Transformer</h3>
+          <p class="project-modern-sub">Neural Machine Translation System</p>
+          <p class="project-modern-description">Encoder-Decoder architecture built from scratch for EN-to-FR translation. Achieved 34.82 BLEU score on 2.3M pairs with cross-attention heatmaps.</p>
+          <div class="project-modern-tags"><span>PyTorch</span><span>NLP</span><span>Streamlit</span></div>
+          <div class="project-modern-proof">
+            <div class="proof-item"><span class="proof-value">34.82</span><span class="proof-label">BLEU</span></div>
+            <div class="proof-item"><span class="proof-value">2.3M</span><span class="proof-label">sentence pairs</span></div>
+            <div class="proof-item"><span class="proof-value">from scratch</span><span class="proof-label">PyTorch architecture</span></div>
+          </div>
+          <div class="project-modern-links"><a href="https://neuralbridge.streamlit.app/" target="_blank" rel="noopener noreferrer"><i class="fas fa-globe"></i> App</a><a href="https://github.com/Om-codex/attention-is-all-you-need-from-scratch/" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i> GitHub</a></div>
+        </div>
+      </article>
 
-                                <p class="text-sm text-secondary leading-relaxed">
-                                    Encoder-Decoder architecture built from scratch for EN-to-FR translation. Achieved 34.82 BLEU score on 2.3M pairs with cross-attention heatmaps.
-                                </p>
+      <article class="project-modern" data-project-card data-category="computer-vision deep-learning">
+        <div class="project-modern-media"><span class="project-number">02</span><img src="pulmoscan3.png" alt="PulmoScan AI App"></div>
+        <div class="project-modern-content">
+          <div class="project-meta"><div class="project-kicker">Computer Vision · Deep Learning</div><a href="https://pulmoscan.streamlit.app" target="_blank" rel="noopener noreferrer" class="project-arrow" aria-label="Open PulmoScan application"><span class="iconify" data-icon="lucide:arrow-up-right"></span></a></div>
+          <h3 class="project-modern-title">PulmoScan AI</h3>
+          <p class="project-modern-sub">High-Sensitivity Pneumonia Screening</p>
+          <p class="project-modern-description">Diagnostic system fine-tuning DenseNet121 to detect pneumonia from X-rays, achieving 99.7% Recall. Features Grad-CAM explainability and a low-latency Streamlit UI.</p>
+          <div class="project-modern-tags"><span>PyTorch</span><span>Streamlit</span><span>OpenCV</span></div>
+          <div class="project-modern-proof">
+            <div class="proof-item"><span class="proof-value">99.7%</span><span class="proof-label">reported recall</span></div>
+            <div class="proof-item"><span class="proof-value">DenseNet121</span><span class="proof-label">fine-tuned backbone</span></div>
+            <div class="proof-item"><span class="proof-value">Grad-CAM</span><span class="proof-label">explainability</span></div>
+          </div>
+          <div class="project-modern-links"><a href="https://pulmoscan.streamlit.app" target="_blank" rel="noopener noreferrer"><i class="fas fa-globe"></i> App</a><a href="https://github.com/Om-codex/Pneumonia-Screening-CXR-DL" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i> GitHub</a></div>
+        </div>
+      </article>
 
-                                <div class="flex flex-wrap gap-2">
-                                    <span class="px-2 py-1 text-[10px] uppercase tracking-wider rounded border border-white/10 text-neutral-400">PyTorch</span>
-                                    <span class="px-2 py-1 text-[10px] uppercase tracking-wider rounded border border-white/10 text-neutral-400">NLP</span>
-                                    <span class="px-2 py-1 text-[10px] uppercase tracking-wider rounded border border-white/10 text-neutral-400">Streamlit</span>
-                                </div>
+      <article class="project-modern" data-project-card data-category="nlp">
+        <div class="project-modern-media"><span class="project-number">03</span><img src="Shriramartha.png" alt="Shriramartha Streamlit Interface"></div>
+        <div class="project-modern-content">
+          <div class="project-meta"><div class="project-kicker">NLP</div><a href="https://huggingface.co/spaces/OmCodex/shriramartha-streamlit-app" target="_blank" rel="noopener noreferrer" class="project-arrow" aria-label="Open Ramartha application"><span class="iconify" data-icon="lucide:arrow-up-right"></span></a></div>
+          <h3 class="project-modern-title">Ramartha Analysis</h3>
+          <p class="project-modern-sub">Semantic Analysis Application</p>
+          <p class="project-modern-description">End-to-end NLP system for semantic analysis of low-resource classical texts using Word2Vec and FastText. Features Unicode-native processing and real-time concept exploration.</p>
+          <div class="project-modern-tags"><span>NLP</span><span>Word2Vec</span><span>Hugging Face</span></div>
+          <div class="project-modern-proof">
+            <div class="proof-item"><span class="proof-value">Word2Vec</span><span class="proof-label">embeddings</span></div>
+            <div class="proof-item"><span class="proof-value">FastText</span><span class="proof-label">semantic features</span></div>
+            <div class="proof-item"><span class="proof-value">Unicode</span><span class="proof-label">native processing</span></div>
+          </div>
+          <div class="project-modern-links"><a href="https://huggingface.co/spaces/OmCodex/shriramartha-streamlit-app" target="_blank" rel="noopener noreferrer"><i class="fas fa-globe"></i> App</a><a href="https://github.com/Om-codex/semantic-narrative-analysis-shriramcharitmanas" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i> GitHub</a></div>
+        </div>
+      </article>
 
-                                <div class="proof-grid">
-    <div class="proof-item"><span class="proof-value">34.82</span><span class="proof-label">BLEU</span></div>
-    <div class="proof-item"><span class="proof-value">2.3M</span><span class="proof-label">sentence pairs</span></div>
-    <div class="proof-item"><span class="proof-value">from scratch</span><span class="proof-label">PyTorch architecture</span></div>
-</div>
+      <article class="project-modern" data-project-card data-category="ml">
+        <div class="project-modern-media"><span class="project-number">04</span><img src="urban-app.png" alt="Urban Bike Demand App"></div>
+        <div class="project-modern-content">
+          <div class="project-meta"><div class="project-kicker">Machine Learning</div><a href="https://urban-ride-cast.streamlit.app" target="_blank" rel="noopener noreferrer" class="project-arrow" aria-label="Open Urban Bike Demand application"><span class="iconify" data-icon="lucide:arrow-up-right"></span></a></div>
+          <h3 class="project-modern-title">Urban Bike Demand</h3>
+          <p class="project-modern-sub">Demand Prediction System</p>
+          <p class="project-modern-description">Logistics optimization system achieving 93.5% R² with LightGBM. Uses cyclic encoding and weather analysis to proactively prevent station stockouts.</p>
+          <div class="project-modern-tags"><span>Python</span><span>Sklearn</span><span>Streamlit</span></div>
+          <div class="project-modern-proof">
+            <div class="proof-item"><span class="proof-value">93.5%</span><span class="proof-label">reported R²</span></div>
+            <div class="proof-item"><span class="proof-value">LightGBM</span><span class="proof-label">prediction model</span></div>
+            <div class="proof-item"><span class="proof-value">cyclic</span><span class="proof-label">time encoding</span></div>
+          </div>
+          <div class="project-modern-links"><a href="https://urban-ride-cast.streamlit.app" target="_blank" rel="noopener noreferrer"><i class="fas fa-globe"></i> Demo</a><a href="https://github.com/Om-codex/Urban_Mobility_Optimization_Streamlit_App" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i> Code</a></div>
+        </div>
+      </article>
 
-                                <div class="flex gap-5 pt-1">
-                                    <a href="https://neuralbridge.streamlit.app/" target="_blank" rel="noopener noreferrer"
-                                       class="text-white hover:text-cyan-accent text-sm font-bold flex items-center">
-                                        <i class="fas fa-globe mr-2"></i> App
-                                    </a>
-                                    <a href="https://github.com/Om-codex/attention-is-all-you-need-from-scratch/" target="_blank" rel="noopener noreferrer"
-                                       class="text-white hover:text-cyan-accent text-sm font-bold flex items-center">
-                                        <i class="fab fa-github mr-2"></i> GitHub
-                                    </a>
-                                </div>
-                            </div>
-                        </article>
-
-                        <!-- Project 2 -->
-                        <article class="project-card snap-start glow-card rounded-3xl overflow-hidden" data-project-card data-category="computer-vision deep-learning">
-                            <div class="project-image h-56 overflow-hidden relative">
-                                <div class="absolute inset-0 bg-indigo-accent/10 group-hover:bg-transparent transition-colors z-10 pointer-events-none"></div>
-                                <img src="pulmoscan3.png" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="PulmoScan AI App">
-                            </div>
-                            <div class="p-7 space-y-5">
-                                <div class="flex justify-between items-start gap-4">
-                                    <div>
-                                        <p class="text-xs text-purple-400 font-bold uppercase tracking-wider mb-2">Computer Vision · Deep Learning</p>
-                                        <h3 class="text-xl font-semibold text-white">PulmoScan AI</h3>
-                                        <p class="text-sm text-secondary mt-1">High-Sensitivity Pneumonia Screening</p>
-                                    </div>
-                                    <a href="https://pulmoscan.streamlit.app" target="_blank" rel="noopener noreferrer"
-                                       class="shrink-0 p-2 rounded-full hover:bg-white/10 text-white" aria-label="Open PulmoScan application">
-                                        <span class="iconify" data-icon="lucide:arrow-up-right"></span>
-                                    </a>
-                                </div>
-
-                                <p class="text-sm text-secondary leading-relaxed">
-                                    Diagnostic system fine-tuning DenseNet121 to detect pneumonia from X-rays, achieving 99.7% Recall. Features Grad-CAM explainability and a low-latency Streamlit UI.
-                                </p>
-
-                                <div class="flex flex-wrap gap-2">
-                                    <span class="px-2 py-1 text-[10px] uppercase tracking-wider rounded border border-white/10 text-neutral-400">PyTorch</span>
-                                    <span class="px-2 py-1 text-[10px] uppercase tracking-wider rounded border border-white/10 text-neutral-400">Streamlit</span>
-                                    <span class="px-2 py-1 text-[10px] uppercase tracking-wider rounded border border-white/10 text-neutral-400">OpenCV</span>
-                                </div>
-
-                                <div class="proof-grid">
-    <div class="proof-item"><span class="proof-value">99.7%</span><span class="proof-label">reported recall</span></div>
-    <div class="proof-item"><span class="proof-value">DenseNet121</span><span class="proof-label">fine-tuned backbone</span></div>
-    <div class="proof-item"><span class="proof-value">Grad-CAM</span><span class="proof-label">explainability</span></div>
-</div>
-
-                                <div class="flex gap-5 pt-1">
-                                    <a href="https://pulmoscan.streamlit.app" target="_blank" rel="noopener noreferrer"
-                                       class="text-white hover:text-cyan-accent text-sm font-bold flex items-center">
-                                        <i class="fas fa-globe mr-2"></i> App
-                                    </a>
-                                    <a href="https://github.com/Om-codex/Pneumonia-Screening-CXR-DL" target="_blank" rel="noopener noreferrer"
-                                       class="text-white hover:text-cyan-accent text-sm font-bold flex items-center">
-                                        <i class="fab fa-github mr-2"></i> GitHub
-                                    </a>
-                                </div>
-                            </div>
-                        </article>
-
-                        <!-- Project 3 -->
-                        <article class="project-card snap-start glow-card rounded-3xl overflow-hidden" data-project-card data-category="nlp">
-                            <div class="project-image h-56 overflow-hidden relative">
-                                <div class="absolute inset-0 bg-blue-500/10 group-hover:bg-transparent transition-colors z-10 pointer-events-none"></div>
-                                <img src="Shriramartha.png" alt="Shriramartha Streamlit Interface"
-                                     class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                            </div>
-                            <div class="p-7 space-y-5">
-                                <div class="flex justify-between items-start gap-4">
-                                    <div>
-                                        <p class="text-xs text-indigo-accent font-bold uppercase tracking-wider mb-2">NLP</p>
-                                        <h3 class="text-xl font-semibold text-white">Ramartha Analysis</h3>
-                                        <p class="text-sm text-secondary mt-1">Semantic Analysis Application</p>
-                                    </div>
-                                    <a href="https://huggingface.co/spaces/OmCodex/shriramartha-streamlit-app" target="_blank" rel="noopener noreferrer"
-                                       class="shrink-0 p-2 rounded-full hover:bg-white/10 text-white" aria-label="Open Ramartha application">
-                                        <span class="iconify" data-icon="lucide:arrow-up-right"></span>
-                                    </a>
-                                </div>
-
-                                <p class="text-sm text-secondary leading-relaxed">
-                                    End-to-end NLP system for semantic analysis of low-resource classical texts using Word2Vec and FastText. Features Unicode-native processing and real-time concept exploration.
-                                </p>
-
-                                <div class="flex flex-wrap gap-2">
-                                    <span class="px-2 py-1 text-[10px] uppercase tracking-wider rounded border border-white/10 text-neutral-400">NLP</span>
-                                    <span class="px-2 py-1 text-[10px] uppercase tracking-wider rounded border border-white/10 text-neutral-400">Word2Vec</span>
-                                    <span class="px-2 py-1 text-[10px] uppercase tracking-wider rounded border border-white/10 text-neutral-400">Hugging Face</span>
-                                </div>
-
-                                <div class="proof-grid">
-    <div class="proof-item"><span class="proof-value">Word2Vec</span><span class="proof-label">embeddings</span></div>
-    <div class="proof-item"><span class="proof-value">FastText</span><span class="proof-label">semantic features</span></div>
-    <div class="proof-item"><span class="proof-value">Unicode</span><span class="proof-label">native processing</span></div>
-</div>
-
-                                <div class="flex gap-5 pt-1">
-                                    <a href="https://huggingface.co/spaces/OmCodex/shriramartha-streamlit-app" target="_blank" rel="noopener noreferrer"
-                                       class="text-white hover:text-cyan-accent text-sm font-bold flex items-center">
-                                        <i class="fas fa-globe mr-2"></i> App
-                                    </a>
-                                    <a href="https://github.com/Om-codex/semantic-narrative-analysis-shriramcharitmanas" target="_blank" rel="noopener noreferrer"
-                                       class="text-white hover:text-cyan-accent text-sm font-bold flex items-center">
-                                        <i class="fab fa-github mr-2"></i> GitHub
-                                    </a>
-                                </div>
-                            </div>
-                        </article>
-
-                        <!-- Project 4 -->
-                        <article class="project-card snap-start glow-card rounded-3xl overflow-hidden" data-project-card data-category="ml">
-                            <div class="project-image h-56 overflow-hidden relative">
-                                <div class="absolute inset-0 bg-cyan-accent/10 group-hover:bg-transparent transition-colors z-10 pointer-events-none"></div>
-                                <img src="urban-app.png" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Urban Bike Demand App">
-                            </div>
-                            <div class="p-7 space-y-5">
-                                <div class="flex justify-between items-start gap-4">
-                                    <div>
-                                        <p class="text-xs text-cyan-accent font-bold uppercase tracking-wider mb-2">Machine Learning</p>
-                                        <h3 class="text-xl font-semibold text-white">Urban Bike Demand</h3>
-                                        <p class="text-sm text-secondary mt-1">Demand Prediction System</p>
-                                    </div>
-                                    <a href="https://urban-ride-cast.streamlit.app" target="_blank" rel="noopener noreferrer"
-                                       class="shrink-0 p-2 rounded-full hover:bg-white/10 text-white" aria-label="Open Urban Bike Demand application">
-                                        <span class="iconify" data-icon="lucide:arrow-up-right"></span>
-                                    </a>
-                                </div>
-
-                                <p class="text-sm text-secondary leading-relaxed">
-                                    Logistics optimization system achieving 93.5% R² with LightGBM. Uses cyclic encoding and weather analysis to proactively prevent station stockouts.
-                                </p>
-
-                                <div class="flex flex-wrap gap-2">
-                                    <span class="px-2 py-1 text-[10px] uppercase tracking-wider rounded border border-white/10 text-neutral-400">Python</span>
-                                    <span class="px-2 py-1 text-[10px] uppercase tracking-wider rounded border border-white/10 text-neutral-400">Sklearn</span>
-                                    <span class="px-2 py-1 text-[10px] uppercase tracking-wider rounded border border-white/10 text-neutral-400">Streamlit</span>
-                                </div>
-
-                                <div class="proof-grid">
-    <div class="proof-item"><span class="proof-value">93.5%</span><span class="proof-label">reported R²</span></div>
-    <div class="proof-item"><span class="proof-value">LightGBM</span><span class="proof-label">prediction model</span></div>
-    <div class="proof-item"><span class="proof-value">cyclic</span><span class="proof-label">time encoding</span></div>
-</div>
-
-                                <div class="flex gap-5 pt-1">
-                                    <a href="https://urban-ride-cast.streamlit.app" target="_blank" rel="noopener noreferrer"
-                                       class="text-white hover:text-cyan-accent text-sm font-bold flex items-center">
-                                        <i class="fas fa-globe mr-2"></i> Demo
-                                    </a>
-                                    <a href="https://github.com/Om-codex/Urban_Mobility_Optimization_Streamlit_App" target="_blank" rel="noopener noreferrer"
-                                       class="text-white hover:text-cyan-accent text-sm font-bold flex items-center">
-                                        <i class="fab fa-github mr-2"></i> Code
-                                    </a>
-                                </div>
-                            </div>
-                        </article>
-
-                        <!-- Project 5 -->
-                        <article class="project-card snap-start glow-card rounded-3xl overflow-hidden" data-project-card data-category="ml">
-                            <div class="project-image h-56 overflow-hidden relative">
-                                <div class="absolute inset-0 bg-indigo-accent/10 group-hover:bg-transparent transition-colors z-10 pointer-events-none"></div>
-                                <img src="telco-app.png" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Telco Customer Churn App">
-                            </div>
-                            <div class="p-7 space-y-5">
-                                <div class="flex justify-between items-start gap-4">
-                                    <div>
-                                        <p class="text-xs text-indigo-accent font-bold uppercase tracking-wider mb-2">Machine Learning</p>
-                                        <h3 class="text-xl font-semibold text-white">Telco Customer Churn</h3>
-                                        <p class="text-sm text-secondary mt-1">Customer Risk Prediction</p>
-                                    </div>
-                                    <a href="https://telco-customer-churn-prediction-om-codex.onrender.com/" target="_blank" rel="noopener noreferrer"
-                                       class="shrink-0 p-2 rounded-full hover:bg-white/10 text-white" aria-label="Open Telco Customer Churn application">
-                                        <span class="iconify" data-icon="lucide:arrow-up-right"></span>
-                                    </a>
-                                </div>
-
-                                <p class="text-sm text-secondary leading-relaxed">
-                                    End-to-end ML pipeline optimizing retention via Logistic Regression (81% Recall). Features a live Streamlit dashboard for real-time customer risk assessment.
-                                </p>
-
-                                <div class="flex flex-wrap gap-2">
-                                    <span class="px-2 py-1 text-[10px] uppercase tracking-wider rounded border border-white/10 text-neutral-400">Python</span>
-                                    <span class="px-2 py-1 text-[10px] uppercase tracking-wider rounded border border-white/10 text-neutral-400">Sklearn</span>
-                                    <span class="px-2 py-1 text-[10px] uppercase tracking-wider rounded border border-white/10 text-neutral-400">Streamlit</span>
-                                </div>
-
-                                <div class="proof-grid">
-    <div class="proof-item"><span class="proof-value">81%</span><span class="proof-label">reported recall</span></div>
-    <div class="proof-item"><span class="proof-value">Logistic</span><span class="proof-label">regression baseline</span></div>
-    <div class="proof-item"><span class="proof-value">live</span><span class="proof-label">risk assessment</span></div>
-</div>
-
-                                <div class="flex gap-5 pt-1">
-                                    <a href="https://telco-customer-churn-prediction-om-codex.onrender.com/" target="_blank" rel="noopener noreferrer"
-                                       class="text-white hover:text-indigo-accent text-sm font-bold flex items-center">
-                                        <i class="fas fa-globe mr-2"></i> Demo
-                                    </a>
-                                    <a href="https://github.com/Om-codex/Telco-Customer-Churn-Prediction" target="_blank" rel="noopener noreferrer"
-                                       class="text-white hover:text-indigo-accent text-sm font-bold flex items-center">
-                                        <i class="fab fa-github mr-2"></i> Code
-                                    </a>
-                                </div>
-                            </div>
-                        </article>
-                    </div>
-
-                    <div class="flex justify-center gap-2 mt-5" aria-hidden="true">
-                        <span class="project-dot w-1.5 h-1.5 rounded-full bg-white/50"></span>
-                        <span class="project-dot w-1.5 h-1.5 rounded-full bg-white/15"></span>
-                        <span class="project-dot w-1.5 h-1.5 rounded-full bg-white/15"></span>
-                        <span class="project-dot w-1.5 h-1.5 rounded-full bg-white/15"></span>
-                        <span class="project-dot w-1.5 h-1.5 rounded-full bg-white/15"></span>
-                    </div>
-                </div>
-            </div>
-        </section>
+      <article class="project-modern" data-project-card data-category="ml">
+        <div class="project-modern-media"><span class="project-number">05</span><img src="telco-app.png" alt="Telco Customer Churn App"></div>
+        <div class="project-modern-content">
+          <div class="project-meta"><div class="project-kicker">Machine Learning</div><a href="https://telco-customer-churn-prediction-om-codex.onrender.com/" target="_blank" rel="noopener noreferrer" class="project-arrow" aria-label="Open Telco Customer Churn application"><span class="iconify" data-icon="lucide:arrow-up-right"></span></a></div>
+          <h3 class="project-modern-title">Telco Customer Churn</h3>
+          <p class="project-modern-sub">Customer Risk Prediction</p>
+          <p class="project-modern-description">End-to-end ML pipeline optimizing retention via Logistic Regression (81% Recall). Features a live Streamlit dashboard for real-time customer risk assessment.</p>
+          <div class="project-modern-tags"><span>Python</span><span>Sklearn</span><span>Streamlit</span></div>
+          <div class="project-modern-proof">
+            <div class="proof-item"><span class="proof-value">81%</span><span class="proof-label">reported recall</span></div>
+            <div class="proof-item"><span class="proof-value">Logistic</span><span class="proof-label">regression baseline</span></div>
+            <div class="proof-item"><span class="proof-value">live</span><span class="proof-label">risk assessment</span></div>
+          </div>
+          <div class="project-modern-links"><a href="https://telco-customer-churn-prediction-om-codex.onrender.com/" target="_blank" rel="noopener noreferrer"><i class="fas fa-globe"></i> Demo</a><a href="https://github.com/Om-codex/Telco-Customer-Churn-Prediction" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i> Code</a></div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
 
         
-        <section id="github" class="py-24 px-5 sm:px-6 section-rule">
+        
+<section id="analytics" class="py-24 px-5 sm:px-6 modern-section" data-page>
+  <div class="cosmic-bg bg-minimal" aria-hidden="true">
+    <div class="stars dense-stars"></div>
+    <div class="nebula-glow nebula-bottom-center"></div>
+    <div class="orbit orbit-bottom-horizon"></div>
+  </div>
+
+  <div class="max-w-6xl mx-auto space-y-10">
+    <div class="section-heading">
+      <div>
+        <h2 class="text-3xl md:text-4xl font-semibold text-white tracking-tight mt-2">Analytics</h2>
+        <p class="text-secondary mt-2 max-w-2xl">A minimal dashboard inspired by the reference: traffic, page views and a time-series view in the same dark visual language.</p>
+      </div>
+      <span class="section-index hidden md:block">/analytics</span>
+    </div>
+    <div class="analytics-panel">
+      <div class="analytics-top">
+        <div class="analytics-stat"><div class="analytics-label">Visitors</div><div id="analyticsVisitors" class="analytics-value">0</div><div id="analyticsVisitorDelta" class="analytics-delta">↑ local</div></div>
+        <div class="analytics-stat"><div class="analytics-label">Page views</div><div id="analyticsViews" class="analytics-value">0</div><div id="analyticsViewDelta" class="analytics-delta">↑ local</div></div>
+        <div class="analytics-stat"><div class="analytics-label">Sessions</div><div id="analyticsSessions" class="analytics-value">0</div><div class="analytics-delta">this browser</div></div>
+        <div class="analytics-stat"><div class="analytics-label">Pages / visit</div><div id="analyticsPagesPerVisit" class="analytics-value">0.0</div><div class="analytics-delta">live estimate</div></div>
+      </div>
+      <div class="analytics-chart-wrap">
+        <div class="analytics-chart-head">
+          <div><div class="analytics-path">~/analytics.tsx</div><div class="analytics-legend mt-2"><span><i class="legend-dot"></i>Visitors</span><span><i class="legend-dot views"></i>Page Views</span></div></div>
+          <div class="analytics-range" role="group" aria-label="Analytics range">
+            <button type="button" data-analytics-range="24h">24H</button>
+            <button type="button" class="active" data-analytics-range="7d">7D</button>
+            <button type="button" data-analytics-range="30d">30D</button>
+          </div>
+        </div>
+        <svg id="analyticsChart" class="analytics-chart" viewBox="0 0 900 270" preserveAspectRatio="none" role="img" aria-label="Portfolio traffic chart">
+          <defs><linearGradient id="analyticsFill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#aaa" stop-opacity=".18"/><stop offset="1" stop-color="#aaa" stop-opacity="0"/></linearGradient></defs>
+          <g id="analyticsGrid"></g><path id="analyticsArea" fill="url(#analyticsFill)" stroke="none"></path><path id="analyticsVisitorsPath" fill="none" stroke="#bdbdbd" stroke-width="2" stroke-dasharray="2 5" vector-effect="non-scaling-stroke"></path><path id="analyticsViewsPath" fill="none" stroke="#666" stroke-width="2" stroke-dasharray="2 5" vector-effect="non-scaling-stroke"></path>
+        </svg>
+        <div id="analyticsXLabels" class="analytics-xlabels" aria-hidden="true"></div>
+        <p class="analytics-note">Local mode: counts are stored in this browser with localStorage. They do not represent global traffic unless connected to a server-side analytics provider.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="github" class="py-24 px-5 sm:px-6 section-rule" data-page>
+            <div class="cosmic-bg bg-minimal" aria-hidden="true">
+                <div class="stars dense-stars"></div>
+                <div class="nebula-glow nebula-bottom-center"></div>
+                <div class="orbit orbit-bottom-horizon"></div>
+            </div>
+
             <div class="max-w-6xl mx-auto space-y-10">
                 <div class="flex flex-col md:flex-row md:items-end justify-between gap-5">
                     <div>
@@ -1024,12 +2700,17 @@
             </div>
         </section>
 
-<section id="blog" class="py-24 px-5 sm:px-6 bg-[#050505] relative section-rule">
+<section id="blog" class="py-24 px-5 sm:px-6 bg-[#050505] relative section-rule" data-page>
+      <div class="cosmic-bg bg-minimal" aria-hidden="true">
+        <div class="stars dense-stars"></div>
+        <div class="nebula-glow nebula-bottom-center"></div>
+        <div class="orbit orbit-bottom-horizon"></div>
+      </div>
+
       <div class="max-w-6xl mx-auto">
 
         <div class="flex flex-col md:flex-row justify-between items-end gap-5 mb-10">
           <div class="text-center md:text-left max-w-2xl">
-            <p class="eyebrow">Writing</p>
             <h2 class="text-3xl md:text-4xl font-semibold text-white mt-2">Technical writing</h2>
             <p class="text-slate-400">
               Notes and engineering write-ups on AI, Data, and the systems I build.
@@ -1219,39 +2900,57 @@
     </section>
 
         
-<section id="contact" class="py-24 px-5 sm:px-6 border-t border-white/[.06] bg-[#050505]">
-    <div class="max-w-4xl mx-auto">
-        <div class="max-w-2xl">
-            <p class="eyebrow">Contact</p>
-            <h2 class="text-4xl md:text-5xl font-semibold tracking-tight text-white mt-3">
-                Have an ML problem worth building?
-            </h2>
-            <p class="text-secondary text-lg leading-relaxed mt-5">
-                I'm open to ML / AI internships, research-oriented work, and collaborations where I can contribute to real systems and keep learning from strong engineers.
-            </p>
+<section id="contact" class="py-24 px-5 sm:px-6 border-t border-white/[.06] bg-[#050505]" data-page>
+    <div class="cosmic-bg bg-minimal" aria-hidden="true">
+        <div class="stars dense-stars"></div>
+        <div class="nebula-glow nebula-bottom-center"></div>
+        <div class="orbit orbit-bottom-horizon"></div>
+    </div>
+
+    <div class="max-w-6xl mx-auto">
+        <div class="contact-layout">
+            <div class="max-w-2xl">
+                <h2 class="text-3xl md:text-4xl font-semibold text-white tracking-tight mt-2">Contact</h2>
+                <h2 class="text-4xl md:text-5xl font-semibold tracking-tight text-white mt-3">
+                    Have an ML problem worth building?
+                </h2>
+                <p class="text-secondary text-lg leading-relaxed mt-5">
+                    I'm open to ML / AI internships, research-oriented work, and collaborations where I can contribute to real systems and keep learning from strong engineers.
+                </p>
+
+                <div class="contact-actions flex flex-col sm:flex-row gap-3 mt-9">
+                    <a href="mailto:omm512462@gmail.com"
+                       class="inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-white text-black rounded-full font-medium hover:bg-neutral-200 transition-colors">
+                        <span class="iconify" data-icon="lucide:mail" data-width="18"></span>
+                        Email me
+                    </a>
+                    <a href="https://www.linkedin.com/in/om-mishra-a55263329" target="_blank" rel="noopener noreferrer"
+                       class="inline-flex items-center justify-center gap-2 px-6 py-3.5 border border-white/10 text-white rounded-full hover:bg-white/5 transition-colors">
+                        LinkedIn
+                        <span class="iconify" data-icon="lucide:arrow-up-right" data-width="17"></span>
+                    </a>
+                    <a href="https://github.com/Om-codex" target="_blank" rel="noopener noreferrer"
+                       class="inline-flex items-center justify-center gap-2 px-6 py-3.5 border border-white/10 text-white rounded-full hover:bg-white/5 transition-colors">
+                        GitHub
+                        <span class="iconify" data-icon="lucide:arrow-up-right" data-width="17"></span>
+                    </a>
+                </div>
+            </div>
+
+            <figure class="contact-quote" id="contactQuote">
+                <span class="contact-quote__mark" aria-hidden="true">&ldquo;</span>
+                <blockquote>
+                    <p data-quote-text>What you do makes a difference, and you have to decide what kind of difference you want to make.</p>
+                </blockquote>
+                <figcaption class="contact-quote__by">
+                    <span class="contact-quote__rule" aria-hidden="true"></span>
+                    <span data-quote-author>Jane Goodall</span>
+                </figcaption>
+            </figure>
         </div>
 
-        <div class="contact-actions flex flex-col sm:flex-row gap-3 mt-9">
-            <a href="mailto:omm512462@gmail.com"
-               class="inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-white text-black rounded-full font-medium hover:bg-neutral-200 transition-colors">
-                <span class="iconify" data-icon="lucide:mail" data-width="18"></span>
-                Email me
-            </a>
-            <a href="https://www.linkedin.com/in/om-mishra-a55263329" target="_blank" rel="noopener noreferrer"
-               class="inline-flex items-center justify-center gap-2 px-6 py-3.5 border border-white/10 text-white rounded-full hover:bg-white/5 transition-colors">
-                LinkedIn
-                <span class="iconify" data-icon="lucide:arrow-up-right" data-width="17"></span>
-            </a>
-            <a href="https://github.com/Om-codex" target="_blank" rel="noopener noreferrer"
-               class="inline-flex items-center justify-center gap-2 px-6 py-3.5 border border-white/10 text-white rounded-full hover:bg-white/5 transition-colors">
-                GitHub
-                <span class="iconify" data-icon="lucide:arrow-up-right" data-width="17"></span>
-            </a>
-        </div>
-
-        <div class="mt-12 pt-6 border-t border-white/[.06] flex flex-col sm:flex-row justify-between gap-4 text-sm">
+        <div class="mt-12 pt-6 flex flex-col sm:flex-row justify-between gap-4 text-sm">
             <p class="text-neutral-700">Usually best reached by email or LinkedIn.</p>
-            <a href="#top" class="text-neutral-500 hover:text-white transition-colors">Back to top ↑</a>
         </div>
     </div>
 </section>
@@ -1336,14 +3035,6 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     setupSlider(
-        'projectSliderContainer',
-        'projectPrevBtn',
-        'projectNextBtn',
-        '.project-dot',
-        '.project-card'
-    );
-
-    setupSlider(
         'blogSliderContainer',
         'blogPrevBtn',
         'blogNextBtn',
@@ -1351,12 +3042,9 @@ document.addEventListener('DOMContentLoaded', () => {
         '.blog-card'
     );
 
-    document.querySelectorAll('.project-dot').forEach(dot => dot.style.display = '');
-
     // Project filters.
     const filterButtons = document.querySelectorAll('[data-project-filter]');
     const projectCards = document.querySelectorAll('[data-project-card]');
-    const projectSlider = document.getElementById('projectSliderContainer');
 
     filterButtons.forEach(button => {
         button.addEventListener('click', () => {
@@ -1368,20 +3056,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 const categories = (card.dataset.category || '').split(' ');
                 card.hidden = filter !== 'all' && !categories.includes(filter);
             });
-
-            const visibleCount = [...projectCards].filter(card => !card.hidden).length;
-            document.querySelectorAll('.project-dot').forEach((dot, index) => {
-                dot.style.display = index < visibleCount ? '' : 'none';
-            });
-
-            if (projectSlider) {
-                projectSlider.scrollTo({
-                    left: 0,
-                    behavior: prefersReducedMotion ? 'auto' : 'smooth'
-                });
-            }
-
-            window.dispatchEvent(new Event('resize'));
         });
     });
 
@@ -1527,6 +3201,7 @@ document.addEventListener('DOMContentLoaded', () => {
             </a>
         `).join('');
         if (repoStatus) repoStatus.textContent = `${Math.min(repos.length, 6)} repositories`;
+        if (window.Iconify) window.Iconify.scan(repoGrid);
     };
 
     renderRepos(fallbackRepos);
@@ -1566,26 +3241,416 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 </script>
 <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const textToType = "Focused on Machine Learning, Deep Learning, NLP, LLM's, and building models from architecture to deployment.";
-            const typeContainer = document.getElementById('typewriter-text');
-            let charIndex = 0;
+        (() => {
+            const hero = document.querySelector('.hero-stage');
+            const nav = document.querySelector('.site-nav');
+            const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            if (!hero) return;
 
-            function typeWriter() {
-                if (charIndex < textToType.length) {
-                    const char = textToType.charAt(charIndex);
-                    typeContainer.textContent += char;
-                    charIndex++;
-                    
-                    // Add a tiny pause for commas, otherwise random typing speed
-                    const delay = char === ',' ? 250 : (Math.random() * 45 + 30);
-                    setTimeout(typeWriter, delay);
+            const updateChrome = () => {
+                const y = window.scrollY || 0;
+                nav?.classList.toggle('is-scrolled', y > 12);
+                if (!reduced) {
+                    hero.style.setProperty('--planet-shift', `${Math.min(y * .035, 24)}px`);
                 }
-            }
-            
-            // Wait 1 second for the hero text to animate in, then start typing
-            setTimeout(typeWriter, 1000);
-        });
+            };
+            updateChrome();
+            window.addEventListener('scroll', updateChrome, { passive: true });
+        })();
     </script>
+
+<script>
+(function(){
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ----- Command palette ----- */
+  const palette=document.getElementById('commandPalette');
+  const backdrop=document.getElementById('searchBackdrop');
+  const input=document.getElementById('commandInput');
+  const items=[...document.querySelectorAll('.command-item')];
+  const emptyState=document.getElementById('commandEmpty');
+  let commandIndex=0;
+
+  function refreshCommands(){
+    const q=(input?.value||'').trim().toLowerCase();
+    let visible=[];
+    items.forEach(item=>{
+      const match=!q || item.innerText.toLowerCase().includes(q);
+      item.style.display=match?'flex':'none';
+      if(match) visible.push(item);
+      item.classList.remove('active');
+    });
+    if(visible.length){
+      commandIndex=Math.min(commandIndex,visible.length-1);
+      visible[commandIndex].classList.add('active');
+      visible[commandIndex].scrollIntoView({block:'nearest'});
+    }
+    if(emptyState) emptyState.style.display=visible.length?'none':'block';
+    return visible;
+  }
+  window.openCommandPalette=function(){
+    document.body.classList.add('search-open');
+    palette?.classList.add('open');backdrop?.classList.add('open');
+    if(input){input.value='';commandIndex=0;refreshCommands();setTimeout(()=>input.focus(),40);}
+  };
+  window.closeCommandPalette=function(){
+    document.body.classList.remove('search-open');
+    palette?.classList.remove('open');backdrop?.classList.remove('open');
+  };
+  function runCommand(item){
+    if(!item)return;
+    const {command,action,href}=item.dataset;
+    closeCommandPalette();
+    if(command){
+      if(command==='home'){window.omClosePage?.();window.scrollTo({top:0,behavior:reduced?'auto':'smooth'});return;}
+      if(window.omOpenPage?.(command))return;
+      document.getElementById(command)?.scrollIntoView({behavior:reduced?'auto':'smooth',block:'start'});
+      return;
+    }
+    if(action==='theme-light')setTheme('light');
+    if(action==='theme-dark')setTheme('dark');
+    if(href){if(/^mailto:/.test(href))window.location.href=href;else window.open(href,'_blank','noopener,noreferrer');}
+  }
+  items.forEach(item=>item.addEventListener('click',()=>runCommand(item)));
+  backdrop?.addEventListener('click',closeCommandPalette);
+  input?.addEventListener('input',()=>{commandIndex=0;refreshCommands()});
+  input?.addEventListener('keydown',e=>{
+    const visible=items.filter(x=>x.style.display!=='none');
+    if(e.key==='ArrowDown'){e.preventDefault();commandIndex=(commandIndex+1)%Math.max(visible.length,1);refreshCommands();}
+    if(e.key==='ArrowUp'){e.preventDefault();commandIndex=(commandIndex-1+Math.max(visible.length,1))%Math.max(visible.length,1);refreshCommands();}
+    if(e.key==='Enter'){e.preventDefault();runCommand(visible[commandIndex]);}
+    if(e.key==='Escape')closeCommandPalette();
+  });
+  document.addEventListener('keydown',e=>{
+    if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='k'){e.preventDefault();palette?.classList.contains('open')?closeCommandPalette():openCommandPalette();}
+    if(e.key==='/'&&!/^(INPUT|TEXTAREA)$/.test(document.activeElement?.tagName||'')){e.preventDefault();openCommandPalette();}
+    if(e.key==='Escape' && palette?.classList.contains('open'))closeCommandPalette();
+  });
+
+  /* ----- Theme transition ----- */
+  function readStore(k){try{return localStorage.getItem(k)}catch{return null}}
+  function writeStore(k,v){try{localStorage.setItem(k,v)}catch{}}
+  function updateThemeButtons(theme){
+    const btn=document.getElementById('themeToggle');
+    if(!btn)return;
+    /* One button, always showing the theme it switches TO. */
+    const to=theme==='light'?'dark':'light';
+    btn.title='Switch to '+to+' theme';
+    btn.setAttribute('aria-label','Switch to '+to+' theme');
+  }
+  function applyTheme(theme){
+    const light=theme==='light';
+    document.documentElement.classList.toggle('light-theme',light);
+    document.body.classList.toggle('light-theme',light);
+    document.documentElement.style.colorScheme=theme;
+    updateThemeButtons(theme);
+    writeStore('om-theme',theme);
+    window.dispatchEvent(new CustomEvent('om-theme-changed',{detail:theme}));
+  }
+  window.setTheme=function(theme,button){
+    const next=theme==='light'?'light':'dark';
+    if(document.body.classList.contains('light-theme')===(next==='light')&&document.documentElement.classList.contains('light-theme')===(next==='light')){
+      updateThemeButtons(next);return;
+    }
+    const transition=document.getElementById('themeTransition');
+    if(reduced||!transition){applyTheme(next);return;}
+    /* The reveal always starts from the single theme button. */
+    const trigger=button||document.getElementById('themeToggle');
+    const rect=trigger?.getBoundingClientRect();
+    const x=(rect?.left??window.innerWidth/2)+(rect?.width??0)/2;
+    const y=(rect?.top??window.innerHeight-30)+(rect?.height??0)/2;
+    transition.className='theme-transition '+(next==='dark'?'dark':'');
+    transition.style.left=x+'px';transition.style.top=y+'px';
+    document.body.classList.add('theme-animating');
+    void transition.offsetWidth;
+    transition.classList.add('run');
+    setTimeout(()=>applyTheme(next),280);
+    setTimeout(()=>{
+      transition.className='theme-transition';
+      document.body.classList.remove('theme-animating');
+    },780);
+  };
+  applyTheme(readStore('om-theme')==='light'?'light':'dark');
+
+  /* Single control: the icon shows the theme that will be applied next. */
+  window.toggleTheme=function(button){
+    setTheme(document.body.classList.contains('light-theme')?'dark':'light',button);
+  };
+
+  /* ----- Local portfolio analytics ----- */
+  const KEY='om_portfolio_analytics_v2';
+  const todayKey=()=>new Date().toISOString().slice(0,10);
+  const readAnalytics=()=>{
+    try{return JSON.parse(localStorage.getItem(KEY))||{days:{},visitors:{},sessions:{}}}
+    catch{return {days:{},visitors:{},sessions:{}}}
+  };
+  const data=readAnalytics();
+  const day=todayKey();
+  if(!data.days[day])data.days[day]={views:0,visitors:0};
+  data.days[day].views++;
+  const visitorKey='om_visitor_id';
+  let visitorId=readStore(visitorKey);
+  if(!visitorId){visitorId='v_'+Math.random().toString(36).slice(2)+Date.now().toString(36);writeStore(visitorKey,visitorId);data.visitors[visitorId]={first:day,last:day};data.days[day].visitors++;}
+  else {data.visitors[visitorId]=data.visitors[visitorId]||{first:day,last:day};data.visitors[visitorId].last=day;}
+  const sessionKey='om_session_'+day;
+  try{if(!sessionStorage.getItem(sessionKey)){sessionStorage.setItem(sessionKey,'1');data.sessions[Date.now().toString()]=day;}}catch{}
+  writeStore(KEY,JSON.stringify(data));
+
+  const els={
+    visitors:document.getElementById('analyticsVisitors'),views:document.getElementById('analyticsViews'),
+    sessions:document.getElementById('analyticsSessions'),ppv:document.getElementById('analyticsPagesPerVisit')
+  };
+  const sum=(arr,key)=>arr.reduce((a,b)=>a+(Number(b[key])||0),0);
+  const allDays=Object.values(data.days);
+  const views=sum(allDays,'views'),visitors=Object.keys(data.visitors).length,sessions=Object.keys(data.sessions).length;
+  if(els.visitors)els.visitors.textContent=visitors.toLocaleString();
+  if(els.views)els.views.textContent=views.toLocaleString();
+  if(els.sessions)els.sessions.textContent=sessions.toLocaleString();
+  if(els.ppv)els.ppv.textContent=(sessions?views/sessions:0).toFixed(1);
+
+  const chart=document.getElementById('analyticsChart');
+  const grid=document.getElementById('analyticsGrid'), area=document.getElementById('analyticsArea');
+  const vpath=document.getElementById('analyticsVisitorsPath'),wpath=document.getElementById('analyticsViewsPath'),labels=document.getElementById('analyticsXLabels');
+  function chartSeries(range){
+    const count=range==='24h'?24:(range==='30d'?30:7);
+    if(range==='24h'){
+      const current=new Date(), arr=[];
+      for(let i=count-1;i>=0;i--){const d=new Date(current);d.setHours(current.getHours()-i,0,0,0);const k=d.toISOString().slice(0,10);const base=data.days[k]||{views:0,visitors:0};arr.push({label:d.getHours()+':00',views:Math.max(0,Math.round((base.views||0)/24)),visitors:Math.max(0,Math.round((base.visitors||0)/24))});}
+      return arr;
+    }
+    const now=new Date(),arr=[];
+    for(let i=count-1;i>=0;i--){const d=new Date(now);d.setDate(now.getDate()-i);const k=d.toISOString().slice(0,10);const base=data.days[k]||{views:0,visitors:0};arr.push({label:d.toLocaleDateString(undefined,{month:'short',day:'numeric'}),views:base.views||0,visitors:base.visitors||0});}
+    return arr;
+  }
+  function drawChart(range){
+    if(!chart||!grid||!vpath||!wpath)return;
+    const series=chartSeries(range),W=900,H=270,padX=18,padTop=24,padBottom=34,innerW=W-padX*2,innerH=H-padTop-padBottom;
+    const max=Math.max(1,...series.map(x=>Math.max(x.views,x.visitors)));
+    const points=(key)=>series.map((x,i)=>({x:padX+(i/(Math.max(series.length-1,1)))*innerW,y:padTop+innerH-(x[key]/max)*innerH}));
+    const vp=points('visitors'),wp=points('views');
+    const path=p=>p.map((x,i)=>(i?'L':'M')+x.x.toFixed(1)+' '+x.y.toFixed(1)).join(' ');
+    vpath.setAttribute('d',path(vp));wpath.setAttribute('d',path(wp));
+    area.setAttribute('d',path(vp)+' L '+vp[vp.length-1].x+' '+(padTop+innerH)+' L '+vp[0].x+' '+(padTop+innerH)+' Z');
+    grid.innerHTML='';if(labels)labels.innerHTML='';
+    for(let i=0;i<4;i++){const y=padTop+(innerH/3)*i;const line=document.createElementNS('http://www.w3.org/2000/svg','line');line.setAttribute('x1',padX);line.setAttribute('x2',W-padX);line.setAttribute('y1',y);line.setAttribute('y2',y);line.setAttribute('stroke',document.body.classList.contains('light-theme')?'rgba(0,0,0,.08)':'rgba(255,255,255,.07)');line.setAttribute('stroke-width','1');line.setAttribute('vector-effect','non-scaling-stroke');grid.appendChild(line);}
+    const labelIndexes=range==='24h'?[0,6,12,18,23]:[0,Math.floor((series.length-1)/2),series.length-1];
+    if(labels)labelIndexes.forEach(i=>{
+      const t=document.createElement('span');
+      const pct=(vp[i].x/W)*100;
+      t.style.left=pct+'%';
+      t.style.transform=i===0?'none':i===series.length-1?'translateX(-100%)':'translateX(-50%)';
+      t.textContent=series[i].label;
+      labels.appendChild(t);
+    });
+  }
+  let currentRange='7d';
+  document.querySelectorAll('[data-analytics-range]').forEach(btn=>btn.addEventListener('click',()=>{document.querySelectorAll('[data-analytics-range]').forEach(b=>b.classList.toggle('active',b===btn));currentRange=btn.dataset.analyticsRange;drawChart(currentRange);}));
+  drawChart(currentRange);
+  window.addEventListener('om-theme-changed',()=>drawChart(currentRange));
+
+  /* Dedicated pages count as their own page views. */
+  window.omTrackView=function(){
+    data.days[day].views++;
+    writeStore(KEY,JSON.stringify(data));
+    const totalViews=sum(Object.values(data.days),'views');
+    if(els.visitors)els.visitors.textContent=visitors.toLocaleString();
+    if(els.views)els.views.textContent=totalViews.toLocaleString();
+    if(els.sessions)els.sessions.textContent=sessions.toLocaleString();
+    if(els.ppv)els.ppv.textContent=(sessions?totalViews/sessions:0).toFixed(1);
+    drawChart(currentRange);
+  };
+})();
+</script>
+
+<script>
+/* ----- Dedicated pages + dock scroll-progress ring ----- */
+(function(){
+  const reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const overlay=document.getElementById('pageOverlay');
+  const sections=[...document.querySelectorAll('section[data-page]')];
+  const pageIds=sections.map(s=>s.id);
+  /* Each page carries its own cosmic composition; the overlay matches it. */
+  const pageBackgrounds={projects:'projects',experience:'experience',skills:'skills'};
+  const body=document.body;
+  const dockTop=document.getElementById('dockTop');
+  const ringBar=document.getElementById('dockRingBar');
+  const CIRC=2*Math.PI*15.5;
+  /* Each section keeps its slot in the vertical flow; this comment remembers it. */
+  const marks=new Map();
+  let current=null;
+  let savedScroll=0;
+  let lastTrigger=null;
+
+  sections.forEach(section=>{
+    const mark=document.createComment('om-page:'+section.id);
+    section.parentNode.insertBefore(mark,section);
+    marks.set(section.id,mark);
+  });
+
+  if(ringBar){
+    ringBar.style.strokeDasharray=CIRC.toFixed(2);
+    ringBar.style.strokeDashoffset=CIRC.toFixed(2);
+  }
+
+  /* Put a section back exactly where it sits in the one-page layout. */
+  function park(section){
+    const mark=marks.get(section.id);
+    if(mark&&mark.parentNode)mark.parentNode.insertBefore(section,mark);
+  }
+
+  /* Progress: the open page when there is one, otherwise the one-page scroll. */
+  function readProgress(){
+    if(current){
+      const max=overlay.scrollHeight-overlay.clientHeight;
+      return max>4?Math.min(1,Math.max(0,overlay.scrollTop/max)):1;
+    }
+    const max=Math.max(document.documentElement.scrollHeight-window.innerHeight,0);
+    return max>4?Math.min(1,Math.max(0,(window.scrollY||0)/max)):1;
+  }
+
+  function updateRing(){
+    if(!ringBar)return;
+    const progress=readProgress();
+    ringBar.style.strokeDashoffset=(CIRC*(1-progress)).toFixed(2);
+    if(dockTop){
+      dockTop.dataset.complete=progress>=.999?'1':'0';
+      dockTop.title=progress>=.999?'Back to top':'Back to top — '+Math.round(progress*100)+'% read';
+    }
+  }
+
+  function syncHash(id){
+    const hash=id?'#'+id:'#home';
+    if(location.hash===hash)return;
+    try{history.pushState({omPage:id||null},'',hash);}catch(_){}
+  }
+
+  function openPage(id,opts){
+    const push=!opts||opts.push!==false;
+    const section=sections.find(s=>s.id===id);
+    if(!section)return false;
+    if(current===section){if(push)syncHash(id);return true;}
+    /* Lock first so lifting the section out of flow cannot shift the page. */
+    if(!current)savedScroll=window.scrollY||0;
+    if(current)park(current);
+    current=section;
+    body.classList.add('page-open');
+    overlay.dataset.bg=pageBackgrounds[section.id]||'minimal';
+    overlay.appendChild(section);
+    overlay.scrollTop=0;
+    overlay.classList.add('open');
+    if(push){syncHash(id);window.omTrackView?.();}
+    requestAnimationFrame(()=>overlay.focus({preventScroll:true}));
+    updateRing();
+    return true;
+  }
+
+  function closePage(opts){
+    const push=!opts||opts.push!==false;
+    if(!current)return false;
+    const closing=current;
+    current=null;
+    overlay.classList.remove('open');
+    park(closing);
+    body.classList.remove('page-open');
+    window.scrollTo(0,savedScroll);
+    if(push)syncHash('');
+    updateRing();
+    if(lastTrigger&&lastTrigger.isConnected)lastTrigger.focus({preventScroll:true});
+    return true;
+  }
+
+  function goHome(push){
+    closePage(push===false?{push:false}:undefined);
+    window.scrollTo({top:0,behavior:reduced?'auto':'smooth'});
+  }
+
+  window.omOpenPage=function(id){
+    if(document.activeElement&&document.activeElement!==body)lastTrigger=document.activeElement;
+    return openPage(id);
+  };
+  window.omClosePage=function(){return closePage();};
+
+  /* In-page hash links open a dedicated page, or return home for #top/#home.
+     Re-clicking the section that is already open closes it again. */
+  document.addEventListener('click',e=>{
+    if(e.defaultPrevented||e.metaKey||e.ctrlKey||e.shiftKey||e.altKey||e.button)return;
+    const link=e.target&&e.target.closest?e.target.closest('a[href^="#"]'):null;
+    if(!link)return;
+    const id=link.getAttribute('href').slice(1);
+    if(!id)return;
+    if(pageIds.indexOf(id)>-1){
+      e.preventDefault();
+      lastTrigger=link;
+      if(current&&current.id===id)closePage();
+      else openPage(id);
+      return;
+    }
+    if(id==='top'||id==='home'){
+      e.preventDefault();
+      lastTrigger=link;
+      goHome();
+    }
+  });
+
+  /* Back/forward walks the page history. */
+  window.addEventListener('popstate',()=>{
+    const id=location.hash.replace(/^#/,'');
+    if(pageIds.indexOf(id)>-1)openPage(id,{push:false});
+    else closePage({push:false});
+  });
+
+  document.addEventListener('keydown',e=>{
+    if(e.key==='Escape'&&current&&!body.classList.contains('search-open')){
+      e.preventDefault();
+      closePage();
+    }
+  });
+
+  window.handleDockTop=function(){
+    if(current){
+      /* Ring already complete at the top of a page: leave the page. */
+      if(overlay.scrollTop<=4){goHome();return;}
+      overlay.scrollTo({top:0,behavior:reduced?'auto':'smooth'});
+      return;
+    }
+    window.scrollTo({top:0,behavior:reduced?'auto':'smooth'});
+  };
+
+  window.addEventListener('scroll',updateRing,{passive:true});
+  window.addEventListener('resize',updateRing);
+  window.addEventListener('load',updateRing);
+  overlay.addEventListener('scroll',updateRing,{passive:true});
+
+  /* Deep links such as /#projects open that page directly. */
+  const initial=location.hash.replace(/^#/,'');
+  if(pageIds.indexOf(initial)>-1)openPage(initial,{push:false});
+  updateRing();
+})();
+</script>
+
+<script>
+/* ----- Contact quote: one of the five, freshly picked on every visit ----- */
+(() => {
+  const quotes=[
+    {text:'The only way to do great work is to love what you do.',by:'Steve Jobs'},
+    {text:'What you do makes a difference, and you have to decide what kind of difference you want to make.',by:'Jane Goodall'},
+    {text:'We are what we repeatedly do. Excellence, then, is not an act, but a habit.',by:'Will Durant'},
+    {text:'If you haven’t found it yet, keep looking—and don’t settle.',by:'Steve Jobs'},
+    {text:'Pain and Consistency builds your inner core.',by:'Me'}
+  ];
+
+  /* The markup ships one quote so the card is never empty without JS. */
+  const card=document.getElementById('contactQuote');
+  if(!card||!quotes.length)return;
+  const text=card.querySelector('[data-quote-text]');
+  const author=card.querySelector('[data-quote-author]');
+  if(!text||!author)return;
+
+  const pick=quotes[Math.floor(Math.random()*quotes.length)];
+  text.textContent=pick.text;
+  author.textContent=pick.by;
+})();
+</script>
+
 </body>
 </html>
